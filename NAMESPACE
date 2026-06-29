@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
+useDynLib(mfscreen, .registration = TRUE)
+
+importFrom("stats", "qnorm")

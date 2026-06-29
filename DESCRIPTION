@@ -1,0 +1,20 @@
+Package: mfscreen
+Type: Package
+Title: Model-Free Screening for High-Dimensional Data
+Version: 0.1.1
+Authors@R: c(
+    person("Vincent", "Runge", email = "vincent.runge@univ-evry.fr", role = c("aut", "cre")),
+    person("Marie-Luce", "Taupin", email = "marie-luce.taupin@univ-evry.fr", role = c("aut")),
+    person("Jerome", "Dedecker", email = "jerome.dedecker@u-paris.fr", role = c("aut")),
+    person("Anne-Sophie", "Tocquet", email = "annesophie.tocquet@univ-evry.fr", role = c("aut"))
+    )
+Maintainer: Vincent Runge <vincent.runge@univ-evry.fr>
+Description: Implements model-free screening procedures for selecting explanatory variables correlated with a response variable in high-dimensional settings. The package provides functions to compute marginal screening scores and screening tests based on studentized slope estimators, with false positive rate control.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 1.0.14)
+LinkingTo: Rcpp
+URL: https://github.com/vrunge/mfscreen
+BugReports: https://github.com/vrunge/mfscreen/issues
+Config/roxygen2/version: 8.0.0
