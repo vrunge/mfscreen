@@ -28,30 +28,30 @@ where:
 
 The function returns:
 
-- `scores`: reciprocal screening scores \(D_j^2\);
-- `threshold`: the reciprocal selection threshold \(1 / \gamma^2\);
-- `gamma`: the normal-theory threshold \(\gamma = \Phi^{-1}(1-q/2)\);
+- `scores`: reciprocal screening scores $D_j^2$;
+- `threshold`: the reciprocal selection threshold $1 / \gamma^2$;
+- `gamma`: the normal-theory threshold $\gamma = \Phi^{-1}(1-q/2)$;
 - `q`: the supplied false-positive rate;
 - `selected`: logical selection indicators;
 - `selected_indices`: one-based indices of selected predictors.
 
 ## Screening rule
 
-For predictor \(X_j\), the package computes a reciprocal screening statistic
+For predictor $X_j$, the package computes a reciprocal screening statistic
 
-\[
+$$
 D_j^2 = \frac{1}{T_j^2},
-\]
+$$
 
-where \(T_j\) is the corresponding studentized marginal screening statistic.
+where $T_j$ is the corresponding studentized marginal screening statistic.
 
 A predictor is selected when
 
-\[
+$$
 D_j^2 \leq \frac{1}{\gamma^2},
 \qquad
 \gamma = \Phi^{-1}(1-q/2).
-\]
+$$
 
 Therefore:
 
@@ -112,7 +112,7 @@ score_x1 <- screening_score(X[, 1], y)
 score_x1
 ```
 
-The return value is \(D^2\). Smaller values indicate stronger marginal association between the predictor and the response.
+The return value is $D^2$. Smaller values indicate stronger marginal association between the predictor and the response.
 
 ## Input requirements
 
