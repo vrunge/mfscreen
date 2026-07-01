@@ -1,115 +1,136 @@
-mfscreen
+# mfscreen
 
-mfscreen is an R package, powered by Rcpp, for model-free marginal screening in high-dimensional data.
+`mfscreen` is an R package, powered by Rcpp, for **model-free marginal screening** in high-dimensional data.
 
-It identifies predictors associated with a response without requiring a fully specified outcome model, such as linear regression, logistic regression, or a particular response distribution. The procedure is based on marginal moment conditions and can be used with continuous, binary, or discrete responses when its assumptions are appropriate.
+It evaluates each candidate predictor separately and retains variables showing evidence of marginal association with a response. The procedure does not require fitting a full linear, logistic, or other parametric outcome model.
 
-What it does
-
-Given a response vector y and a predictor matrix X, mfscreen evaluates each predictor separately.
-
-For each predictor, the package computes a reciprocal screening statistic,
-
-[
-D_j^2 = \frac{1}{T_j^2},
-]
-
-where (T_j) is the corresponding studentized marginal association statistic.
-
-Smaller values of (D_j^2) indicate stronger marginal association between predictor (X_j) and the response. A predictor is retained when
-
-[
-D_j^2 \leq \frac{1}{\gamma^2},
-\qquad
-\gamma = \Phi^{-1}(1-q/2),
-]
-
-where q is the target two-sided false-positive rate.
-
-The package is implemented in C++ through Rcpp and is designed for fast first-stage screening when the number of candidate predictors is large.
-
-Installation
+## Installation
 
 Install the development version from GitHub:
 
+```r
 install.packages("remotes")
 remotes::install_github("vrunge/mfscreen")
+```
 
-Typical workflow
+## Main function
 
-1. Store the response in a numeric vector y of length n.
-2. Store predictors in a numeric matrix X with n rows and one column per candidate variable.
-3. Choose a target marginal false-positive rate q.
-4. Run screening_test_matrix().
-5. Extract the retained variables using selected or selected_indices.
+```r
+screening_test_matrix(X, y, q = 0.10, tol = sqrt(.Machine$double.eps))
+```
 
-Example
+where:
 
+- `X` is a numeric matrix with one row per observation and one column per candidate predictor;
+- `y` is a numeric response vector with `length(y) == nrow(X)`;
+- `q` is the target two-sided marginal false-positive rate;
+- `tol` is a numerical tolerance for treating an empirical covariance as zero.
+
+The function returns:
+
+- `scores`: reciprocal screening scores \(D_j^2\);
+- `threshold`: the reciprocal selection threshold \(1 / \gamma^2\);
+- `gamma`: the normal-theory threshold \(\gamma = \Phi^{-1}(1-q/2)\);
+- `q`: the supplied false-positive rate;
+- `selected`: logical selection indicators;
+- `selected_indices`: one-based indices of selected predictors.
+
+## Screening rule
+
+For predictor \(X_j\), the package computes a reciprocal screening statistic
+
+\[
+D_j^2 = \frac{1}{T_j^2},
+\]
+
+where \(T_j\) is the corresponding studentized marginal screening statistic.
+
+A predictor is selected when
+
+\[
+D_j^2 \leq \frac{1}{\gamma^2},
+\qquad
+\gamma = \Phi^{-1}(1-q/2).
+\]
+
+Therefore:
+
+- **smaller** values of `scores` indicate stronger marginal association;
+- a predictor is selected when its score is **below** `threshold`.
+
+Predictors with zero empirical variance, or with empirical covariance numerically indistinguishable from zero, receive score `Inf` and are not selected.
+
+## Example
+
+```r
 library(mfscreen)
+
 set.seed(123)
+
 n <- 300
 p <- 1000
+
 # Candidate predictors
 X <- matrix(rnorm(n * p), nrow = n, ncol = p)
 colnames(X) <- paste0("X", seq_len(p))
+
 # Response associated with the first three predictors
 y <- 2 * X[, 1] - 1.5 * X[, 2] + X[, 3] + rnorm(n)
+
 # Model-free marginal screening
 result <- screening_test_matrix(
   X = X,
   y = y,
   q = 0.10
 )
-# One-based indices of selected predictors
+
+# One-based indices of retained predictors
 result$selected_indices
-# Logical selection indicator for each predictor
+
+# Selection indicator for every predictor
 result$selected
-# Reciprocal screening scores D_j^2:
-# smaller values indicate stronger marginal association
+
+# Reciprocal scores: smaller means stronger association
 head(result$scores)
-# Selection threshold and corresponding normal threshold
+
+# Selection threshold
 result$threshold
+
+# Corresponding normal-theory threshold
 result$gamma
+```
 
-In this example, X1, X2, and X3 will typically have small reciprocal screening scores and are likely to be retained. Independent noise variables will generally have larger scores and will not be selected.
+In this example, predictors `X1`, `X2`, and `X3` will generally have small scores and are likely to be selected. Most independent noise predictors should have larger scores and should not be selected.
 
-Output
+## Single-predictor score
 
-screening_test_matrix() returns a list with:
+Use `screening_score()` to compute the reciprocal statistic for one predictor:
 
-* scores: reciprocal screening scores (D_j^2), one per predictor;
-* threshold: reciprocal selection threshold (1/\gamma^2);
-* gamma: normal-theory threshold (\Phi^{-1}(1-q/2));
-* q: supplied false-positive rate;
-* selected: logical vector indicating retained predictors;
-* selected_indices: one-based indices of retained predictors.
-
-Single-predictor score
-
-For a single predictor, use screening_score():
-
+```r
 score_x1 <- screening_score(X[, 1], y)
+
 score_x1
+```
 
-This returns the reciprocal score (D^2). Smaller values indicate stronger marginal association.
+The return value is \(D^2\). Smaller values indicate stronger marginal association between the predictor and the response.
 
-Input requirements
+## Input requirements
 
-The C++ functions assume that:
+The Rcpp functions expect:
 
-* X and y contain finite numeric values;
-* length(y) == nrow(X);
-* q is strictly between 0 and 1;
-* tol is non-negative.
+- finite numeric values in `X` and `y`;
+- `length(y) == nrow(X)`;
+- `q` strictly between `0` and `1`;
+- `tol` greater than or equal to `0`.
 
-Predictors with zero empirical variance, or with empirical covariance numerically indistinguishable from zero, receive score Inf and are not selected.
+The low-level C++ implementation does not perform full input validation. Validate inputs before calling the exported functions when working outside the usual R workflow.
 
-Method
+## Method
 
-For each predictor, mfscreen centers the predictor and response, computes a marginal association statistic, and applies a heteroskedasticity-robust normalization. The resulting reciprocal score is algebraically equivalent to the inverse squared studentized marginal statistic.
+For each predictor, `mfscreen` centers the predictor and response, computes marginal empirical moments, and forms a reciprocal statistic that is algebraically equivalent to the inverse squared studentized screening statistic.
 
-The procedure is intended as a computationally efficient screening stage before more detailed modelling or variable-selection methods.
+The package is designed as a fast first-stage screening method before more detailed modeling, regularization, or variable-selection procedures.
 
-Reference
+## Reference
 
-Dedecker, J., Taupin, M. L., and Tocquet, A. S. (2025). A model-free Screening procedure.
+Dedecker, J., Taupin, M. L., and Tocquet, A. S. (2025). *A model-free Screening procedure*.
