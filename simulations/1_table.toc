@@ -1,6 +1,0 @@
-\contentsline {section}{\numberline {1}Objective}{1}{section.1}%
-\contentsline {section}{\numberline {2}Screening with \texttt {mfscreen}}{1}{section.2}%
-\contentsline {section}{\numberline {3}Design parameters and common functions}{2}{section.3}%
-\contentsline {section}{\numberline {4}Continuous nonlinear heteroscedastic outcome}{4}{section.4}%
-\contentsline {section}{\numberline {5}Four separate Monte Carlo experiments}{4}{section.5}%
-\contentsline {section}{\numberline {6}Table 1-style summary}{6}{section.6}%
