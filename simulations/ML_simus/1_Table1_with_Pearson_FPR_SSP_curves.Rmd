@@ -39,7 +39,7 @@ but the large \(1982\)-variable noise block is generated much faster.
 # Packages
 
 ```{r packages}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE, cache.path = "table1_cache/")
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, cache.path = "table1_cache_threshold_curves/")
 library(parallel)
 ```
 
@@ -226,6 +226,19 @@ example_dataset <- simulate_table1_dataset_fast(
 dim(example_dataset$X)
 head(example_dataset$X[, 1:12])
 head(example_dataset$Y)
+
+# Pearson correlations between every predictor X_j and Y.
+pearson_correlations_example <- cor(example_dataset$X, example_dataset$Y)
+pearson_correlations_first18 <- data.frame(
+  variable = paste0("X", 1:18),
+  pearson_correlation_with_Y = pearson_correlations_example[1:18]
+)
+
+knitr::kable(
+  pearson_correlations_first18,
+  digits = 4,
+  caption = "Pearson correlations between X1,...,X18 and Y in one simulated data set"
+)
 
 # Empirical correlation of X1,...,X5, to inspect the rho = 0.57 block:
 round(cor(example_dataset$X[, 1:5]), 3)
@@ -490,6 +503,285 @@ knitr::kable(
 )
 ```
 
+
+# FPR--SSP threshold curves: screening score versus Pearson correlation
+
+For a given simulated data set, both procedures are evaluated over multiple
+threshold values.
+
+- **Model-free screening:** the package is run for a grid of nominal
+  false-positive levels `q_grid`. Each value gives one threshold and one
+  selection set.
+- **Pearson screening:** variables are retained when
+  \(\left|\mathrm{cor}(X_j,Y)\right|\) exceeds a correlation threshold in
+  `pearson_threshold_grid`.
+
+Here, SSP denotes the **sure screening probability**: across Monte Carlo
+replications, the probability that every positive variable
+\(X_1,\ldots,X_{14}\) is retained. The FPR is the average proportion selected
+among the null variables \(X_{15},\ldots,X_{2000}\).
+
+```{r threshold-curve-parameters}
+# Use one n for the FPR--SSP curves; modify as needed.
+n_curve <- 500L
+N_curve <- N
+
+# Several thresholds for model-free screening, parameterized by q.
+q_grid <- c(0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.10, 0.20, 0.30, 0.50)
+
+# Several absolute-Pearson-correlation cutoffs.
+pearson_threshold_grid <- seq(0.01, 0.50, by = 0.01)
+
+# Use an independent deterministic seed sequence for this experiment.
+curve_base_seed <- 30260701L
+```
+
+## One threshold-curve replication
+
+This function computes all model-free selections and all Pearson selections
+from the same simulated \(X\) and \(Y\). It also returns the Pearson
+correlation for each \(X_j\)--\(Y\) pair.
+
+```{r threshold-curve-one-replication}
+run_one_threshold_curve_replication <- function(
+    n,
+    q_grid,
+    pearson_threshold_grid
+) {
+  dat <- simulate_table1_dataset_fast(
+    n = n,
+    p = p,
+    rho_active = rho_active,
+    rho_toeplitz_noise = rho_toeplitz_noise,
+    theta_star = theta_star,
+    add_names = FALSE
+  )
+
+  X <- dat$X
+  Y <- dat$Y
+
+  # Pearson correlation for every predictor X_j and Y.
+  pearson_correlations <- as.numeric(cor(X, Y))
+
+  # Model-free screening selections, one column per q value.
+  screening_selected <- vapply(
+    q_grid,
+    function(q_value) {
+      as.logical(
+        mfscreen::screening_test_matrix(X = X, y = Y, q = q_value)$selected
+      )
+    },
+    logical(ncol(X))
+  )
+
+  # Pearson selections, one column per correlation threshold.
+  pearson_selected <- vapply(
+    pearson_threshold_grid,
+    function(cutoff) abs(pearson_correlations) >= cutoff,
+    logical(ncol(X))
+  )
+
+  # vapply returns a vector when a grid has length one; force matrices.
+  screening_selected <- matrix(
+    screening_selected,
+    nrow = ncol(X),
+    ncol = length(q_grid)
+  )
+  pearson_selected <- matrix(
+    pearson_selected,
+    nrow = ncol(X),
+    ncol = length(pearson_threshold_grid)
+  )
+
+  list(
+    screening_positive_count = colSums(screening_selected[1:14, , drop = FALSE]),
+    screening_null_count = colSums(screening_selected[15:p, , drop = FALSE]),
+    pearson_positive_count = colSums(pearson_selected[1:14, , drop = FALSE]),
+    pearson_null_count = colSums(pearson_selected[15:p, , drop = FALSE]),
+    pearson_correlations_first18 = pearson_correlations[1:18]
+  )
+}
+```
+
+## Monte Carlo threshold curves
+
+```{r threshold-curve-monte-carlo, cache=TRUE}
+run_threshold_curve_study <- function(
+    n,
+    N,
+    q_grid,
+    pearson_threshold_grid,
+    base_seed,
+    mc.cores = 1L
+) {
+  seeds <- base_seed + seq_len(N)
+
+  one_draw <- function(i) {
+    set.seed(seeds[i])
+    run_one_threshold_curve_replication(
+      n = n,
+      q_grid = q_grid,
+      pearson_threshold_grid = pearson_threshold_grid
+    )
+  }
+
+  reps <- if (.Platform$OS.type == "windows" || mc.cores <= 1L) {
+    lapply(seq_len(N), one_draw)
+  } else {
+    parallel::mclapply(
+      X = seq_len(N),
+      FUN = one_draw,
+      mc.cores = mc.cores,
+      mc.set.seed = FALSE,
+      mc.preschedule = FALSE
+    )
+  }
+
+  screening_positive <- do.call(
+    rbind,
+    lapply(reps, `[[`, "screening_positive_count")
+  )
+  screening_null <- do.call(
+    rbind,
+    lapply(reps, `[[`, "screening_null_count")
+  )
+  pearson_positive <- do.call(
+    rbind,
+    lapply(reps, `[[`, "pearson_positive_count")
+  )
+  pearson_null <- do.call(
+    rbind,
+    lapply(reps, `[[`, "pearson_null_count")
+  )
+  pearson_first18 <- do.call(
+    rbind,
+    lapply(reps, `[[`, "pearson_correlations_first18")
+  )
+
+  # SSP = P(all 14 positive variables are retained).
+  screening_curve <- data.frame(
+    method = "Model-free screening",
+    threshold_parameter = q_grid,
+    threshold_label = paste0("q = ", q_grid),
+    FPR = colMeans(screening_null / (p - 14)),
+    SSP = colMeans(screening_positive == 14),
+    mean_positive_selection_rate = colMeans(screening_positive / 14)
+  )
+
+  pearson_curve <- data.frame(
+    method = "Pearson correlation",
+    threshold_parameter = pearson_threshold_grid,
+    threshold_label = paste0("|r| >= ", pearson_threshold_grid),
+    FPR = colMeans(pearson_null / (p - 14)),
+    SSP = colMeans(pearson_positive == 14),
+    mean_positive_selection_rate = colMeans(pearson_positive / 14)
+  )
+
+  list(
+    curve = rbind(screening_curve, pearson_curve),
+    mean_pearson_correlations_first18 = colMeans(pearson_first18),
+    sd_pearson_correlations_first18 = apply(pearson_first18, 2, sd)
+  )
+}
+
+n_cores_curve <- min(8L, parallel::detectCores(logical = FALSE))
+
+threshold_curve_results <- run_threshold_curve_study(
+  n = n_curve,
+  N = N_curve,
+  q_grid = q_grid,
+  pearson_threshold_grid = pearson_threshold_grid,
+  base_seed = curve_base_seed,
+  mc.cores = n_cores_curve
+)
+
+threshold_curve <- threshold_curve_results$curve
+```
+
+## Mean Pearson correlations
+
+These are the mean Pearson correlations across the `N_curve` simulated data
+sets, with their Monte Carlo standard deviations.
+
+```{r mean-pearson-correlations}
+pearson_correlation_summary <- data.frame(
+  variable = paste0("X", 1:18),
+  mean_pearson_correlation_with_Y =
+    threshold_curve_results$mean_pearson_correlations_first18,
+  sd_pearson_correlation_with_Y =
+    threshold_curve_results$sd_pearson_correlations_first18
+)
+
+knitr::kable(
+  pearson_correlation_summary,
+  format = "latex",
+  booktabs = TRUE,
+  digits = 4,
+  caption = paste0(
+    "Pearson correlations with Y across ", N_curve,
+    " simulations (n = ", n_curve, ")"
+  )
+)
+```
+
+## FPR--SSP plot
+
+Each point corresponds to one threshold value in the relevant grid. Higher SSP
+is better; lower FPR is better.
+
+```{r fpr-ssp-plot, fig.width=7, fig.height=5}
+screening_curve <- subset(threshold_curve, method == "Model-free screening")
+pearson_curve <- subset(threshold_curve, method == "Pearson correlation")
+
+plot(
+  screening_curve$FPR,
+  screening_curve$SSP,
+  type = "b",
+  pch = 19,
+  xlim = range(threshold_curve$FPR),
+  ylim = c(0, 1),
+  xlab = "False-positive rate (FPR)",
+  ylab = "Sure screening probability (SSP)",
+  main = paste0("FPR--SSP curves (n = ", n_curve, ", N = ", N_curve, ")")
+)
+
+lines(
+  pearson_curve$FPR,
+  pearson_curve$SSP,
+  type = "b",
+  pch = 17,
+  lty = 2
+)
+
+legend(
+  "bottomright",
+  legend = c("Model-free screening", "Pearson correlation"),
+  pch = c(19, 17),
+  lty = c(1, 2),
+  bty = "n"
+)
+```
+
+## FPR--SSP curve tables
+
+```{r fpr-ssp-tables}
+knitr::kable(
+  screening_curve,
+  format = "latex",
+  booktabs = TRUE,
+  digits = 4,
+  caption = "FPR--SSP points for model-free screening"
+)
+
+knitr::kable(
+  pearson_curve,
+  format = "latex",
+  booktabs = TRUE,
+  digits = 4,
+  caption = "FPR--SSP points for Pearson-correlation screening"
+)
+```
+
 # Save compact results
 
 ```{r save-results, eval=TRUE}
@@ -497,7 +789,9 @@ saveRDS(
   object = list(
     metadata = table1_metadata,
     table1_summary = table1_summary,
-    table1_runs = table1_runs
+    table1_runs = table1_runs,
+    threshold_curve = threshold_curve,
+    pearson_correlation_summary = pearson_correlation_summary
   ),
   file = "table1_rcpp_screening_results.rds"
 )

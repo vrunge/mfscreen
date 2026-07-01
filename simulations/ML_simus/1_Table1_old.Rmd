@@ -39,7 +39,7 @@ but the large \(1982\)-variable noise block is generated much faster.
 # Packages
 
 ```{r packages}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE, cache.path = "table1_cache/")
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, cache.path = "table1_cache_old_test/")
 library(parallel)
 ```
 
@@ -235,33 +235,76 @@ round(cor(example_dataset$X[, 150:155]), 3)
 
 
 
-# Screening function from the `mfscreen` package
+# Old model-free screening test
 
-The screening routine is provided by the GitHub package
-[`vrunge/mfscreen`](https://github.com/vrunge/mfscreen). The following chunk
-installs `remotes` only when needed, installs `mfscreen` only when it is not
-already available, and then loads the package.
+The following function implements the original marginal screening test directly
+from the model-free screening procedure. It accepts the simulated design
+matrix `X` and response vector `Y`, computes the marginal slopes, White
+variance estimates, studentized statistics, and selected variables.
 
-```{r install-mfscreen, message=TRUE, warning=TRUE}
-if (!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages("remotes")
+```{r screening-test-ML}
+screening_test_ML <- function(X, Y, q_n = 0.10) {
+  X <- as.matrix(X)
+  Y <- as.numeric(Y)
+
+  n <- nrow(X)
+  p <- ncol(X)
+
+  if (length(Y) != n) {
+    stop("Y must have the same number of observations as rows of X.")
+  }
+  if (!is.numeric(q_n) || length(q_n) != 1L || q_n <= 0 || q_n >= 1) {
+    stop("q_n must be one number strictly between 0 and 1.")
+  }
+
+  x_means <- colMeans(X)
+  y_mean <- mean(Y)
+
+  X_centered <- sweep(X, 2L, x_means, FUN = "-")
+  Y_centered <- Y - y_mean
+
+  # Marginal slope estimates: tau_hat(j).
+  sxx <- colSums(X_centered^2)
+  if (any(sxx <= 0)) {
+    stop("Every column of X must have strictly positive sample variance.")
+  }
+
+  tau_hat <- colSums(X_centered * Y_centered) / sxx
+  b_hat <- y_mean - tau_hat * x_means
+
+  # One residual column for each marginal regression:
+  # residual[i, j] = Y[i] - b_hat[j] - X[i, j] * tau_hat[j].
+  fitted_values <- sweep(X, 2L, tau_hat, FUN = "*")
+  fitted_values <- sweep(fitted_values, 2L, b_hat, FUN = "+")
+  residuals_hat <- sweep(-fitted_values, 1L, Y, FUN = "+")
+
+  # White estimator:
+  # V_hat(j) = { n^{-1} sum X_centered(i,j)^2 residual(i,j)^2 } /
+  #            { n^{-1} sum X_centered(i,j)^2 }^2.
+  var_x_n <- sxx / n
+  V_hat <- colMeans(X_centered^2 * residuals_hat^2) / var_x_n^2
+
+  gamma_hat <- sqrt(n) * tau_hat / sqrt(V_hat)
+  threshold_gamma <- qnorm(1 - q_n / 2)
+
+  selected <- abs(gamma_hat) >= threshold_gamma
+
+  list(
+    scores = gamma_hat,
+    selected = selected,
+    selected_indices = which(selected),
+    threshold = threshold_gamma,
+    tau_hat = tau_hat,
+    white_variance = V_hat
+  )
 }
-
-if (!requireNamespace("mfscreen", quietly = TRUE)) {
-  remotes::install_github("vrunge/mfscreen")
-}
-
-library(mfscreen)
-
-# Confirm that the required function is available.
-stopifnot(exists("screening_test_matrix", where = asNamespace("mfscreen")))
 ```
 
 # One replication: data generation and screening
 
-This function generates one Table 1 data set, immediately applies the Rcpp
-screening function, and returns only the quantities needed for Table 1.
-The \(n \times p\) design matrix is not retained after the function returns.
+This function generates one Table 1 data set, immediately applies the old
+model-free screening test, and returns only the compact outputs needed for
+the Monte Carlo summaries.
 
 ```{r one-replication}
 run_one_table1_replication <- function(n, q = 0.10) {
@@ -274,26 +317,21 @@ run_one_table1_replication <- function(n, q = 0.10) {
     add_names = FALSE
   )
 
-  test_result <- mfscreen::screening_test_matrix(
+  test_result <- screening_test_ML(
     X = dat$X,
-    y = as.numeric(dat$Y),
-    q = q
+    Y = dat$Y,
+    q_n = q
   )
 
   selected <- as.logical(test_result$selected)
 
-  # Table 1: X1,...,X14 are treated as positive; X15,...,X2000 are null.
-  selected_first18 <- as.integer(selected[1:18])
-
-  output <- list(
-    selected_first18 = selected_first18,
+  list(
+    selected_first18 = as.integer(selected[1:18]),
     selected_positive = sum(selected[1:14]),
     selected_null = sum(selected[15:p]),
     selected_total = sum(selected),
     threshold = test_result$threshold
   )
-
-  output
 }
 ```
 
@@ -306,7 +344,7 @@ one_replication_summary <- data.frame(
   n = 500L,
   p = p,
   q = 0.10,
-  threshold = one_result$threshold,
+  threshold_gamma = one_result$threshold,
   selected_among_X1_to_X14 = one_result$selected_positive,
   selected_among_X15_to_X2000 = one_result$selected_null,
   selected_model_size = one_result$selected_total,
@@ -331,11 +369,10 @@ knitr::kable(
 
 # Monte Carlo simulation for one Table 1 column
 
-The function below runs \(N\) replications for a fixed sample size and returns
-only compact outputs. It does not save any \(X\) or \(Y\) matrices.
+The function below runs \(N\) replications for a fixed sample size. It stores
+only compact screening outputs, not the large \(X\) and \(Y\) objects.
 
 ```{r monte-carlo-function}
-
 run_table1_column <- function(n, N = N, q = 0.10, 
                               mc.cores = 1L,
                               base_seed = 20260701L)
@@ -359,6 +396,7 @@ run_table1_column <- function(n, N = N, q = 0.10,
       mc.preschedule = FALSE
     )
   }
+  
 
   selection_first18 <- do.call(
     rbind,
@@ -366,24 +404,13 @@ run_table1_column <- function(n, N = N, q = 0.10,
   )
 
   selected_positive <- vapply(
-    repetitions,
-    `[[`,
-    numeric(1),
-    "selected_positive"
+    repetitions, `[[`, numeric(1), "selected_positive"
   )
-
   selected_null <- vapply(
-    repetitions,
-    `[[`,
-    numeric(1),
-    "selected_null"
+    repetitions, `[[`, numeric(1), "selected_null"
   )
-
   selected_total <- vapply(
-    repetitions,
-    `[[`,
-    numeric(1),
-    "selected_total"
+    repetitions, `[[`, numeric(1), "selected_total"
   )
 
   list(
@@ -401,15 +428,11 @@ run_table1_column <- function(n, N = N, q = 0.10,
 
 # Generate Table 1
 
-This chunk is evaluated when the document is knitted. It runs the simulation
-for \(n=500,1000,2000,2500\), each with \(N=500\) Monte Carlo replications,
-and then creates the generated Table 1 in the PDF.
-
-For a quick development check, temporarily replace `N <- 500L` in the
-parameter section by a smaller value such as `N <- 5L`.
+This chunk runs the simulation for \(n=500,1000,2000,2500\), with \(N=500\)
+Monte Carlo replications per sample size. For a quick test, temporarily set
+`N <- 5L` in the parameter section.
 
 ```{r table1-run, eval=TRUE, cache=TRUE}
-# On machines with limited RAM, start with 4 to 8 cores.
 n_cores <- min(8L, parallel::detectCores(logical = FALSE))
 
 table1_runs <- lapply(
@@ -425,20 +448,13 @@ names(table1_runs) <- paste0("n=", n_values)
 
 # Generated Table 1
 
-The generated Table 1 reports one row for each sample size and the three
-Monte Carlo quantities reported in the paper: TPR, FPR, and the mean selected
-model size.
-
 ```{r table1-summary, eval=TRUE, cache=TRUE}
 table1_summary <- data.frame(
   n = n_values,
   TPR = vapply(table1_runs, `[[`, numeric(1), "TPR"),
   FPR = vapply(table1_runs, `[[`, numeric(1), "FPR"),
   Mean_selected_model_size = vapply(
-    table1_runs,
-    `[[`,
-    numeric(1),
-    "mean_selected_model_size"
+    table1_runs, `[[`, numeric(1), "mean_selected_model_size"
   )
 )
 
@@ -449,7 +465,7 @@ knitr::kable(
   digits = 3,
   align = c("c", "c", "c", "c"),
   caption = paste0(
-    "Generated Table 1: Monte Carlo screening results ",
+    "Generated Table 1 using the original model-free screening test ",
     "(N = ", N, ", p = ", p, ", q = 0.10)"
   )
 )
@@ -457,35 +473,23 @@ knitr::kable(
 
 # Selection frequencies for X1 to X18
 
-This table contains the Monte Carlo selection frequencies for the first
-18 covariates. The Table 1 TPR is the mean of the first 14 rows; the FPR is
-computed over all \(X_{15},\ldots,X_{2000}\), not only \(X_{15},\ldots,X_{18}\).
-
 ```{r first18-summary, eval=TRUE, cache=TRUE}
 selection_first18_table <- data.frame(
   variable = paste0("X", 1:18),
   do.call(
     cbind,
-    lapply(
-      table1_runs,
-      function(x) x$selection_frequency_first18
-    )
+    lapply(table1_runs, function(x) x$selection_frequency_first18)
   ),
   check.names = FALSE
 )
 
 colnames(selection_first18_table)[-1] <- names(table1_runs)
 
-selection_first18_table[, -1] <- lapply(
-  selection_first18_table[, -1, drop = FALSE],
-  round,
-  digits = 3
-)
-
 knitr::kable(
   selection_first18_table,
   format = "latex",
   booktabs = TRUE,
+  digits = 3,
   caption = "Monte Carlo selection frequencies for X1 to X18"
 )
 ```
@@ -499,12 +503,12 @@ saveRDS(
     table1_summary = table1_summary,
     table1_runs = table1_runs
   ),
-  file = "table1_rcpp_screening_results.rds"
+  file = "table1_old_screening_results.rds"
 )
 
 write.csv(
   table1_summary,
-  file = "table1_rcpp_screening_summary.csv",
+  file = "table1_old_screening_summary.csv",
   row.names = FALSE
 )
 ```

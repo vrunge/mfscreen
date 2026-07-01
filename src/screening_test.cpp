@@ -5,12 +5,103 @@
 
 using namespace Rcpp;
 
-// Preconditions:
-// - X and y are finite doubles.
-// - length(y) == nrow(X).
-// - q in (0, 1), tol >= 0.
-// - No input validation.
-//
+//' Reciprocal model-free screening for a predictor matrix
+//'
+//' Computes the squared reciprocal model-free screening statistic
+//' \eqn{D_j^2} for each column \eqn{j} of \code{X}, then selects predictors
+//' whose score is below a reciprocal normal-theory threshold.
+//'
+//' For predictor \eqn{j}, define
+//' \deqn{
+//'   z_{ij} = X_{ij} - \overline{X}_j,
+//'   \qquad
+//'   u_i = y_i - \overline{y}.
+//' }
+//'
+//' The returned score is
+//' \deqn{
+//'   D_j^2 =
+//'   \frac{\sum_{i=1}^n z_{ij}^2 u_i^2}
+//'        {\left(\sum_{i=1}^n z_{ij} u_i\right)^2}
+//'   -
+//'   \frac{
+//'     2 \sum_{i=1}^n z_{ij}^3 u_i
+//'   }{
+//'     \left(\sum_{i=1}^n z_{ij} u_i\right)
+//'     \left(\sum_{i=1}^n z_{ij}^2\right)
+//'   }
+//'   +
+//'   \frac{\sum_{i=1}^n z_{ij}^4}
+//'        {\left(\sum_{i=1}^n z_{ij}^2\right)^2}.
+//' }
+//'
+//' The statistic is algebraically equivalent to the squared reciprocal of the
+//' studentized marginal screening statistic:
+//' \deqn{
+//'   D_j^2 = \frac{1}{T_j^2}.
+//' }
+//'
+//' Predictor \eqn{j} is selected when
+//' \deqn{
+//'   D_j^2 \leq \frac{1}{\gamma^2},
+//'   \qquad
+//'   \gamma = \Phi^{-1}(1 - q/2).
+//' }
+//'
+//' Smaller values of \eqn{D_j^2} indicate stronger marginal association with
+//' the response.
+//'
+//' @param X Numeric predictor matrix. Rows correspond to observations and
+//'   columns correspond to candidate predictors.
+//' @param y Numeric response vector with length equal to \code{nrow(X)}.
+//' @param q Numeric scalar in \code{(0, 1)} giving the target two-sided
+//'   false-positive rate. Defaults to \code{0.10}.
+//' @param tol Non-negative numerical tolerance used to treat a marginal
+//'   empirical covariance as effectively zero. Defaults to
+//'   \code{sqrt(.Machine$double.eps)}.
+//'
+//' @return A list with components:
+//' \describe{
+//'   \item{scores}{Numeric vector of reciprocal screening scores
+//'   \eqn{D_j^2}. Smaller values indicate stronger marginal association.}
+//'   \item{threshold}{Selection threshold \eqn{1 / \gamma^2}.}
+//'   \item{gamma}{Normal-theory threshold \eqn{\Phi^{-1}(1-q/2)}.}
+//'   \item{q}{The supplied target false-positive rate.}
+//'   \item{selected}{Logical vector indicating selected predictors.}
+//'   \item{selected_indices}{One-based integer indices of selected
+//'   predictors.}
+//' }
+//'
+//' @details
+//' The response is centered once. Each predictor column is processed
+//' independently using centered empirical moments. Columns with zero empirical
+//' variance, or with empirical covariance numerically indistinguishable from
+//' zero, receive score \code{Inf} and are not selected.
+//'
+//' This low-level Rcpp implementation performs no input validation. The inputs
+//' must satisfy: \code{X} and \code{y} contain finite values,
+//' \code{length(y) == nrow(X)}, \code{q} is in \code{(0, 1)}, and
+//' \code{tol >= 0}.
+//'
+//' @seealso
+//' \code{\link{screening_score}} for the one-predictor reciprocal statistic.
+//'
+//' @examples
+//' set.seed(123)
+//'
+//' n <- 300
+//' p <- 500
+//'
+//' X <- matrix(rnorm(n * p), nrow = n, ncol = p)
+//' y <- 2 * X[, 1] - 1.5 * X[, 2] + rnorm(n)
+//'
+//' result <- screening_test_matrix(X, y, q = 0.10)
+//'
+//' result$selected_indices
+//' head(result$scores)
+//' result$threshold
+//'
+//' @export
 // [[Rcpp::export]]
 List screening_test_matrix(
     const NumericMatrix& X,

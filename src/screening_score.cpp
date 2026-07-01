@@ -4,11 +4,86 @@
 #include "screening_score.h"
 
 using namespace Rcpp;
-
+//' Reciprocal model-free screening statistic for one predictor
+//'
+//' Computes the squared reciprocal model-free screening statistic for one
+//' predictor \code{x} and one response vector \code{y}.
+//'
+//' Let
+//' \deqn{
+//'   z_i = x_i - \overline{x},
+//'   \qquad
+//'   u_i = y_i - \overline{y}.
+//' }
+//'
+//' Define
+//' \deqn{
+//'   b = \sum_{i=1}^n z_i u_i,
+//'   \qquad
+//'   s_{xx} = \sum_{i=1}^n z_i^2.
+//' }
+//'
+//' The returned statistic is
+//' \deqn{
+//'   D^2 =
+//'   \sum_{i=1}^n
+//'   \left\{
+//'     \frac{z_i u_i}{b}
+//'     -
+//'     \frac{z_i^2}{s_{xx}}
+//'   \right\}^2.
+//' }
+//'
+//' It is the squared reciprocal of the studentized marginal screening score:
+//' \deqn{
+//'   D^2 = \frac{1}{T^2}.
+//' }
+//'
+//' Smaller values of \eqn{D^2} indicate stronger marginal association between
+//' \code{x} and \code{y}. A value of \code{Inf} indicates that the empirical
+//' covariance between the centered predictor and response is effectively zero.
+//'
+//' @param x Numeric vector containing one predictor.
+//' @param y Numeric response vector with the same length as \code{x}.
+//' @param tol Non-negative numerical tolerance used to determine whether the
+//'   empirical covariance is effectively zero. Defaults to
+//'   \code{sqrt(.Machine$double.eps)}.
+//'
+//' @return A numeric scalar containing the reciprocal screening statistic
+//'   \eqn{D^2}. Returns \code{Inf} when the predictor has zero empirical
+//'   variance or its empirical covariance with \code{y} is below the
+//'   tolerance threshold.
+//'
+//' @details
+//' This is a low-level Rcpp implementation. It assumes that \code{x} and
+//' \code{y} are finite numeric vectors of equal positive length and that
+//' \code{tol} is non-negative. No input validation is performed in C++.
+//'
+//' The covariance is treated as numerically zero when
+//' \deqn{
+//'   |b| \leq
+//'   \mathrm{tol}
+//'   \max\left\{
+//'     \sqrt{s_{xx}},
+//'     \sqrt{\sum_{i=1}^n z_i^2 u_i^2}
+//'   \right\}.
+//' }
+//'
+//' @examples
+//' set.seed(123)
+//'
+//' x_signal <- rnorm(200)
+//' x_null <- rnorm(200)
+//' y <- 2 * x_signal + rnorm(200)
+//'
+//' screening_score(x_signal, y)
+//' screening_score(x_null, y)
+//'
+//' @export
 // [[Rcpp::export]]
 double screening_score(SEXP x,
                        SEXP y,
-                       const double tol)
+                       const double tol = 1.4901161193847656e-08)
 {
   const R_xlen_t n = XLENGTH(x);
 

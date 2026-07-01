@@ -84,8 +84,8 @@
 #' y <- x_signal^2 + 0.5 * x_signal + rnorm(n, sd = 1)
 #'
 #' # Reciprocal distance statistic
-#' D2_signal <- screening_scoreR(x_signal, y)
-#' D2_null <- screening_scoreR(x_null, y)
+#' D2_signal <- screening_score_R(x_signal, y)
+#' D2_null <- screening_score_R(x_null, y)
 #'
 #' # screening decisions
 #' gamma <- qnorm(1 - q / 2)
@@ -102,7 +102,7 @@
 #' )
 #'
 #' @export
-screening_scoreR <- function(
+screening_score_R <- function(
     x,
     y,
     tol = sqrt(.Machine$double.eps)
@@ -192,7 +192,83 @@ screening_scoreR <- function(
 ################################################################################
 
 
-
+#' Reciprocal model-free screening for a predictor matrix
+#'
+#' Applies \code{screening_score_R()} to each column of \code{X} and selects
+#' predictors using the reciprocal, distance-based representation of the
+#' model-free screening statistic.
+#'
+#' For predictor \eqn{j}, let \eqn{D_j^2} denote the squared reciprocal
+#' statistic returned by \code{screening_score_R()}. Let
+#' \eqn{\gamma = \Phi^{-1}(1-q/2)}. Predictor \eqn{j} is selected when
+#' \deqn{
+#'   D_j^2 \leq \frac{1}{\gamma^2}.
+#' }
+#'
+#' This selection rule is equivalent to selecting predictors satisfying
+#' \deqn{
+#'   |T_j| \geq \gamma,
+#' }
+#' where \eqn{T_j} is the studentized marginal screening statistic.
+#'
+#' @param X Numeric matrix or data frame of predictors. Rows correspond to
+#'   observations and columns correspond to candidate predictors. A numeric
+#'   vector is accepted and treated as a one-column matrix.
+#' @param y Numeric response vector with one element for each row of
+#'   \code{X}.
+#' @param q Numeric scalar in \code{(0, 1)} giving the target two-sided
+#'   false-positive rate.
+#' @param tol Non-negative numerical tolerance passed to
+#'   \code{screening_score_R()}. It is used when determining whether the
+#'   normalized empirical covariance is effectively zero.
+#'
+#' @return A list containing:
+#' \describe{
+#'   \item{scores}{Named numeric vector of squared reciprocal screening
+#'   statistics \eqn{D_j^2}. Smaller values indicate stronger marginal
+#'   evidence of association.}
+#'   \item{threshold}{Reciprocal selection threshold
+#'   \eqn{1 / \Phi^{-1}(1-q/2)^2}.}
+#'   \item{gamma}{Two-sided normal threshold
+#'   \eqn{\Phi^{-1}(1-q/2)}.}
+#'   \item{q}{The supplied target false-positive rate.}
+#'   \item{selected}{Named logical vector indicating selected predictors.}
+#'   \item{selected_variables}{Character vector containing the names of the
+#'   selected predictors.}
+#' }
+#'
+#' @details
+#' Each predictor is processed separately. Missing or non-finite observations
+#' are removed pairwise within each predictor-response pair by
+#' \code{screening_score_R()}. Consequently, different predictor columns can
+#' use different complete-case subsets when missingness patterns differ.
+#'
+#' When \code{X} has no column names, the function creates names
+#' \code{"X1"}, \code{"X2"}, and so on.
+#'
+#' @seealso
+#' \code{\link{screening_score_R}} for the one-predictor reciprocal statistic;
+#' \code{\link{screening_test_matrix_old_R}} for the equivalent implementation
+#' based on studentized scores.
+#'
+#' @examples
+#' set.seed(123)
+#'
+#' n <- 250
+#' p <- 100
+#'
+#' X <- matrix(rnorm(n * p), nrow = n, ncol = p)
+#' colnames(X) <- paste0("X", seq_len(p))
+#'
+#' y <- 2 * X[, 1] - 1.5 * X[, 2] + rnorm(n)
+#'
+#' result <- screening_test_matrix_R(X, y, q = 0.10)
+#'
+#' result$selected_variables
+#' head(result$scores)
+#' result$threshold
+#'
+#' @export
 screening_test_matrix_R <- function(
     X,
     y,
@@ -265,7 +341,7 @@ screening_test_matrix_R <- function(
   # Compute one squared reciprocal statistic per predictor
   D2 <- vapply(
     X,
-    FUN = function(xj) screening_scoreR(xj, y, tol = tol),
+    FUN = function(xj) screening_score_R(xj, y, tol = tol),
     FUN.VALUE = numeric(1)
   )
 

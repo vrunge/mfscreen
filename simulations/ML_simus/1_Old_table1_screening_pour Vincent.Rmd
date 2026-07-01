@@ -17,12 +17,6 @@ output:
 
 
 
-
-
-
-
-
-
 # Etapes des calculs:
 
 ## Simulation du design
