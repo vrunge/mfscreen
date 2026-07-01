@@ -5,10 +5,10 @@
 
 using namespace Rcpp;
 
-
-double screening_score_core(SEXP x,
-                            SEXP y,
-                            const double tol)
+// [[Rcpp::export]]
+double screening_score(SEXP x,
+                       SEXP y,
+                       const double tol)
 {
   const R_xlen_t n = XLENGTH(x);
 

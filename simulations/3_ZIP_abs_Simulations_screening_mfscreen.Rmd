@@ -1,0 +1,323 @@
+---
+title: "Simulations de screening — sortie ZIP (mfscreen)"
+author: "J. Dedecker, M.-L. Taupin et A.-S. Tocquet"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+  html_document:
+    toc: true
+    toc_depth: 2
+    df_print: paged
+---
+
+
+# Objectif
+
+Ce document évalue la procédure de screening marginal *model-free* sur
+\(p=2000\) variables explicatives. Les variables \(X^{(1)},\ldots,X^{(10)}\)
+génèrent la réponse; \(X^{(11)},\ldots,X^{(14)}\) sont des versions bruitées
+et donc corrélées à la réponse; \(X^{(15)},\ldots,X^{(18)}\) et
+\(X^{(19)},\ldots,X^{(2000)}\) constituent les variables nulles pour le
+screening.
+
+Les cinq premières variables sont gaussiennes centrées, de matrice de
+covariance Toeplitz \(\Sigma_{jk}=\rho^{|j-k|}\), avec \(\rho=0.57\).
+Les variables supplémentaires sont construites avec
+\(Z_3\sim\mathcal{N}(0,0.4)\), \(Z_4\sim\mathcal{N}(0,0.02)\),
+\(Z_5\sim\mathcal{N}(0,0.35)\) et \(Z_6\sim\mathcal{N}(0,0.55)\), où les
+seconds paramètres correspondent aux écarts-types utilisés dans `rnorm()`.
+
+# Screening avec `mfscreen`
+
+Cette version remplace le calcul R explicite des pentes, résidus et variances
+de White par la routine Rcpp `mfscreen::screening_test_matrix()`.
+
+Pour chaque variable \(X^{(j)}\), la routine renvoie le score réciproque
+
+\[
+D_j^2=\frac{\widehat V^{(j)}}{n\{\widehat\tau^{(j)}\}^2}
+     =\frac{1}{\{\widehat\gamma^{(j)}\}^2}.
+\]
+
+Pour un niveau de faux positifs `q_n`, elle sélectionne directement la
+variable lorsque
+
+\[
+D_j^2 \leq \frac{1}{\{\Phi^{-1}(1-q_n/2)\}^2}.
+\]
+
+Le résultat de `screening_test_matrix()` contient notamment `scores`,
+`threshold`, `gamma`, `selected` et `selected_indices`. Les résumés ci-dessous
+utilisent **uniquement** `selected`; il ne faut donc pas appliquer l'ancienne
+règle `abs(gamma_chapo) > seuil_q_n` aux nouveaux scores.
+
+```{r packages}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE)
+
+if (!requireNamespace("mfscreen", quietly = TRUE)) {
+  stop(
+    "Le package mfscreen doit être installé avant de lancer ce document. ",
+    "Exemple : install.packages('mfscreen_0.1.1.tar.gz', repos = NULL, type = 'source')."
+  )
+}
+```
+
+# Paramètres et fonctions communes
+
+```{r parameters-and-functions}
+# Paramètres communs du design
+Dtotal <- 2000L
+d_signal <- 10L
+d_proxy <- 8L
+Dtilde <- Dtotal - d_signal - d_proxy
+stopifnot(Dtilde == 1982L)
+
+thetastar <- c(
+  -1,
+  3.619350, -3.274923, 2.963273, -2.681280,
+  2, 4, 6, 3, 2, 4
+)
+stopifnot(length(thetastar) == d_signal + 1L)
+
+rho <- 0.57
+rho_tilde <- 0.70
+q_n <- 0.15
+N <- 500L
+n <- 1500L
+
+variable_labels <- c(
+  "X1", "X2", "X3", "X4", "X5",
+  "X6_bern", "X7_chisq2", "X8=X1*P(2)",
+  "X9=X2*N(1,1)", "X10=Student(14)",
+  "X11=X1+Z3", "X12=X3+Z4", "X13=X4+Z5", "X14=X5+Z6",
+  "X15=Z3", "X16=Z4", "X17=Z5", "X18=Z6",
+  paste0("X", 19:Dtotal)
+)
+stopifnot(length(variable_labels) == Dtotal)
+
+true_positive_idx <- 1:14
+false_positive_idx <- 15:Dtotal
+
+# Génération N(0, Sigma) sans dépendance à des packages externes:
+# si Z a des lignes N(0, I), Z %*% chol(Sigma) a covariance Sigma.
+simu_design <- function(n, d, rho, sd = 1) {
+  Sigma <- sd^2 * toeplitz(rho^(0:(d - 1L)))
+  Z <- matrix(rnorm(n * d), nrow = n, ncol = d)
+  Z %*% chol(Sigma)
+}
+
+build_design <- function(n, Dtilde, rho, rho_tilde) {
+  design_mat <- simu_design(n, d = 5L, rho = rho)
+  colnames(design_mat) <- paste0("X", 1:5)
+
+  Z3 <- rnorm(n, mean = 0, sd = 0.40)
+  Z4 <- rnorm(n, mean = 0, sd = 0.02)
+  Z5 <- rnorm(n, mean = 0, sd = 0.35)
+  Z6 <- rnorm(n, mean = 0, sd = 0.55)
+
+  X_signal <- cbind(
+    design_mat,
+    X6_bern = rbinom(n, size = 1L, prob = 0.35),
+    X7_chisq2 = rchisq(n, df = 2),
+    `X8=X1*P(2)` = design_mat[, 1L] * rpois(n, lambda = 2),
+    `X9=X2*N(1,1)` = design_mat[, 2L] * rnorm(n, mean = 1, sd = 1),
+    `X10=Student(14)` = rt(n, df = 14)
+  )
+
+  X_noise <- simu_design(n, d = Dtilde, rho = rho_tilde)
+  X <- cbind(
+    X_signal,
+    `X11=X1+Z3` = design_mat[, 1L] + Z3,
+    `X12=X3+Z4` = design_mat[, 3L] + Z4,
+    `X13=X4+Z5` = design_mat[, 4L] + Z5,
+    `X14=X5+Z6` = design_mat[, 5L] + Z6,
+    `X15=Z3` = Z3,
+    `X16=Z4` = Z4,
+    `X17=Z5` = Z5,
+    `X18=Z6` = Z6,
+    X_noise
+  )
+
+  storage.mode(X) <- "double"
+  colnames(X) <- variable_labels
+  stopifnot(nrow(X) == n, ncol(X) == Dtotal)
+
+  list(X = X, X_signal = X_signal)
+}
+
+run_monte_carlo <- function(N, fun, n_cores) {
+  indices <- seq_len(N)
+
+  # mclapply n'est pas disponible sous Windows; lapply conserve alors
+  # le même code de simulation avec une exécution séquentielle.
+  if (.Platform$OS.type == "windows" || n_cores <= 1L) {
+    return(lapply(indices, fun))
+  }
+
+  parallel::mclapply(
+    indices,
+    fun,
+    mc.cores = n_cores,
+    mc.set.seed = TRUE
+  )
+}
+```
+
+
+# Génération de la réponse : zéro-inflation Poisson (ZIP)
+
+La réponse est obtenue par \(Y=Y_1Y_2\), où \(Y_1\mid X\sim\mathcal{B}\{\operatorname{logit}^{-1}(X\theta^*)\}\) et \(Y_2\mid X\sim\mathcal{P}(|X\theta^*|)\). Le produit introduit un excès de zéros; la procédure de screening reste appliquée à la réponse numérique observée.
+
+```{r response-and-screening}
+simulate_one <- function(iteration) {
+  design <- build_design(
+    n = n,
+    Dtilde = Dtilde,
+    rho = rho,
+    rho_tilde = rho_tilde
+  )
+
+  eta <- as.vector(thetastar[1L] + design$X_signal %*% thetastar[-1L])
+  pi_nonzero <- plogis(eta)
+
+  # Y = Y1 * Y2 : Y1 crée les zéros structurels et
+  # Y2 suit une loi de Poisson de paramètre |eta|.
+  y1 <- rbinom(n, size = 1L, prob = pi_nonzero)
+  y2 <- rpois(n, lambda = abs(eta))
+  y <- y1 * y2
+
+  screening <- mfscreen::screening_test_matrix(
+    X = design$X,
+    y = as.numeric(y),
+    q = q_n
+  )
+
+  stopifnot(length(screening$selected) == Dtotal)
+  list(
+    selected = as.logical(screening$selected),
+    scores = as.numeric(screening$scores),
+    threshold = as.numeric(screening$threshold),
+    gamma = as.numeric(screening$gamma),
+    selected_indices = as.integer(screening$selected_indices)
+  )
+}
+```
+
+# Monte Carlo et synthèse
+
+```{r monte-carlo}
+RNGkind("L'Ecuyer-CMRG")
+set.seed(20260629)
+
+detected_cores <- parallel::detectCores(logical = FALSE)
+if (is.na(detected_cores)) {
+  detected_cores <- 1L
+}
+n_cores <- max(1L, min(12L, detected_cores))
+
+resultats <- run_monte_carlo(N, simulate_one, n_cores = n_cores)
+```
+
+```{r assemble-results}
+selection_matrix <- do.call(rbind, lapply(resultats, `[[`, "selected"))
+score_matrix <- do.call(rbind, lapply(resultats, `[[`, "scores"))
+
+storage.mode(selection_matrix) <- "logical"
+colnames(selection_matrix) <- variable_labels
+colnames(score_matrix) <- variable_labels
+
+score_thresholds <- vapply(resultats, `[[`, numeric(1), "threshold")
+gammas <- vapply(resultats, `[[`, numeric(1), "gamma")
+stopifnot(
+  isTRUE(all.equal(score_thresholds, rep(score_thresholds[1L], N))),
+  isTRUE(all.equal(gammas, rep(gammas[1L], N)))
+)
+
+selection_rates <- colMeans(selection_matrix)
+taux_vrais_positifs <- mean(selection_rates[true_positive_idx])
+taux_faux_positifs <- mean(selection_matrix[, false_positive_idx, drop = FALSE])
+cardinal_moyen_ensemble_indices_selectionnes <- mean(rowSums(selection_matrix))
+cardinal_attendu <- length(true_positive_idx) +
+  q_n * length(false_positive_idx)
+
+Resultats_screening <- matrix(
+  c(
+    selection_rates[1:18],
+    taux_vrais_positifs,
+    taux_faux_positifs,
+    cardinal_moyen_ensemble_indices_selectionnes
+  ),
+  ncol = 1L,
+  dimnames = list(
+    c(
+      variable_labels[1:18],
+      "taux_vrais_positifs",
+      "taux_faux_positifs",
+      "cardinal_moyen_ensemble_indices_selectionnes"
+    ),
+    "valeur"
+  )
+)
+
+mfscreen_results <- list(
+  selected = selection_matrix,
+  scores = score_matrix,
+  q = q_n,
+  gamma = gammas[1L],
+  score_threshold = score_thresholds[1L],
+  selected_indices_first_run = resultats[[1L]]$selected_indices,
+  expected_mean_selected = cardinal_attendu,
+  Resultats_screening = Resultats_screening
+)
+
+save(
+  mfscreen_results,
+  Resultats_screening,
+  file = "ZIP_abs_mfscreen_N500_n1500_q015.RData"
+)
+```
+
+Le seuil utilisé par la routine est
+`r signif(mfscreen_results$score_threshold, 6)` pour le score \(D^2\)
+(\(\gamma =\) `r signif(mfscreen_results$gamma, 6)`). La taille moyenne
+attendue de l'ensemble sélectionné est
+\(14 + q_n \times 1986 =\) `r round(cardinal_attendu, 1)`.
+
+```{r display-results}
+selection_table <- data.frame(
+  variable = variable_labels[1:18],
+  frequence_selection = round(selection_rates[1:18], 3),
+  row.names = NULL
+)
+
+metrics_table <- data.frame(
+  metrique = c(
+    "Taux de vrais positifs (indices 1 à 14)",
+    "Taux de faux positifs (indices 15 à 2000)",
+    "Cardinal moyen de l'ensemble sélectionné",
+    "Cardinal moyen attendu"
+  ),
+  valeur = round(
+    c(
+      taux_vrais_positifs,
+      taux_faux_positifs,
+      cardinal_moyen_ensemble_indices_selectionnes,
+      cardinal_attendu
+    ),
+    3
+  )
+)
+
+knitr::kable(
+  selection_table,
+  caption = "Fréquences de sélection des 18 premières variables"
+)
+
+knitr::kable(
+  metrics_table,
+  caption = "Synthèse Monte Carlo"
+)
+```

@@ -1,0 +1,543 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Screening simulations - continuous nonlinear outcome (mfscreen)},
+  pdfauthor={J. Dedecker, M.-L. Taupin and A.-S. Tocquet},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Screening simulations - continuous nonlinear outcome (mfscreen)}
+\author{J. Dedecker, M.-L. Taupin and A.-S. Tocquet}
+\date{2026-06-29}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Objective}\label{objective}
+
+This document evaluates the model-free marginal screening procedure on
+\(p=2000\) explanatory variables. Variables \(X^{(1)},\ldots,X^{(10)}\)
+generate the response; \(X^{(11)},\ldots,X^{(14)}\) are noisy versions
+of signal variables and are therefore correlated with the response; and
+\(X^{(15)},\ldots,X^{(18)}\), together with
+\(X^{(19)},\ldots,X^{(2000)}\), are null variables for screening.
+
+The first five variables are centered Gaussian variables with Toeplitz
+covariance matrix \(\Sigma_{jk}=\rho^{|j-k|}\), where \(\rho=0.57\). The
+additional noise variables use \(Z_3\sim\mathcal{N}(0,0.4)\),
+\(Z_4\sim\mathcal{N}(0,0.02)\), \(Z_5\sim\mathcal{N}(0,0.35)\), and
+\(Z_6\sim\mathcal{N}(0,0.55)\). The second arguments are the standard
+deviations supplied to \texttt{rnorm()}.
+
+\section{\texorpdfstring{Screening with
+\texttt{mfscreen}}{Screening with mfscreen}}\label{screening-with-mfscreen}
+
+This version uses the Rcpp routine
+\texttt{mfscreen::screening\_test\_matrix()} rather than explicitly
+computing marginal slopes, residuals, and White variance estimators in
+R.
+
+For each explanatory variable \(X^{(j)}\), the routine returns the
+distance score
+
+\[
+D_j^2 = \frac{\widehat V^{(j)}}{n\{\widehat\tau^{(j)}\}^2}
+      = \frac{1}{\{\widehat\gamma^{(j)}\}^2}.
+\]
+
+For a target false-positive rate \texttt{q}, the variable is selected
+when
+
+\[
+D_j^2 \leq \frac{1}{\{\Phi^{-1}(1-q/2)\}^2}.
+\]
+
+\texttt{screening\_test\_matrix()} returns \texttt{scores},
+\texttt{threshold}, \texttt{gamma}, \texttt{selected}, and
+\texttt{selected\_indices}. All Monte Carlo summaries below are computed
+directly from \texttt{selected}; the former rule based on
+\texttt{abs(gamma\_chapo)} must not be applied to the new scores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{eval =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{warning =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{message =} \ConstantTok{FALSE}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"mfscreen"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{)) \{}
+  \FunctionTok{stop}\NormalTok{(}
+    \StringTok{"The mfscreen package must be installed before running this document. "}\NormalTok{,}
+    \StringTok{"For example: install.packages(\textquotesingle{}mfscreen\_0.1.1.tar.gz\textquotesingle{}, repos = NULL, type = \textquotesingle{}source\textquotesingle{})."}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Design parameters and common
+functions}\label{design-parameters-and-common-functions}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Common design parameters.}
+\NormalTok{p\_total }\OtherTok{\textless{}{-}} \DecValTok{2000}\DataTypeTok{L}
+\NormalTok{p\_signal }\OtherTok{\textless{}{-}} \DecValTok{10}\DataTypeTok{L}
+\NormalTok{p\_proxy\_or\_null }\OtherTok{\textless{}{-}} \DecValTok{8}\DataTypeTok{L}
+\NormalTok{p\_gaussian\_noise }\OtherTok{\textless{}{-}}\NormalTok{ p\_total }\SpecialCharTok{{-}}\NormalTok{ p\_signal }\SpecialCharTok{{-}}\NormalTok{ p\_proxy\_or\_null}
+\FunctionTok{stopifnot}\NormalTok{(p\_gaussian\_noise }\SpecialCharTok{==} \DecValTok{1982}\DataTypeTok{L}\NormalTok{)}
+
+\NormalTok{theta\_star }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}
+  \FloatTok{3.619350}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{3.274923}\NormalTok{, }\FloatTok{2.963273}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{2.681280}\NormalTok{,}
+  \DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}
+\NormalTok{)}
+\FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(theta\_star) }\SpecialCharTok{==}\NormalTok{ p\_signal }\SpecialCharTok{+} \DecValTok{1}\DataTypeTok{L}\NormalTok{)}
+
+\NormalTok{rho }\OtherTok{\textless{}{-}} \FloatTok{0.57}
+\NormalTok{rho\_noise }\OtherTok{\textless{}{-}} \FloatTok{0.70}
+\NormalTok{q }\OtherTok{\textless{}{-}} \FloatTok{0.10}
+\NormalTok{N }\OtherTok{\textless{}{-}} \DecValTok{500}\DataTypeTok{L}
+
+\CommentTok{\# Four separate Monte Carlo experiments will be run, one for each sample size.}
+\NormalTok{sample\_sizes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{500}\DataTypeTok{L}\NormalTok{, }\DecValTok{1000}\DataTypeTok{L}\NormalTok{, }\DecValTok{2000}\DataTypeTok{L}\NormalTok{, }\DecValTok{2500}\DataTypeTok{L}\NormalTok{)}
+\FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(sample\_sizes) }\SpecialCharTok{==} \DecValTok{4}\DataTypeTok{L}\NormalTok{)}
+
+\NormalTok{variable\_labels }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"X1"}\NormalTok{, }\StringTok{"X2"}\NormalTok{, }\StringTok{"X3"}\NormalTok{, }\StringTok{"X4"}\NormalTok{, }\StringTok{"X5"}\NormalTok{,}
+  \StringTok{"X6\_bern"}\NormalTok{, }\StringTok{"X7\_chisq2"}\NormalTok{, }\StringTok{"X8=X1*P(2)"}\NormalTok{,}
+  \StringTok{"X9=X2*N(1,1)"}\NormalTok{, }\StringTok{"X10=Student(14)"}\NormalTok{,}
+  \StringTok{"X11=X1+Z3"}\NormalTok{, }\StringTok{"X12=X3+Z4"}\NormalTok{, }\StringTok{"X13=X4+Z5"}\NormalTok{, }\StringTok{"X14=X5+Z6"}\NormalTok{,}
+  \StringTok{"X15=Z3"}\NormalTok{, }\StringTok{"X16=Z4"}\NormalTok{, }\StringTok{"X17=Z5"}\NormalTok{, }\StringTok{"X18=Z6"}\NormalTok{,}
+  \FunctionTok{paste0}\NormalTok{(}\StringTok{"X"}\NormalTok{, }\DecValTok{19}\SpecialCharTok{:}\NormalTok{p\_total)}
+\NormalTok{)}
+\FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(variable\_labels) }\SpecialCharTok{==}\NormalTok{ p\_total)}
+
+\CommentTok{\# Variables 1{-}{-}14 are correlated with Y. Variables 15{-}{-}2000 are null for}
+\CommentTok{\# the false{-}positive{-}rate calculation.}
+\NormalTok{true\_positive\_idx }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{14}
+\NormalTok{false\_positive\_idx }\OtherTok{\textless{}{-}} \DecValTok{15}\SpecialCharTok{:}\NormalTok{p\_total}
+
+\CommentTok{\# Generate N(0, Sigma) data without external packages. If Z has rows N(0, I),}
+\CommentTok{\# Z \%*\% chol(Sigma) has covariance matrix Sigma.}
+\NormalTok{simulate\_gaussian\_design }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, p, rho, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{) \{}
+\NormalTok{  Sigma }\OtherTok{\textless{}{-}}\NormalTok{ sd}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*} \FunctionTok{toeplitz}\NormalTok{(rho}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\NormalTok{(p }\SpecialCharTok{{-}} \DecValTok{1}\DataTypeTok{L}\NormalTok{)))}
+\NormalTok{  Z }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n }\SpecialCharTok{*}\NormalTok{ p), }\AttributeTok{nrow =}\NormalTok{ n, }\AttributeTok{ncol =}\NormalTok{ p)}
+\NormalTok{  Z }\SpecialCharTok{\%*\%} \FunctionTok{chol}\NormalTok{(Sigma)}
+\NormalTok{\}}
+
+\NormalTok{build\_design }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, p\_gaussian\_noise, rho, rho\_noise) \{}
+\NormalTok{  X\_first\_five }\OtherTok{\textless{}{-}} \FunctionTok{simulate\_gaussian\_design}\NormalTok{(n, }\AttributeTok{p =} \DecValTok{5}\DataTypeTok{L}\NormalTok{, }\AttributeTok{rho =}\NormalTok{ rho)}
+  \FunctionTok{colnames}\NormalTok{(X\_first\_five) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"X"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+
+\NormalTok{  Z3 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.40}\NormalTok{)}
+\NormalTok{  Z4 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.02}\NormalTok{)}
+\NormalTok{  Z5 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.35}\NormalTok{)}
+\NormalTok{  Z6 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.55}\NormalTok{)}
+
+\NormalTok{  X\_signal }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+\NormalTok{    X\_first\_five,}
+    \AttributeTok{X6\_bern =} \FunctionTok{rbinom}\NormalTok{(n, }\AttributeTok{size =} \DecValTok{1}\DataTypeTok{L}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.35}\NormalTok{),}
+    \AttributeTok{X7\_chisq2 =} \FunctionTok{rchisq}\NormalTok{(n, }\AttributeTok{df =} \DecValTok{2}\NormalTok{),}
+    \StringTok{\textasciigrave{}}\AttributeTok{X8=X1*P(2)}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ X\_first\_five[, }\DecValTok{1}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{*} \FunctionTok{rpois}\NormalTok{(n, }\AttributeTok{lambda =} \DecValTok{2}\NormalTok{),}
+    \StringTok{\textasciigrave{}}\AttributeTok{X9=X2*N(1,1)}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ X\_first\_five[, }\DecValTok{2}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{*} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{1}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{),}
+    \StringTok{\textasciigrave{}}\AttributeTok{X10=Student(14)}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{rt}\NormalTok{(n, }\AttributeTok{df =} \DecValTok{14}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{  X\_noise }\OtherTok{\textless{}{-}} \FunctionTok{simulate\_gaussian\_design}\NormalTok{(n, }\AttributeTok{p =}\NormalTok{ p\_gaussian\_noise, }\AttributeTok{rho =}\NormalTok{ rho\_noise)}
+
+\NormalTok{  X }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+\NormalTok{    X\_signal,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X11=X1+Z3}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ X\_first\_five[, }\DecValTok{1}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Z3,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X12=X3+Z4}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ X\_first\_five[, }\DecValTok{3}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Z4,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X13=X4+Z5}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ X\_first\_five[, }\DecValTok{4}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Z5,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X14=X5+Z6}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ X\_first\_five[, }\DecValTok{5}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ Z6,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X15=Z3}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ Z3,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X16=Z4}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ Z4,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X17=Z5}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ Z5,}
+    \StringTok{\textasciigrave{}}\AttributeTok{X18=Z6}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ Z6,}
+\NormalTok{    X\_noise}
+\NormalTok{  )}
+
+  \FunctionTok{storage.mode}\NormalTok{(X) }\OtherTok{\textless{}{-}} \StringTok{"double"}
+  \FunctionTok{colnames}\NormalTok{(X) }\OtherTok{\textless{}{-}}\NormalTok{ variable\_labels}
+  \FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(X) }\SpecialCharTok{==}\NormalTok{ n, }\FunctionTok{ncol}\NormalTok{(X) }\SpecialCharTok{==}\NormalTok{ p\_total)}
+
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{X =}\NormalTok{ X, }\AttributeTok{X\_signal =}\NormalTok{ X\_signal)}
+\NormalTok{\}}
+
+\NormalTok{run\_monte\_carlo }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(N, fun, n\_cores) \{}
+\NormalTok{  iterations }\OtherTok{\textless{}{-}} \FunctionTok{seq\_len}\NormalTok{(N)}
+
+  \CommentTok{\# mclapply is not available on Windows. In that case, use the same code}
+  \CommentTok{\# sequentially so that the document remains portable.}
+  \ControlFlowTok{if}\NormalTok{ (.Platform}\SpecialCharTok{$}\NormalTok{OS.type }\SpecialCharTok{==} \StringTok{"windows"} \SpecialCharTok{||}\NormalTok{ n\_cores }\SpecialCharTok{\textless{}=} \DecValTok{1}\DataTypeTok{L}\NormalTok{) \{}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{lapply}\NormalTok{(iterations, fun))}
+\NormalTok{  \}}
+
+\NormalTok{  parallel}\SpecialCharTok{::}\FunctionTok{mclapply}\NormalTok{(}
+\NormalTok{    iterations,}
+\NormalTok{    fun,}
+    \AttributeTok{mc.cores =}\NormalTok{ n\_cores,}
+    \AttributeTok{mc.set.seed =} \ConstantTok{TRUE}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Continuous nonlinear heteroscedastic
+outcome}\label{continuous-nonlinear-heteroscedastic-outcome}
+
+The continuous response is generated from
+
+\[
+Y = |X\theta^*|^{0.8} + X^{(5)}\varepsilon/3,
+\qquad \varepsilon \sim \chi^2(3)-3,
+\]
+
+where \(\varepsilon\) is independent of the explanatory variables. This
+construction is nonlinear and has heteroscedastic noise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simulate\_one\_dataset }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n\_current) \{}
+\NormalTok{  design }\OtherTok{\textless{}{-}} \FunctionTok{build\_design}\NormalTok{(}
+    \AttributeTok{n =}\NormalTok{ n\_current,}
+    \AttributeTok{p\_gaussian\_noise =}\NormalTok{ p\_gaussian\_noise,}
+    \AttributeTok{rho =}\NormalTok{ rho,}
+    \AttributeTok{rho\_noise =}\NormalTok{ rho\_noise}
+\NormalTok{  )}
+
+\NormalTok{  linear\_predictor }\OtherTok{\textless{}{-}} \FunctionTok{as.vector}\NormalTok{(}
+\NormalTok{    theta\_star[}\DecValTok{1}\DataTypeTok{L}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ design}\SpecialCharTok{$}\NormalTok{X\_signal }\SpecialCharTok{\%*\%}\NormalTok{ theta\_star[}\SpecialCharTok{{-}}\DecValTok{1}\DataTypeTok{L}\NormalTok{]}
+\NormalTok{  )}
+\NormalTok{  epsilon }\OtherTok{\textless{}{-}} \FunctionTok{rchisq}\NormalTok{(n\_current, }\AttributeTok{df =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{3}
+
+\NormalTok{  y }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(linear\_predictor)}\SpecialCharTok{\^{}}\FloatTok{0.8} \SpecialCharTok{+}
+\NormalTok{    design}\SpecialCharTok{$}\NormalTok{X\_signal[, }\StringTok{"X5"}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ epsilon }\SpecialCharTok{/} \DecValTok{3}
+
+\NormalTok{  screening }\OtherTok{\textless{}{-}}\NormalTok{ mfscreen}\SpecialCharTok{::}\FunctionTok{screening\_test\_matrix}\NormalTok{(}
+    \AttributeTok{X =}\NormalTok{ design}\SpecialCharTok{$}\NormalTok{X,}
+    \AttributeTok{y =} \FunctionTok{as.numeric}\NormalTok{(y),}
+    \AttributeTok{q =}\NormalTok{ q}
+\NormalTok{  )}
+
+  \FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(screening}\SpecialCharTok{$}\NormalTok{selected) }\SpecialCharTok{==}\NormalTok{ p\_total)}
+
+  \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{selected =} \FunctionTok{as.logical}\NormalTok{(screening}\SpecialCharTok{$}\NormalTok{selected),}
+    \AttributeTok{threshold =} \FunctionTok{as.numeric}\NormalTok{(screening}\SpecialCharTok{$}\NormalTok{threshold),}
+    \AttributeTok{gamma =} \FunctionTok{as.numeric}\NormalTok{(screening}\SpecialCharTok{$}\NormalTok{gamma),}
+    \AttributeTok{selected\_indices =} \FunctionTok{as.integer}\NormalTok{(screening}\SpecialCharTok{$}\NormalTok{selected\_indices)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Four separate Monte Carlo
+experiments}\label{four-separate-monte-carlo-experiments}
+
+The following code runs \textbf{four independent Monte Carlo
+experiments}: \(n=500\), \(n=1000\), \(n=2000\), and \(n=2500\). Each
+experiment uses 500 replicates. Their results are then assembled into
+the four numeric columns of the final Table 1-style output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{RNGkind}\NormalTok{(}\StringTok{"L\textquotesingle{}Ecuyer{-}CMRG"}\NormalTok{)}
+\NormalTok{seed\_base }\OtherTok{\textless{}{-}} \DecValTok{20260629}\DataTypeTok{L}
+
+\CommentTok{\# A design matrix for n = 2500 has 5 million entries. Cap the number of}
+\CommentTok{\# simultaneous workers to avoid excessive memory use.}
+\NormalTok{detected\_cores }\OtherTok{\textless{}{-}}\NormalTok{ parallel}\SpecialCharTok{::}\FunctionTok{detectCores}\NormalTok{(}\AttributeTok{logical =} \ConstantTok{FALSE}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{is.na}\NormalTok{(detected\_cores)) detected\_cores }\OtherTok{\textless{}{-}} \DecValTok{1}\DataTypeTok{L}
+\NormalTok{n\_cores }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\DecValTok{1}\DataTypeTok{L}\NormalTok{, }\FunctionTok{min}\NormalTok{(}\DecValTok{4}\DataTypeTok{L}\NormalTok{, detected\_cores))}
+
+\NormalTok{summarise\_experiment }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(simulations, n\_current) \{}
+\NormalTok{  selection\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{do.call}\NormalTok{(rbind, }\FunctionTok{lapply}\NormalTok{(simulations, }\StringTok{\textasciigrave{}}\AttributeTok{[[}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{"selected"}\NormalTok{))}
+  \FunctionTok{storage.mode}\NormalTok{(selection\_matrix) }\OtherTok{\textless{}{-}} \StringTok{"logical"}
+  \FunctionTok{colnames}\NormalTok{(selection\_matrix) }\OtherTok{\textless{}{-}}\NormalTok{ variable\_labels}
+
+\NormalTok{  thresholds }\OtherTok{\textless{}{-}} \FunctionTok{vapply}\NormalTok{(simulations, }\StringTok{\textasciigrave{}}\AttributeTok{[[}\StringTok{\textasciigrave{}}\NormalTok{, }\FunctionTok{numeric}\NormalTok{(}\DecValTok{1}\NormalTok{), }\StringTok{"threshold"}\NormalTok{)}
+\NormalTok{  gammas }\OtherTok{\textless{}{-}} \FunctionTok{vapply}\NormalTok{(simulations, }\StringTok{\textasciigrave{}}\AttributeTok{[[}\StringTok{\textasciigrave{}}\NormalTok{, }\FunctionTok{numeric}\NormalTok{(}\DecValTok{1}\NormalTok{), }\StringTok{"gamma"}\NormalTok{)}
+
+  \FunctionTok{stopifnot}\NormalTok{(}
+    \FunctionTok{nrow}\NormalTok{(selection\_matrix) }\SpecialCharTok{==}\NormalTok{ N,}
+    \FunctionTok{ncol}\NormalTok{(selection\_matrix) }\SpecialCharTok{==}\NormalTok{ p\_total,}
+    \SpecialCharTok{!}\FunctionTok{anyNA}\NormalTok{(selection\_matrix),}
+    \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(thresholds, }\FunctionTok{rep}\NormalTok{(thresholds[}\DecValTok{1}\DataTypeTok{L}\NormalTok{], N))),}
+    \FunctionTok{isTRUE}\NormalTok{(}\FunctionTok{all.equal}\NormalTok{(gammas, }\FunctionTok{rep}\NormalTok{(gammas[}\DecValTok{1}\DataTypeTok{L}\NormalTok{], N)))}
+\NormalTok{  )}
+
+\NormalTok{  selection\_rates }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(selection\_matrix)}
+
+  \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{n =}\NormalTok{ n\_current,}
+    \AttributeTok{selection\_rates =}\NormalTok{ selection\_rates,}
+    \AttributeTok{true\_positive\_rate =} \FunctionTok{mean}\NormalTok{(selection\_matrix[, true\_positive\_idx, }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{]),}
+    \AttributeTok{false\_positive\_rate =} \FunctionTok{mean}\NormalTok{(selection\_matrix[, false\_positive\_idx, }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{]),}
+    \AttributeTok{mean\_selected\_set\_size =} \FunctionTok{mean}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(selection\_matrix)),}
+    \AttributeTok{gamma =}\NormalTok{ gammas[}\DecValTok{1}\DataTypeTok{L}\NormalTok{],}
+    \AttributeTok{score\_threshold =}\NormalTok{ thresholds[}\DecValTok{1}\DataTypeTok{L}\NormalTok{]}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\CommentTok{\# This loop makes four distinct Monte Carlo calls: one for each value of n.}
+\NormalTok{results\_by\_n }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{, }\FunctionTok{length}\NormalTok{(sample\_sizes))}
+\FunctionTok{names}\NormalTok{(results\_by\_n) }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(sample\_sizes)}
+
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(sample\_sizes)) \{}
+\NormalTok{  n\_current }\OtherTok{\textless{}{-}}\NormalTok{ sample\_sizes[k]}
+
+\NormalTok{  simulations\_n }\OtherTok{\textless{}{-}} \FunctionTok{run\_monte\_carlo}\NormalTok{(}
+    \AttributeTok{N =}\NormalTok{ N,}
+    \AttributeTok{fun =} \ControlFlowTok{function}\NormalTok{(iteration) \{}
+      \CommentTok{\# The seed is unique to the pair (sample size, replicate), making all}
+      \CommentTok{\# four experiments reproducible and independent of each other.}
+      \FunctionTok{set.seed}\NormalTok{(seed\_base }\SpecialCharTok{+} \DecValTok{10000}\DataTypeTok{L} \SpecialCharTok{*}\NormalTok{ n\_current }\SpecialCharTok{+}\NormalTok{ iteration)}
+      \FunctionTok{simulate\_one\_dataset}\NormalTok{(n\_current)}
+\NormalTok{    \},}
+    \AttributeTok{n\_cores =}\NormalTok{ n\_cores}
+\NormalTok{  )}
+
+\NormalTok{  results\_by\_n[[k]] }\OtherTok{\textless{}{-}} \FunctionTok{summarise\_experiment}\NormalTok{(}
+    \AttributeTok{simulations =}\NormalTok{ simulations\_n,}
+    \AttributeTok{n\_current =}\NormalTok{ n\_current}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Table 1-style summary}\label{table-1-style-summary}
+
+The final table has exactly four simulation columns: \(n=500\),
+\(n=1000\), \(n=2000\), and \(n=2500\). It reports the selection
+frequency of \(X^{(1)}\) through \(X^{(18)}\), the true-positive rate,
+false-positive rate, and mean selected-set size. This matches the
+structure of Table 1 in the accompanying manuscript.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table\_row\_labels }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \FunctionTok{sprintf}\NormalTok{(}\StringTok{"$X\^{}\{(\%d)\}$"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{18}\NormalTok{),}
+  \StringTok{"True Positive Rate"}\NormalTok{,}
+  \StringTok{"False Positive Rate"}\NormalTok{,}
+  \StringTok{"mean selected{-}set size"}
+\NormalTok{)}
+
+\NormalTok{table\_column\_labels }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"$n = "}\NormalTok{, sample\_sizes, }\StringTok{"$"}\NormalTok{)}
+
+\CommentTok{\# The output of vapply is a 21 x 4 matrix: one explicit column for each n.}
+\NormalTok{table\_values }\OtherTok{\textless{}{-}} \FunctionTok{vapply}\NormalTok{(}
+\NormalTok{  results\_by\_n,}
+  \AttributeTok{FUN =} \ControlFlowTok{function}\NormalTok{(summary\_n) \{}
+    \FunctionTok{c}\NormalTok{(}
+\NormalTok{      summary\_n}\SpecialCharTok{$}\NormalTok{selection\_rates[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{18}\NormalTok{],}
+\NormalTok{      summary\_n}\SpecialCharTok{$}\NormalTok{true\_positive\_rate,}
+\NormalTok{      summary\_n}\SpecialCharTok{$}\NormalTok{false\_positive\_rate,}
+\NormalTok{      summary\_n}\SpecialCharTok{$}\NormalTok{mean\_selected\_set\_size}
+\NormalTok{    )}
+\NormalTok{  \},}
+  \AttributeTok{FUN.VALUE =} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{length}\NormalTok{(table\_row\_labels))}
+\NormalTok{)}
+
+\FunctionTok{stopifnot}\NormalTok{(}
+  \FunctionTok{identical}\NormalTok{(}\FunctionTok{dim}\NormalTok{(table\_values), }\FunctionTok{c}\NormalTok{(}\FunctionTok{length}\NormalTok{(table\_row\_labels), }\DecValTok{4}\DataTypeTok{L}\NormalTok{)),}
+  \FunctionTok{all}\NormalTok{(}\FunctionTok{is.finite}\NormalTok{(table\_values))}
+\NormalTok{)}
+
+\CommentTok{\# Build a data frame with one row{-}label column plus the four visible n columns.}
+\NormalTok{table1\_mfscreen }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \StringTok{"Explanatory Variable"} \OtherTok{=}\NormalTok{ table\_row\_labels,}
+  \AttributeTok{check.names =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}
+\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(sample\_sizes)) \{}
+\NormalTok{  table1\_mfscreen[[table\_column\_labels[k]]] }\OtherTok{\textless{}{-}}\NormalTok{ table\_values[, k]}
+\NormalTok{\}}
+
+\FunctionTok{stopifnot}\NormalTok{(}
+  \FunctionTok{ncol}\NormalTok{(table1\_mfscreen) }\SpecialCharTok{==} \DecValTok{5}\DataTypeTok{L}\NormalTok{,}
+  \FunctionTok{identical}\NormalTok{(}
+    \FunctionTok{colnames}\NormalTok{(table1\_mfscreen),}
+    \FunctionTok{c}\NormalTok{(}\StringTok{"Explanatory Variable"}\NormalTok{, table\_column\_labels)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{expected\_mean\_selected }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(true\_positive\_idx) }\SpecialCharTok{+}
+\NormalTok{  q }\SpecialCharTok{*} \FunctionTok{length}\NormalTok{(false\_positive\_idx)}
+
+\FunctionTok{save}\NormalTok{(}
+\NormalTok{  results\_by\_n,}
+\NormalTok{  table\_values,}
+\NormalTok{  table1\_mfscreen,}
+  \AttributeTok{file =} \StringTok{"continuous\_nonlinear\_mfscreen\_N500\_q010\_n500\_n1000\_n2000\_n2500.RData"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For every sample size, the \texttt{mfscreen} score threshold is 0.369612
+and \(\gamma=\) 1.64485. The expected mean selected-set size is
+\(14 + 0.10 \times 1986 =\) 212.6.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table\_caption }\OtherTok{\textless{}{-}} \FunctionTok{sprintf}\NormalTok{(}
+  \StringTok{"N = \%d, q = \%.2f, continuous nonlinear output"}\NormalTok{,}
+\NormalTok{  N,}
+\NormalTok{  q}
+\NormalTok{)}
+
+\CommentTok{\# Print one table with the explanatory{-}variable column plus four visible}
+\CommentTok{\# simulation columns: n = 500, n = 1000, n = 2000, and n = 2500.}
+\NormalTok{table\_format }\OtherTok{\textless{}{-}} \ControlFlowTok{if}\NormalTok{ (knitr}\SpecialCharTok{::}\FunctionTok{is\_latex\_output}\NormalTok{()) }\StringTok{"latex"} \ControlFlowTok{else} \StringTok{"html"}
+
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+\NormalTok{  table1\_mfscreen,}
+  \AttributeTok{format =}\NormalTok{ table\_format,}
+  \AttributeTok{digits =} \DecValTok{3}\NormalTok{,}
+  \AttributeTok{align =} \FunctionTok{c}\NormalTok{(}\StringTok{"l"}\NormalTok{, }\StringTok{"r"}\NormalTok{, }\StringTok{"r"}\NormalTok{, }\StringTok{"r"}\NormalTok{, }\StringTok{"r"}\NormalTok{),}
+  \AttributeTok{booktabs =}\NormalTok{ knitr}\SpecialCharTok{::}\FunctionTok{is\_latex\_output}\NormalTok{(),}
+  \AttributeTok{escape =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{caption =}\NormalTok{ table\_caption}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:display-table-1}N = 500, q = 0.10, continuous nonlinear output}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+Explanatory Variable & $n = 500$ & $n = 1000$ & $n = 2000$ & $n = 2500$\\
+\midrule
+$X^{(1)}$ & 1.000 & 1.000 & 1.000 & 1.000\\
+$X^{(2)}$ & 0.996 & 1.000 & 1.000 & 1.000\\
+$X^{(3)}$ & 0.986 & 0.998 & 1.000 & 1.000\\
+$X^{(4)}$ & 0.380 & 0.558 & 0.814 & 0.896\\
+$X^{(5)}$ & 0.644 & 0.880 & 0.992 & 0.994\\
+\addlinespace
+$X^{(6)}$ & 0.560 & 0.838 & 0.990 & 0.988\\
+$X^{(7)}$ & 1.000 & 1.000 & 1.000 & 1.000\\
+$X^{(8)}$ & 0.998 & 1.000 & 1.000 & 1.000\\
+$X^{(9)}$ & 0.990 & 1.000 & 1.000 & 1.000\\
+$X^{(10)}$ & 0.984 & 1.000 & 1.000 & 1.000\\
+\addlinespace
+$X^{(11)}$ & 1.000 & 1.000 & 1.000 & 1.000\\
+$X^{(12)}$ & 0.986 & 0.998 & 1.000 & 1.000\\
+$X^{(13)}$ & 0.332 & 0.510 & 0.766 & 0.842\\
+$X^{(14)}$ & 0.574 & 0.772 & 0.980 & 0.980\\
+$X^{(15)}$ & 0.108 & 0.086 & 0.092 & 0.120\\
+\addlinespace
+$X^{(16)}$ & 0.094 & 0.106 & 0.128 & 0.096\\
+$X^{(17)}$ & 0.124 & 0.088 & 0.102 & 0.094\\
+$X^{(18)}$ & 0.076 & 0.084 & 0.096 & 0.102\\
+True Positive Rate & 0.816 & 0.897 & 0.967 & 0.979\\
+False Positive Rate & 0.102 & 0.101 & 0.101 & 0.101\\
+\addlinespace
+mean selected-set size & 214.164 & 213.918 & 213.888 & 213.910\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

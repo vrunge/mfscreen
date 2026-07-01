@@ -10,6 +10,19 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// screening_score
+double screening_score(SEXP x, SEXP y, const double tol);
+RcppExport SEXP _mfscreen_screening_score(SEXP xSEXP, SEXP ySEXP, SEXP tolSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const double >::type tol(tolSEXP);
+    rcpp_result_gen = Rcpp::wrap(screening_score(x, y, tol));
+    return rcpp_result_gen;
+END_RCPP
+}
 // screening_test_matrix
 List screening_test_matrix(const NumericMatrix& X, const NumericVector& y, const double q, const double tol);
 RcppExport SEXP _mfscreen_screening_test_matrix(SEXP XSEXP, SEXP ySEXP, SEXP qSEXP, SEXP tolSEXP) {
@@ -26,6 +39,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_mfscreen_screening_score", (DL_FUNC) &_mfscreen_screening_score, 3},
     {"_mfscreen_screening_test_matrix", (DL_FUNC) &_mfscreen_screening_test_matrix, 4},
     {NULL, NULL, 0}
 };
