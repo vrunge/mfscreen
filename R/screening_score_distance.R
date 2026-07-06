@@ -162,7 +162,8 @@ screening_score_R <- function(
   # By definition: if A_j = 0, D_j^2 = +Inf
   A_scale <- max(1, sqrt(sum(x_tilde^2 * yc^2)))
 
-  if (!is.finite(A))
+
+  if (!is.finite(A) || abs(A) <= tol * A_scale)
   {
     return(Inf)
   }
@@ -175,10 +176,10 @@ screening_score_R <- function(
 
   # p_j and q_j
   p <- (x_tilde * yc) / A
-  q <- x_tilde^2
+  q_vec <- x_tilde^2
 
   # D_j^2 = ||p_j - q_j||_2^2
-  D2 <- sum((p - q)^2)
+  D2 <- sum((p - q_vec)^2)
 
   return(D2)
 }
