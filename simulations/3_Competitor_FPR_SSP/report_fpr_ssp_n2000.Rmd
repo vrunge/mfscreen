@@ -1,6 +1,6 @@
 ---
 title: "FPR versus SSP comparison for screening statistics"
-author: "mfscreen2 simulation"
+author: "mfscreen simulation"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 output:
   pdf_document:

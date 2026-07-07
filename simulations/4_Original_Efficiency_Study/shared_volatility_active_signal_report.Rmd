@@ -1,6 +1,6 @@
 ---
 title: "Efficiency of model-free screening under shared volatility"
-author: "mfscreen2 simulation"
+author: "mfscreen simulation"
 date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 output:
   pdf_document:

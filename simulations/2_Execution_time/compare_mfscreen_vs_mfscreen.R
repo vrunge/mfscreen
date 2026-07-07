@@ -25,9 +25,9 @@ script_dir <- dirname(normalizePath(script_path))
 package_dir <- normalizePath(file.path(script_dir, "..", ".."))
 workspace_dir <- normalizePath(file.path(package_dir, ".."))
 mfscreen_dir <- file.path(workspace_dir, "mfscreen")
-mfscreen2_dir <- file.path(workspace_dir, "mfscreen2")
+mfscreen_dir <- file.path(workspace_dir, "mfscreen")
 
-out_dir <- file.path(script_dir, "mfscreen_vs_mfscreen2_results")
+out_dir <- file.path(script_dir, "mfscreen_vs_mfscreen_results")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 lib_base <- file.path(tempdir(), "mfscreen_benchmark_base")
@@ -98,7 +98,7 @@ time_implementation <- function(lib_dir, X, y, q, n_rep) {
 }
 
 install_pkg(mfscreen_dir, lib_base)
-install_pkg(mfscreen2_dir, lib_fast)
+install_pkg(mfscreen_dir, lib_fast)
 
 raw_results <- data.frame()
 selection_checks <- data.frame()
@@ -128,7 +128,7 @@ for (case in seq_len(nrow(grid))) {
       n = n,
       p = p,
       replication = seq_len(n_rep),
-      implementation = "mfscreen2",
+      implementation = "mfscreen",
       time_seconds = fast$times,
       batch_calls = fast$batch_calls
     )
@@ -170,13 +170,13 @@ row.names(summary_results) <- NULL
 summary_wide <- merge(
   summary_results[summary_results$implementation == "mfscreen",
                   c("n", "p", "mean_seconds", "sd_seconds")],
-  summary_results[summary_results$implementation == "mfscreen2",
+  summary_results[summary_results$implementation == "mfscreen",
                   c("n", "p", "mean_seconds", "sd_seconds")],
   by = c("n", "p"),
-  suffixes = c("_mfscreen", "_mfscreen2")
+  suffixes = c("_mfscreen", "_mfscreen")
 )
 summary_wide$speedup <- summary_wide$mean_seconds_mfscreen /
-  summary_wide$mean_seconds_mfscreen2
+  summary_wide$mean_seconds_mfscreen
 
 write.csv(raw_results, file.path(out_dir, "raw_timings.csv"), row.names = FALSE)
 write.csv(summary_results, file.path(out_dir, "summary_timings.csv"),
@@ -211,7 +211,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
       x = "(n, p)",
       y = "Mean elapsed time, seconds (log scale)",
       colour = "Implementation",
-      title = "mfscreen vs mfscreen2 elapsed time",
+      title = "mfscreen vs mfscreen elapsed time",
       subtitle = paste("Error bars show +/- 1 standard deviation over",
                        n_rep, "replications")
     ) +
@@ -229,7 +229,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
       x = "p",
       y = "n",
       fill = "Speedup",
-      title = "mfscreen2 speedup over mfscreen"
+      title = "mfscreen speedup over mfscreen"
     ) +
     theme_bw(base_size = 11)
 
@@ -250,7 +250,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
        pch = ifelse(summary_results$implementation == "mfscreen", 16, 17),
        col = ifelse(summary_results$implementation == "mfscreen", 1, 2))
   axis(1, seq_along(cases), cases, las = 2, cex.axis = 0.7)
-  legend("topleft", legend = c("mfscreen", "mfscreen2"),
+  legend("topleft", legend = c("mfscreen", "mfscreen"),
          pch = c(16, 17), col = c(1, 2), bty = "n")
   par(op)
   dev.off()
