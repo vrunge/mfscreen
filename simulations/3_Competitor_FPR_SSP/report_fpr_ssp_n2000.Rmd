@@ -1,0 +1,391 @@
+---
+title: "FPR versus SSP comparison for screening statistics"
+author: "mfscreen2 simulation"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    latex_engine: pdflatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 7.2,
+  fig.height = 4.8
+)
+
+library(ggplot2)
+
+result_dir <- "fpr_ssp_n2000_results"
+summary_results <- read.csv(file.path(result_dir, "summary_fpr_ssp.csv"))
+summary_results$q_label <- ifelse(
+  summary_results$q %in% c(0.001, 0.01, 0.05, 0.10, 0.30),
+  as.character(summary_results$q),
+  ""
+)
+
+stress_dir <- "fpr_control_common_volatility_n2000_results"
+stress_results <- read.csv(file.path(stress_dir, "summary_fpr_control.csv"))
+
+q_levels <- sort(unique(summary_results$q))
+n <- 2000L
+p <- 1000L
+s <- 5L
+n_rep <- length(unique(read.csv(file.path(result_dir, "raw_fpr_ssp.csv"))$replication))
+stress_n_rep <- length(unique(read.csv(file.path(stress_dir, "raw_fpr_control.csv"))$replication))
+```
+
+# Competing Screening Statistics
+
+The simulation compares three marginal screening procedures. Each procedure
+assigns one score to each predictor variable, then selects variables according
+to a threshold indexed by a nominal level \(q\).
+
+## Reciprocal model-free screening statistic
+
+For predictor \(X_j\), let
+\[
+z_{ij} = X_{ij} - \bar X_j, \qquad u_i = Y_i - \bar Y.
+\]
+The `mfscreen` statistic is
+\[
+D_j^2 =
+\frac{\sum_i z_{ij}^2 u_i^2}{\left(\sum_i z_{ij}u_i\right)^2}
+-
+\frac{2\sum_i z_{ij}^3 u_i}
+{\left(\sum_i z_{ij}u_i\right)\left(\sum_i z_{ij}^2\right)}
++
+\frac{\sum_i z_{ij}^4}{\left(\sum_i z_{ij}^2\right)^2}.
+\]
+It is the squared reciprocal of the robust marginal screening statistic:
+\[
+D_j^2 = \frac{1}{T_j^2}.
+\]
+Small values indicate stronger marginal evidence. For each nominal level \(q\),
+we set
+\[
+\gamma_q = \Phi^{-1}(1 - q/2)
+\]
+and select variable \(j\) when
+\[
+D_j^2 \leq \frac{1}{\gamma_q^2}.
+\]
+
+## Pearson SIS
+
+Pearson SIS is the classical marginal correlation screen. For each predictor,
+we compute the Pearson correlation \(r_j\) between \(X_j\) and \(Y\), then use
+the usual two-sided correlation test statistic
+\[
+t_j = |r_j|\sqrt{\frac{n-2}{1-r_j^2}}.
+\]
+The two-sided p-value is
+\[
+p_j = 2P(t_{n-2} \geq t_j).
+\]
+For nominal level \(q\), Pearson SIS selects predictor \(j\) when
+\[
+p_j \leq q.
+\]
+
+## Spearman SIS
+
+Spearman SIS applies the same p-value rule after replacing each variable by
+its ranks. It is a rank-based marginal screen and is less sensitive to monotone
+transformations than Pearson correlation. For nominal level \(q\), it selects
+predictor \(j\) when the two-sided rank-correlation p-value satisfies
+\[
+p_j^{\mathrm{rank}} \leq q.
+\]
+
+## How the plotted points are constructed
+
+For a fixed method and a fixed nominal level \(q\), each Monte Carlo
+replication produces a selected set \(\widehat S_q\). Let \(S\) be the true
+active set and \(S^c\) its complement. In replication \(b\),
+\[
+\mathrm{FPR}_b(q) =
+\frac{|\widehat S_q^{(b)} \cap S^c|}{|S^c|}
+\]
+and
+\[
+\mathrm{SSP}_b(q) =
+1\{S \subseteq \widehat S_q^{(b)}\}.
+\]
+The point plotted in the FPR--SSP plane is
+\[
+\left(
+\frac{1}{B}\sum_{b=1}^B \mathrm{FPR}_b(q),
+\frac{1}{B}\sum_{b=1}^B \mathrm{SSP}_b(q)
+\right),
+\]
+where \(B\) is the number of Monte Carlo replications. The labels on selected
+points show the corresponding nominal \(q\) level.
+
+# Simulation Setup
+
+The simulation uses fixed sample size
+\[
+n = `r n`
+\]
+and number of candidate predictors
+\[
+p = `r p`.
+\]
+The true active set is
+\[
+S = \{1,2,3,4,5\}.
+\]
+The number of Monte Carlo replications is
+\[
+B = `r n_rep`.
+\]
+
+The q grid is
+\[
+`r paste(q_levels, collapse = ", ")`.
+\]
+
+Predictors are generated independently as
+\[
+X_{ij} \sim N(0,1).
+\]
+
+## Parametric linear model
+
+The parametric model is
+\[
+Y =
+0.22X_1 - 0.20X_2 + 0.18X_3 - 0.16X_4 + 0.14X_5
++ \varepsilon,
+\]
+with
+\[
+\varepsilon \sim N(0, 2.3^2).
+\]
+This is a deliberately weak linear signal, so the curves are not saturated at
+\(\mathrm{SSP}=1\).
+
+## Nonparametric nonlinear model
+
+The nonparametric model is
+\[
+Y = 0.35\{1.6\sin(X_1) + 1.2\tanh(X_2)
++ 0.9X_3^3/(1+X_3^2) - 0.8\exp(0.35X_4) + 0.7X_5\}
++ \sigma(X)\varepsilon,
+\]
+where
+\[
+\sigma(X) = 0.7 + 0.5|X_1| + 0.25X_2^2,
+\qquad
+\varepsilon \sim N(0,0.8^2).
+\]
+This model is nonlinear and heteroskedastic but retains marginal signal in the
+active variables.
+
+# Simulation Results
+
+## FPR versus SSP
+
+```{r fpr-ssp}
+ggplot(
+  summary_results,
+  aes(x = fpr, y = ssp, colour = method, shape = method)
+) +
+  geom_path(aes(group = method), linewidth = 0.7) +
+  geom_point(size = 2.2) +
+  geom_text(
+    aes(label = q_label),
+    size = 2.5,
+    nudge_y = 0.025,
+    show.legend = FALSE
+  ) +
+  facet_wrap(~ model) +
+  coord_cartesian(xlim = c(0, max(summary_results$fpr) * 1.08),
+                  ylim = c(0, 1.04)) +
+  labs(
+    x = "False positive rate",
+    y = "Sure screening property",
+    colour = "Method",
+    shape = "Method",
+    title = "FPR versus SSP across nominal q levels",
+    subtitle = paste0("n = ", n, ", p = ", p,
+                      ", active variables = ", s,
+                      ", replications = ", n_rep)
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+In the parametric linear model, `mfscreen` and Pearson SIS are very close, as
+expected: both are driven by marginal linear association. Spearman SIS is less
+efficient here because ranking discards some linear Gaussian information.
+
+In the nonlinear heteroskedastic model, all three methods retain the active
+variables once \(q\) is moderately large. At smaller \(q\) values, the
+model-free statistic remains competitive with Pearson and Spearman while
+keeping empirical FPR close to the nominal level. The main advantage of
+`mfscreen` is that it uses the reciprocal robust statistic rather than the
+ordinary homoskedastic correlation p-value.
+
+## FPR as a function of q
+
+```{r fpr-q}
+ggplot(
+  summary_results,
+  aes(x = q, y = fpr, colour = method, shape = method)
+) +
+  geom_line() +
+  geom_point(size = 2) +
+  facet_wrap(~ model) +
+  scale_x_log10(breaks = q_levels) +
+  labs(
+    x = "Nominal q level",
+    y = "False positive rate",
+    colour = "Method",
+    shape = "Method",
+    title = "False positive rate by q"
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+Across both data-generating mechanisms, the empirical FPR follows the nominal
+level closely for all three methods. This means that differences in the
+FPR--SSP plot are primarily differences in sure screening probability rather
+than failures to control false positives.
+
+This behavior is expected in the baseline experiment. The inactive predictors
+are independent Gaussian variables, so the two competitors are used in a
+setting close to the assumptions behind their usual two-sided correlation
+p-values. In this favorable case, plotting FPR as a function of \(q\) mostly
+checks that the simulation code and thresholding rules are calibrated.
+
+## FPR-control stress test
+
+The preceding baseline does not strongly challenge Pearson or Spearman
+p-values. To probe FPR control more directly, we also run a global-null stress
+test with common volatility. In this experiment there are no active variables:
+the response and all predictors have zero mean association. However, each row
+shares a random volatility factor
+\[
+A_i = \exp(0.5 Z_i), \qquad Z_i \sim N(0,1),
+\]
+and
+\[
+X_{ij} = A_i E_{ij}, \qquad Y_i = A_i \varepsilon_i,
+\]
+with independent standard normal \(E_{ij}\) and \(\varepsilon_i\).
+
+The ordinary Pearson p-value treats observations as homoskedastic and therefore
+uses the wrong null calibration. Spearman ranks reduce sensitivity to the
+largest values, but the shared volatility still induces dependence in the
+joint ranks. The robust reciprocal statistic in `mfscreen` is designed to
+studentize the marginal slope with a heteroskedasticity-aware denominator, so
+we expect it to remain much closer to the nominal false positive rate.
+
+```{r stress-fpr}
+ggplot(
+  stress_results,
+  aes(x = q, y = fpr, colour = method, shape = method)
+) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed",
+              colour = "grey45") +
+  geom_line() +
+  geom_point(size = 2) +
+  scale_x_log10(breaks = q_levels) +
+  scale_y_log10() +
+  labs(
+    x = "Nominal q level",
+    y = "Empirical false positive rate",
+    colour = "Method",
+    shape = "Method",
+    title = "FPR control under common volatility",
+    subtitle = paste0("Global null, n = ", n, ", p = ", p,
+                      ", replications = ", stress_n_rep)
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+The dashed line is the ideal calibration \(\mathrm{FPR}=q\). In this stress
+test, `mfscreen` stays close to the dashed line across the q grid. Pearson SIS
+is strongly anti-conservative: for example, at \(q=0.05\), its empirical FPR is
+about 0.225. Spearman SIS is better than Pearson but still inflated: at
+\(q=0.05\), its empirical FPR is about 0.073. The corresponding `mfscreen`
+FPR is about 0.054.
+
+```{r stress-inflation}
+ggplot(
+  stress_results,
+  aes(x = q, y = inflation, colour = method, shape = method)
+) +
+  geom_hline(yintercept = 1, linetype = "dashed", colour = "grey45") +
+  geom_line() +
+  geom_point(size = 2) +
+  scale_x_log10(breaks = q_levels) +
+  labs(
+    x = "Nominal q level",
+    y = "FPR / q",
+    colour = "Method",
+    shape = "Method",
+    title = "False-positive inflation under common volatility"
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+The inflation plot makes the calibration gap clearer. Values near one indicate
+good FPR control. `mfscreen` is close to one, while the two competitors are
+above one throughout the grid, especially Pearson SIS at small \(q\).
+
+## SSP as a function of q
+
+```{r ssp-q}
+ggplot(
+  summary_results,
+  aes(x = q, y = ssp, colour = method, shape = method)
+) +
+  geom_line() +
+  geom_point(size = 2) +
+  facet_wrap(~ model) +
+  scale_x_log10(breaks = q_levels) +
+  coord_cartesian(ylim = c(0, 1.04)) +
+  labs(
+    x = "Nominal q level",
+    y = "Sure screening property",
+    colour = "Method",
+    shape = "Method",
+    title = "Sure screening property by q"
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+The SSP curves show the tradeoff directly: increasing \(q\) admits more false
+positives but improves the probability of retaining all active variables. In
+the linear model, `mfscreen` and Pearson SIS overlap almost exactly. In the
+nonlinear model, the methods are also close at this sample size, with
+`mfscreen` competitive across the full q grid and reaching SSP equal to one
+once \(q \geq 0.10\).
+
+# Numerical Summary
+
+```{r table}
+summary_table <- summary_results[order(summary_results$model,
+                                       summary_results$q,
+                                       summary_results$method),
+                                 c("model", "q", "method", "fpr", "ssp")]
+knitr::kable(
+  summary_table,
+  digits = 4,
+  row.names = FALSE,
+  caption = "Mean FPR and SSP over Monte Carlo replications."
+)
+```

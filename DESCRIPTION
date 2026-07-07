@@ -8,6 +8,10 @@ Authors@R: c(
     person("Jerome", "Dedecker", email = "jerome.dedecker@u-paris.fr", role = c("aut")),
     person("Anne-Sophie", "Tocquet", email = "annesophie.tocquet@univ-evry.fr", role = c("aut"))
     )
+Author: Vincent Runge [aut, cre],
+  Marie-Luce Taupin [aut],
+  Jerome Dedecker [aut],
+  Anne-Sophie Tocquet [aut]
 Maintainer: Vincent Runge <vincent.runge@univ-evry.fr>
 Description: Implements model-free screening procedures for selecting explanatory variables correlated with a response variable in high-dimensional settings. The package provides functions to compute marginal screening scores and screening tests based on studentized slope estimators, with false positive rate control.
 License: GPL-3
@@ -15,6 +19,9 @@ Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 1.0.14)
 LinkingTo: Rcpp
+Suggests:
+    testthat (>= 3.0.0)
 URL: https://github.com/vrunge/mfscreen
 BugReports: https://github.com/vrunge/mfscreen/issues
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3

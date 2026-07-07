@@ -147,8 +147,8 @@ df[df$method == "R",5]/df[df$method == "Rcpp",5]
 
 
 
-p <- 10000
-n <- 100000
+p <- 10^4
+n <- 10^5
 X <- matrix(rnorm(n * p), nrow = n, ncol = p)
 dim(X)
 y <- rnorm(n)

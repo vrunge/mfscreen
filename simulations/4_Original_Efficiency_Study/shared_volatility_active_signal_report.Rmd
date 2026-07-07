@@ -1,0 +1,333 @@
+---
+title: "Efficiency of model-free screening under shared volatility"
+author: "mfscreen2 simulation"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    latex_engine: pdflatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 7.2,
+  fig.height = 4.8
+)
+
+library(ggplot2)
+
+result_dir <- "shared_volatility_active_signal_results"
+summary_results <- read.csv(file.path(result_dir, "summary_results.csv"))
+raw_results <- read.csv(file.path(result_dir, "raw_results.csv"))
+
+summary_results$q_label <- ifelse(
+  summary_results$q %in% c(0.001, 0.01, 0.05, 0.10, 0.30),
+  as.character(summary_results$q),
+  ""
+)
+
+q_levels <- sort(unique(summary_results$q))
+n <- 1000L
+p <- 1000L
+s <- 5L
+n_rep <- length(unique(raw_results$replication))
+```
+
+# Motivation
+
+The previous simulations compare screening methods in standard settings where
+the null predictors are close to the assumptions behind Pearson and Spearman
+correlation p-values. In those cases, all methods can have good FPR calibration.
+
+Here the goal is to create a more diagnostic simulation for the efficiency of
+the reciprocal model-free statistic. The question is:
+
+> Can a method retain the true active variables while avoiding false positives
+> caused by a common volatility factor?
+
+This is relevant for high-dimensional screening because some variables can be
+selected not because they have a mean association with the response, but because
+they share observation-level volatility, outliers, or scale heterogeneity with
+the response. A good screening statistic should not confuse this volatility
+artifact with a useful marginal signal.
+
+# Competing Methods
+
+We compare the same three marginal screening rules.
+
+## Model-free reciprocal statistic
+
+For predictor \(X_j\), let
+\[
+z_{ij} = X_{ij} - \bar X_j, \qquad u_i = Y_i - \bar Y.
+\]
+The reciprocal statistic is
+\[
+D_j^2 =
+\frac{\sum_i z_{ij}^2 u_i^2}{\left(\sum_i z_{ij}u_i\right)^2}
+-
+\frac{2\sum_i z_{ij}^3 u_i}
+{\left(\sum_i z_{ij}u_i\right)\left(\sum_i z_{ij}^2\right)}
++
+\frac{\sum_i z_{ij}^4}{\left(\sum_i z_{ij}^2\right)^2}.
+\]
+Small values indicate stronger marginal evidence. At nominal level \(q\), the
+selection threshold is
+\[
+D_j^2 \leq \frac{1}{\{\Phi^{-1}(1-q/2)\}^2}.
+\]
+
+The denominator uses the empirical second moment of \(z_{ij}u_i\), which makes
+the statistic sensitive to heteroskedasticity in a way that ordinary
+correlation p-values are not.
+
+## Pearson SIS
+
+Pearson SIS computes the ordinary Pearson correlation \(r_j\) between \(X_j\)
+and \(Y\), converts it to a two-sided p-value using the usual \(t\)-test, and
+selects if
+\[
+p_j \leq q.
+\]
+This is efficient under homoskedastic linear Gaussian assumptions, but the
+p-value is not designed for common volatility or strong scale heterogeneity.
+
+## Spearman SIS
+
+Spearman SIS applies the same p-value rule to ranks. It is less sensitive to
+extreme values than Pearson SIS, but the rank p-value is still a simple
+correlation calibration and can be affected by common volatility.
+
+# Simulation Design
+
+We use fixed
+\[
+n = `r n`, \qquad p = `r p`,
+\]
+with active set
+\[
+S = \{1,2,3,4,5\}.
+\]
+The number of Monte Carlo replications is
+\[
+B = `r n_rep`.
+\]
+The q grid is
+\[
+`r paste(q_levels, collapse = ", ")`.
+\]
+
+For the active variables,
+\[
+X_1,\ldots,X_5 \sim N(0,1),
+\]
+and the mean signal is
+\[
+\mu(X) =
+0.30 X_1 - 0.27 X_2 + 0.24 X_3 - 0.21 X_4 + 0.18 X_5.
+\]
+
+We compare two scenarios.
+
+## Clean homoskedastic scenario
+
+All inactive predictors are independent standard normal variables and
+\[
+Y = \mu(X) + \varepsilon, \qquad \varepsilon \sim N(0,1).
+\]
+This is a favorable baseline for Pearson SIS.
+
+## Shared-volatility scenario
+
+Let
+\[
+A_i = \exp(0.5 Z_i), \qquad Z_i \sim N(0,1).
+\]
+The active variables remain unscaled standard normal variables. The inactive
+variables and the noise component of the response share the same volatility:
+\[
+X_{ij} = A_i E_{ij}, \quad j \notin S,
+\]
+and
+\[
+Y_i = \mu(X_i) + A_i \varepsilon_i.
+\]
+Here \(E_{ij}\), \(Z_i\), and \(\varepsilon_i\) are independent standard normal
+variables.
+
+Conditionally on the volatility factor, inactive predictors have no mean
+association with the response. However, the shared scale factor can generate
+large products \(X_{ij}Y_i\) and can make ordinary correlation p-values
+anti-conservative.
+
+# How Points Are Drawn
+
+For a fixed method and q level, each Monte Carlo replication produces a
+selected set \(\widehat S_q\). We compute
+\[
+\mathrm{FPR}_b(q) =
+\frac{|\widehat S_q^{(b)} \cap S^c|}{|S^c|}
+\]
+and
+\[
+\mathrm{SSP}_b(q) =
+1\{S \subseteq \widehat S_q^{(b)}\}.
+\]
+The plotted point is
+\[
+\left(
+\frac{1}{B}\sum_b \mathrm{FPR}_b(q),
+\frac{1}{B}\sum_b \mathrm{SSP}_b(q)
+\right).
+\]
+
+The same selected set also gives a model-size measure:
+\[
+|\widehat S_q|.
+\]
+
+# Results
+
+## Efficiency frontier
+
+```{r frontier}
+ggplot(
+  summary_results,
+  aes(x = fpr, y = ssp, colour = method, shape = method)
+) +
+  geom_path(aes(group = method), linewidth = 0.7) +
+  geom_point(size = 2.2) +
+  geom_text(
+    aes(label = q_label),
+    size = 2.5,
+    nudge_y = 0.025,
+    show.legend = FALSE
+  ) +
+  facet_wrap(~ scenario) +
+  coord_cartesian(xlim = c(0, max(summary_results$fpr) * 1.05),
+                  ylim = c(0, 1.04)) +
+  labs(
+    x = "False positive rate",
+    y = "Sure screening property",
+    colour = "Method",
+    shape = "Method",
+    title = "Efficiency frontier under shared volatility",
+    subtitle = paste0("n = ", n, ", p = ", p,
+                      ", active variables = ", s,
+                      ", replications = ", n_rep)
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+In the clean homoskedastic scenario, all three methods are similar. This is
+expected: the competitors are being used in a setting close to their ideal
+calibration.
+
+The shared-volatility scenario is more revealing. Pearson SIS reaches high SSP,
+but does so with many false positives. For example, at \(q=0.05\), Pearson SIS
+has SSP about 0.98 but FPR about 0.20. In contrast, `mfscreen` has the same SSP
+about 0.98 but FPR about 0.056. Spearman SIS is more robust than Pearson, but
+still has FPR about 0.069 at \(q=0.05\), larger than `mfscreen`.
+
+This is the efficiency advantage: for comparable sure screening probability,
+`mfscreen` produces a much smaller candidate set under shared volatility.
+
+## FPR calibration
+
+```{r fpr-q}
+ggplot(
+  summary_results,
+  aes(x = q, y = fpr, colour = method, shape = method)
+) +
+  geom_line(
+    data = data.frame(q = q_levels, fpr = q_levels),
+    aes(x = q, y = fpr),
+    inherit.aes = FALSE,
+    linetype = "dashed",
+    colour = "grey45"
+  ) +
+  geom_line() +
+  geom_point(size = 2) +
+  facet_wrap(~ scenario) +
+  scale_x_log10(breaks = q_levels) +
+  labs(
+    x = "Nominal q level",
+    y = "False positive rate",
+    colour = "Method",
+    shape = "Method",
+    title = "FPR control by q"
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+The dashed line is the ideal calibration \(\mathrm{FPR}=q\). In the clean
+scenario, all methods follow this line closely. Under shared volatility,
+`mfscreen` remains close to the nominal q level, while Pearson SIS is strongly
+anti-conservative and Spearman SIS is moderately anti-conservative.
+
+At \(q=0.01\), Pearson SIS has FPR about 0.094, roughly nine times the nominal
+level. At the same q level, `mfscreen` has FPR about 0.012. This difference is
+not a minor plotting artifact: it means Pearson includes many inactive
+variables before the downstream model-building step.
+
+## Number of selected variables
+
+```{r selected-count}
+ggplot(
+  summary_results,
+  aes(x = q, y = selected_count, colour = method, shape = method)
+) +
+  geom_line() +
+  geom_point(size = 2) +
+  facet_wrap(~ scenario) +
+  scale_x_log10(breaks = q_levels) +
+  labs(
+    x = "Nominal q level",
+    y = "Average selected variables",
+    colour = "Method",
+    shape = "Method",
+    title = "Model size induced by screening"
+  ) +
+  theme_bw(base_size = 10) +
+  theme(legend.position = "bottom")
+```
+
+The model-size plot gives a practical interpretation of FPR inflation. In the
+shared-volatility scenario at \(q=0.05\), `mfscreen` selects about 61 variables
+on average, Spearman SIS selects about 73, and Pearson SIS selects about 204.
+All three methods have high SSP there, but Pearson pays for it by passing a
+much larger candidate set to later analysis.
+
+# Numerical Summary
+
+```{r table}
+summary_table <- summary_results[order(summary_results$scenario,
+                                       summary_results$q,
+                                       summary_results$method),
+                                 c("scenario", "q", "method", "fpr", "ssp",
+                                   "selected_count")]
+knitr::kable(
+  summary_table,
+  digits = 4,
+  row.names = FALSE,
+  caption = "Mean FPR, SSP, and selected model size over Monte Carlo replications."
+)
+```
+
+# Conclusion
+
+This simulation isolates a situation where ordinary correlation screening is
+not just less robust but practically inefficient. Shared volatility creates
+many false positives for Pearson SIS and, to a lesser extent, Spearman SIS.
+The model-free reciprocal statistic keeps the false positive rate close to the
+target while retaining the active variables with similar probability. This
+supports using `mfscreen` as a first-stage screen when high-dimensional data may
+contain scale heterogeneity, common volatility, or outlier-prone observations.

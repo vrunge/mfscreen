@@ -103,48 +103,41 @@ double screening_score(SEXP x,
   const double x_mean = x_sum * inv_n;
   const double y_mean = y_sum * inv_n;
 
-  // Pass 2:
-  // sxx       = sum (x_i - x_mean)^2
-  // b         = sum (x_i - x_mean)(y_i - y_mean)
-  // sum_z2_y2 = sum (x_i - x_mean)^2 (y_i - y_mean)^2
-  double sxx = 0.0;
-  double b = 0.0;
-  double sum_z2_y2 = 0.0;
+  // Pass 2: all centered moments needed for D^2.
+  double sxx = 0.0; // sum z^2
+  double b = 0.0;   // sum z * u
+  double m22 = 0.0; // sum z^2 * u^2
+  double m31 = 0.0; // sum z^3 * u
+  double m40 = 0.0; // sum z^4
 
   for (R_xlen_t i = 0; i < n; ++i) {
     const double z = x_data[i] - x_mean;
-    const double yc = y_data[i] - y_mean;
+    const double u = y_data[i] - y_mean;
     const double z2 = z * z;
+    const double u2 = u * u;
 
     sxx += z2;
-    b += z * yc;
-    sum_z2_y2 += z2 * yc * yc;
+    b += z * u;
+    m22 += z2 * u2;
+    m31 += z2 * z * u;
+    m40 += z2 * z2;
   }
 
-  // Equivalent to:
-  // abs(A) <= tol * max(1, sqrt(sum(x_tilde^2 * y_tilde^2))).
-  const double b_limit =
-    tol * std::max(std::sqrt(sxx), std::sqrt(sum_z2_y2));
-
-  if (std::fabs(b) <= b_limit) {
+  const double tol2 = tol * tol;
+  if (sxx <= 0.0 || b * b <= tol2 * std::max(sxx, m22)) {
     return R_PosInf;
   }
 
   const double inv_b = 1.0 / b;
   const double inv_sxx = 1.0 / sxx;
 
-  // Pass 3:
-  // D^2 = sum [z_i * y_centered_i / b - z_i^2 / sxx]^2.
-  double d2 = 0.0;
+  double d2 =
+    m22 * inv_b * inv_b
+  - 2.0 * m31 * inv_b * inv_sxx
+  + m40 * inv_sxx * inv_sxx;
 
-  for (R_xlen_t i = 0; i < n; ++i) {
-    const double z = x_data[i] - x_mean;
-    const double yc = y_data[i] - y_mean;
-
-    const double difference =
-      z * (yc * inv_b - z * inv_sxx);
-
-    d2 += difference * difference;
+  if (d2 < 0.0) {
+    d2 = 0.0;
   }
 
   return d2;

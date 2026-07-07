@@ -1,0 +1,2401 @@
+"method","replication","q","fpr"
+"mfscreen",1,0.001,0.002
+"mfscreen",1,0.005,0.006
+"mfscreen",1,0.01,0.011
+"mfscreen",1,0.025,0.026
+"mfscreen",1,0.05,0.05
+"mfscreen",1,0.1,0.098
+"mfscreen",1,0.2,0.215
+"mfscreen",1,0.3,0.329
+"Pearson SIS",1,0.001,0.033
+"Pearson SIS",1,0.005,0.077
+"Pearson SIS",1,0.01,0.114
+"Pearson SIS",1,0.025,0.184
+"Pearson SIS",1,0.05,0.237
+"Pearson SIS",1,0.1,0.32
+"Pearson SIS",1,0.2,0.431
+"Pearson SIS",1,0.3,0.522
+"Spearman SIS",1,0.001,0.003
+"Spearman SIS",1,0.005,0.014
+"Spearman SIS",1,0.01,0.02
+"Spearman SIS",1,0.025,0.047
+"Spearman SIS",1,0.05,0.079
+"Spearman SIS",1,0.1,0.143
+"Spearman SIS",1,0.2,0.247
+"Spearman SIS",1,0.3,0.335
+"mfscreen",2,0.001,0.001
+"mfscreen",2,0.005,0.004
+"mfscreen",2,0.01,0.008
+"mfscreen",2,0.025,0.028
+"mfscreen",2,0.05,0.051
+"mfscreen",2,0.1,0.103
+"mfscreen",2,0.2,0.217
+"mfscreen",2,0.3,0.317
+"Pearson SIS",2,0.001,0.039
+"Pearson SIS",2,0.005,0.076
+"Pearson SIS",2,0.01,0.108
+"Pearson SIS",2,0.025,0.162
+"Pearson SIS",2,0.05,0.223
+"Pearson SIS",2,0.1,0.304
+"Pearson SIS",2,0.2,0.423
+"Pearson SIS",2,0.3,0.519
+"Spearman SIS",2,0.001,0.005
+"Spearman SIS",2,0.005,0.011
+"Spearman SIS",2,0.01,0.018
+"Spearman SIS",2,0.025,0.039
+"Spearman SIS",2,0.05,0.07
+"Spearman SIS",2,0.1,0.142
+"Spearman SIS",2,0.2,0.256
+"Spearman SIS",2,0.3,0.35
+"mfscreen",3,0.001,0.001
+"mfscreen",3,0.005,0.003
+"mfscreen",3,0.01,0.008
+"mfscreen",3,0.025,0.025
+"mfscreen",3,0.05,0.051
+"mfscreen",3,0.1,0.101
+"mfscreen",3,0.2,0.195
+"mfscreen",3,0.3,0.302
+"Pearson SIS",3,0.001,0.036
+"Pearson SIS",3,0.005,0.072
+"Pearson SIS",3,0.01,0.096
+"Pearson SIS",3,0.025,0.152
+"Pearson SIS",3,0.05,0.203
+"Pearson SIS",3,0.1,0.3
+"Pearson SIS",3,0.2,0.419
+"Pearson SIS",3,0.3,0.51
+"Spearman SIS",3,0.001,0.006
+"Spearman SIS",3,0.005,0.011
+"Spearman SIS",3,0.01,0.017
+"Spearman SIS",3,0.025,0.035
+"Spearman SIS",3,0.05,0.074
+"Spearman SIS",3,0.1,0.133
+"Spearman SIS",3,0.2,0.246
+"Spearman SIS",3,0.3,0.336
+"mfscreen",4,0.001,0.001
+"mfscreen",4,0.005,0.008
+"mfscreen",4,0.01,0.012
+"mfscreen",4,0.025,0.03
+"mfscreen",4,0.05,0.058
+"mfscreen",4,0.1,0.111
+"mfscreen",4,0.2,0.211
+"mfscreen",4,0.3,0.308
+"Pearson SIS",4,0.001,0.042
+"Pearson SIS",4,0.005,0.094
+"Pearson SIS",4,0.01,0.125
+"Pearson SIS",4,0.025,0.172
+"Pearson SIS",4,0.05,0.232
+"Pearson SIS",4,0.1,0.316
+"Pearson SIS",4,0.2,0.427
+"Pearson SIS",4,0.3,0.524
+"Spearman SIS",4,0.001,0.001
+"Spearman SIS",4,0.005,0.008
+"Spearman SIS",4,0.01,0.017
+"Spearman SIS",4,0.025,0.032
+"Spearman SIS",4,0.05,0.068
+"Spearman SIS",4,0.1,0.125
+"Spearman SIS",4,0.2,0.226
+"Spearman SIS",4,0.3,0.347
+"mfscreen",5,0.001,0.002
+"mfscreen",5,0.005,0.003
+"mfscreen",5,0.01,0.007
+"mfscreen",5,0.025,0.019
+"mfscreen",5,0.05,0.039
+"mfscreen",5,0.1,0.086
+"mfscreen",5,0.2,0.178
+"mfscreen",5,0.3,0.278
+"Pearson SIS",5,0.001,0.02
+"Pearson SIS",5,0.005,0.048
+"Pearson SIS",5,0.01,0.075
+"Pearson SIS",5,0.025,0.125
+"Pearson SIS",5,0.05,0.169
+"Pearson SIS",5,0.1,0.248
+"Pearson SIS",5,0.2,0.379
+"Pearson SIS",5,0.3,0.459
+"Spearman SIS",5,0.001,0.001
+"Spearman SIS",5,0.005,0.006
+"Spearman SIS",5,0.01,0.014
+"Spearman SIS",5,0.025,0.038
+"Spearman SIS",5,0.05,0.072
+"Spearman SIS",5,0.1,0.126
+"Spearman SIS",5,0.2,0.233
+"Spearman SIS",5,0.3,0.33
+"mfscreen",6,0.001,0.001
+"mfscreen",6,0.005,0.003
+"mfscreen",6,0.01,0.008
+"mfscreen",6,0.025,0.03
+"mfscreen",6,0.05,0.056
+"mfscreen",6,0.1,0.114
+"mfscreen",6,0.2,0.214
+"mfscreen",6,0.3,0.313
+"Pearson SIS",6,0.001,0.036
+"Pearson SIS",6,0.005,0.07
+"Pearson SIS",6,0.01,0.098
+"Pearson SIS",6,0.025,0.149
+"Pearson SIS",6,0.05,0.204
+"Pearson SIS",6,0.1,0.277
+"Pearson SIS",6,0.2,0.392
+"Pearson SIS",6,0.3,0.497
+"Spearman SIS",6,0.001,0
+"Spearman SIS",6,0.005,0.005
+"Spearman SIS",6,0.01,0.015
+"Spearman SIS",6,0.025,0.038
+"Spearman SIS",6,0.05,0.075
+"Spearman SIS",6,0.1,0.137
+"Spearman SIS",6,0.2,0.247
+"Spearman SIS",6,0.3,0.348
+"mfscreen",7,0.001,0
+"mfscreen",7,0.005,0.003
+"mfscreen",7,0.01,0.007
+"mfscreen",7,0.025,0.017
+"mfscreen",7,0.05,0.046
+"mfscreen",7,0.1,0.095
+"mfscreen",7,0.2,0.203
+"mfscreen",7,0.3,0.3
+"Pearson SIS",7,0.001,0.039
+"Pearson SIS",7,0.005,0.078
+"Pearson SIS",7,0.01,0.105
+"Pearson SIS",7,0.025,0.163
+"Pearson SIS",7,0.05,0.22
+"Pearson SIS",7,0.1,0.299
+"Pearson SIS",7,0.2,0.439
+"Pearson SIS",7,0.3,0.546
+"Spearman SIS",7,0.001,0.001
+"Spearman SIS",7,0.005,0.005
+"Spearman SIS",7,0.01,0.014
+"Spearman SIS",7,0.025,0.039
+"Spearman SIS",7,0.05,0.077
+"Spearman SIS",7,0.1,0.126
+"Spearman SIS",7,0.2,0.23
+"Spearman SIS",7,0.3,0.344
+"mfscreen",8,0.001,0.003
+"mfscreen",8,0.005,0.009
+"mfscreen",8,0.01,0.012
+"mfscreen",8,0.025,0.029
+"mfscreen",8,0.05,0.055
+"mfscreen",8,0.1,0.107
+"mfscreen",8,0.2,0.216
+"mfscreen",8,0.3,0.321
+"Pearson SIS",8,0.001,0.034
+"Pearson SIS",8,0.005,0.074
+"Pearson SIS",8,0.01,0.1
+"Pearson SIS",8,0.025,0.153
+"Pearson SIS",8,0.05,0.221
+"Pearson SIS",8,0.1,0.304
+"Pearson SIS",8,0.2,0.441
+"Pearson SIS",8,0.3,0.525
+"Spearman SIS",8,0.001,0.003
+"Spearman SIS",8,0.005,0.006
+"Spearman SIS",8,0.01,0.018
+"Spearman SIS",8,0.025,0.039
+"Spearman SIS",8,0.05,0.073
+"Spearman SIS",8,0.1,0.128
+"Spearman SIS",8,0.2,0.244
+"Spearman SIS",8,0.3,0.346
+"mfscreen",9,0.001,0
+"mfscreen",9,0.005,0.006
+"mfscreen",9,0.01,0.013
+"mfscreen",9,0.025,0.041
+"mfscreen",9,0.05,0.065
+"mfscreen",9,0.1,0.116
+"mfscreen",9,0.2,0.217
+"mfscreen",9,0.3,0.323
+"Pearson SIS",9,0.001,0.051
+"Pearson SIS",9,0.005,0.096
+"Pearson SIS",9,0.01,0.121
+"Pearson SIS",9,0.025,0.178
+"Pearson SIS",9,0.05,0.233
+"Pearson SIS",9,0.1,0.331
+"Pearson SIS",9,0.2,0.441
+"Pearson SIS",9,0.3,0.529
+"Spearman SIS",9,0.001,0.002
+"Spearman SIS",9,0.005,0.011
+"Spearman SIS",9,0.01,0.016
+"Spearman SIS",9,0.025,0.035
+"Spearman SIS",9,0.05,0.065
+"Spearman SIS",9,0.1,0.128
+"Spearman SIS",9,0.2,0.235
+"Spearman SIS",9,0.3,0.331
+"mfscreen",10,0.001,0.002
+"mfscreen",10,0.005,0.006
+"mfscreen",10,0.01,0.011
+"mfscreen",10,0.025,0.023
+"mfscreen",10,0.05,0.053
+"mfscreen",10,0.1,0.107
+"mfscreen",10,0.2,0.199
+"mfscreen",10,0.3,0.294
+"Pearson SIS",10,0.001,0.037
+"Pearson SIS",10,0.005,0.075
+"Pearson SIS",10,0.01,0.102
+"Pearson SIS",10,0.025,0.143
+"Pearson SIS",10,0.05,0.192
+"Pearson SIS",10,0.1,0.272
+"Pearson SIS",10,0.2,0.405
+"Pearson SIS",10,0.3,0.502
+"Spearman SIS",10,0.001,0.005
+"Spearman SIS",10,0.005,0.006
+"Spearman SIS",10,0.01,0.011
+"Spearman SIS",10,0.025,0.027
+"Spearman SIS",10,0.05,0.059
+"Spearman SIS",10,0.1,0.122
+"Spearman SIS",10,0.2,0.228
+"Spearman SIS",10,0.3,0.344
+"mfscreen",11,0.001,0
+"mfscreen",11,0.005,0.002
+"mfscreen",11,0.01,0.009
+"mfscreen",11,0.025,0.026
+"mfscreen",11,0.05,0.05
+"mfscreen",11,0.1,0.103
+"mfscreen",11,0.2,0.2
+"mfscreen",11,0.3,0.278
+"Pearson SIS",11,0.001,0.036
+"Pearson SIS",11,0.005,0.083
+"Pearson SIS",11,0.01,0.107
+"Pearson SIS",11,0.025,0.154
+"Pearson SIS",11,0.05,0.208
+"Pearson SIS",11,0.1,0.28
+"Pearson SIS",11,0.2,0.406
+"Pearson SIS",11,0.3,0.494
+"Spearman SIS",11,0.001,0.003
+"Spearman SIS",11,0.005,0.006
+"Spearman SIS",11,0.01,0.014
+"Spearman SIS",11,0.025,0.036
+"Spearman SIS",11,0.05,0.066
+"Spearman SIS",11,0.1,0.125
+"Spearman SIS",11,0.2,0.24
+"Spearman SIS",11,0.3,0.332
+"mfscreen",12,0.001,0.001
+"mfscreen",12,0.005,0.005
+"mfscreen",12,0.01,0.013
+"mfscreen",12,0.025,0.028
+"mfscreen",12,0.05,0.055
+"mfscreen",12,0.1,0.107
+"mfscreen",12,0.2,0.207
+"mfscreen",12,0.3,0.304
+"Pearson SIS",12,0.001,0.035
+"Pearson SIS",12,0.005,0.072
+"Pearson SIS",12,0.01,0.104
+"Pearson SIS",12,0.025,0.148
+"Pearson SIS",12,0.05,0.204
+"Pearson SIS",12,0.1,0.291
+"Pearson SIS",12,0.2,0.413
+"Pearson SIS",12,0.3,0.502
+"Spearman SIS",12,0.001,0.006
+"Spearman SIS",12,0.005,0.011
+"Spearman SIS",12,0.01,0.018
+"Spearman SIS",12,0.025,0.04
+"Spearman SIS",12,0.05,0.071
+"Spearman SIS",12,0.1,0.131
+"Spearman SIS",12,0.2,0.236
+"Spearman SIS",12,0.3,0.338
+"mfscreen",13,0.001,0.001
+"mfscreen",13,0.005,0.006
+"mfscreen",13,0.01,0.011
+"mfscreen",13,0.025,0.041
+"mfscreen",13,0.05,0.068
+"mfscreen",13,0.1,0.123
+"mfscreen",13,0.2,0.208
+"mfscreen",13,0.3,0.325
+"Pearson SIS",13,0.001,0.06
+"Pearson SIS",13,0.005,0.102
+"Pearson SIS",13,0.01,0.13
+"Pearson SIS",13,0.025,0.189
+"Pearson SIS",13,0.05,0.242
+"Pearson SIS",13,0.1,0.331
+"Pearson SIS",13,0.2,0.447
+"Pearson SIS",13,0.3,0.537
+"Spearman SIS",13,0.001,0
+"Spearman SIS",13,0.005,0.009
+"Spearman SIS",13,0.01,0.022
+"Spearman SIS",13,0.025,0.034
+"Spearman SIS",13,0.05,0.072
+"Spearman SIS",13,0.1,0.13
+"Spearman SIS",13,0.2,0.253
+"Spearman SIS",13,0.3,0.357
+"mfscreen",14,0.001,0
+"mfscreen",14,0.005,0.01
+"mfscreen",14,0.01,0.015
+"mfscreen",14,0.025,0.029
+"mfscreen",14,0.05,0.05
+"mfscreen",14,0.1,0.1
+"mfscreen",14,0.2,0.208
+"mfscreen",14,0.3,0.305
+"Pearson SIS",14,0.001,0.088
+"Pearson SIS",14,0.005,0.143
+"Pearson SIS",14,0.01,0.18
+"Pearson SIS",14,0.025,0.245
+"Pearson SIS",14,0.05,0.315
+"Pearson SIS",14,0.1,0.389
+"Pearson SIS",14,0.2,0.505
+"Pearson SIS",14,0.3,0.589
+"Spearman SIS",14,0.001,0.002
+"Spearman SIS",14,0.005,0.007
+"Spearman SIS",14,0.01,0.02
+"Spearman SIS",14,0.025,0.046
+"Spearman SIS",14,0.05,0.079
+"Spearman SIS",14,0.1,0.136
+"Spearman SIS",14,0.2,0.252
+"Spearman SIS",14,0.3,0.355
+"mfscreen",15,0.001,0
+"mfscreen",15,0.005,0.004
+"mfscreen",15,0.01,0.01
+"mfscreen",15,0.025,0.025
+"mfscreen",15,0.05,0.049
+"mfscreen",15,0.1,0.1
+"mfscreen",15,0.2,0.196
+"mfscreen",15,0.3,0.301
+"Pearson SIS",15,0.001,0.027
+"Pearson SIS",15,0.005,0.058
+"Pearson SIS",15,0.01,0.088
+"Pearson SIS",15,0.025,0.136
+"Pearson SIS",15,0.05,0.192
+"Pearson SIS",15,0.1,0.283
+"Pearson SIS",15,0.2,0.39
+"Pearson SIS",15,0.3,0.496
+"Spearman SIS",15,0.001,0.002
+"Spearman SIS",15,0.005,0.009
+"Spearman SIS",15,0.01,0.012
+"Spearman SIS",15,0.025,0.04
+"Spearman SIS",15,0.05,0.071
+"Spearman SIS",15,0.1,0.135
+"Spearman SIS",15,0.2,0.241
+"Spearman SIS",15,0.3,0.332
+"mfscreen",16,0.001,0.003
+"mfscreen",16,0.005,0.006
+"mfscreen",16,0.01,0.011
+"mfscreen",16,0.025,0.024
+"mfscreen",16,0.05,0.058
+"mfscreen",16,0.1,0.095
+"mfscreen",16,0.2,0.192
+"mfscreen",16,0.3,0.284
+"Pearson SIS",16,0.001,0.026
+"Pearson SIS",16,0.005,0.062
+"Pearson SIS",16,0.01,0.082
+"Pearson SIS",16,0.025,0.126
+"Pearson SIS",16,0.05,0.181
+"Pearson SIS",16,0.1,0.256
+"Pearson SIS",16,0.2,0.384
+"Pearson SIS",16,0.3,0.469
+"Spearman SIS",16,0.001,0.004
+"Spearman SIS",16,0.005,0.017
+"Spearman SIS",16,0.01,0.02
+"Spearman SIS",16,0.025,0.037
+"Spearman SIS",16,0.05,0.081
+"Spearman SIS",16,0.1,0.113
+"Spearman SIS",16,0.2,0.224
+"Spearman SIS",16,0.3,0.33
+"mfscreen",17,0.001,0.002
+"mfscreen",17,0.005,0.006
+"mfscreen",17,0.01,0.012
+"mfscreen",17,0.025,0.028
+"mfscreen",17,0.05,0.051
+"mfscreen",17,0.1,0.102
+"mfscreen",17,0.2,0.187
+"mfscreen",17,0.3,0.287
+"Pearson SIS",17,0.001,0.03
+"Pearson SIS",17,0.005,0.067
+"Pearson SIS",17,0.01,0.094
+"Pearson SIS",17,0.025,0.13
+"Pearson SIS",17,0.05,0.18
+"Pearson SIS",17,0.1,0.255
+"Pearson SIS",17,0.2,0.384
+"Pearson SIS",17,0.3,0.485
+"Spearman SIS",17,0.001,0.002
+"Spearman SIS",17,0.005,0.009
+"Spearman SIS",17,0.01,0.014
+"Spearman SIS",17,0.025,0.043
+"Spearman SIS",17,0.05,0.079
+"Spearman SIS",17,0.1,0.14
+"Spearman SIS",17,0.2,0.237
+"Spearman SIS",17,0.3,0.332
+"mfscreen",18,0.001,0
+"mfscreen",18,0.005,0.004
+"mfscreen",18,0.01,0.011
+"mfscreen",18,0.025,0.033
+"mfscreen",18,0.05,0.063
+"mfscreen",18,0.1,0.113
+"mfscreen",18,0.2,0.229
+"mfscreen",18,0.3,0.337
+"Pearson SIS",18,0.001,0.071
+"Pearson SIS",18,0.005,0.133
+"Pearson SIS",18,0.01,0.169
+"Pearson SIS",18,0.025,0.233
+"Pearson SIS",18,0.05,0.307
+"Pearson SIS",18,0.1,0.392
+"Pearson SIS",18,0.2,0.501
+"Pearson SIS",18,0.3,0.599
+"Spearman SIS",18,0.001,0.005
+"Spearman SIS",18,0.005,0.012
+"Spearman SIS",18,0.01,0.017
+"Spearman SIS",18,0.025,0.031
+"Spearman SIS",18,0.05,0.069
+"Spearman SIS",18,0.1,0.131
+"Spearman SIS",18,0.2,0.244
+"Spearman SIS",18,0.3,0.344
+"mfscreen",19,0.001,0
+"mfscreen",19,0.005,0.004
+"mfscreen",19,0.01,0.009
+"mfscreen",19,0.025,0.028
+"mfscreen",19,0.05,0.047
+"mfscreen",19,0.1,0.103
+"mfscreen",19,0.2,0.206
+"mfscreen",19,0.3,0.288
+"Pearson SIS",19,0.001,0.034
+"Pearson SIS",19,0.005,0.061
+"Pearson SIS",19,0.01,0.09
+"Pearson SIS",19,0.025,0.147
+"Pearson SIS",19,0.05,0.201
+"Pearson SIS",19,0.1,0.265
+"Pearson SIS",19,0.2,0.384
+"Pearson SIS",19,0.3,0.487
+"Spearman SIS",19,0.001,0.003
+"Spearman SIS",19,0.005,0.007
+"Spearman SIS",19,0.01,0.012
+"Spearman SIS",19,0.025,0.034
+"Spearman SIS",19,0.05,0.064
+"Spearman SIS",19,0.1,0.122
+"Spearman SIS",19,0.2,0.23
+"Spearman SIS",19,0.3,0.34
+"mfscreen",20,0.001,0
+"mfscreen",20,0.005,0.004
+"mfscreen",20,0.01,0.007
+"mfscreen",20,0.025,0.024
+"mfscreen",20,0.05,0.054
+"mfscreen",20,0.1,0.102
+"mfscreen",20,0.2,0.203
+"mfscreen",20,0.3,0.296
+"Pearson SIS",20,0.001,0.031
+"Pearson SIS",20,0.005,0.067
+"Pearson SIS",20,0.01,0.093
+"Pearson SIS",20,0.025,0.137
+"Pearson SIS",20,0.05,0.192
+"Pearson SIS",20,0.1,0.282
+"Pearson SIS",20,0.2,0.39
+"Pearson SIS",20,0.3,0.477
+"Spearman SIS",20,0.001,0.003
+"Spearman SIS",20,0.005,0.005
+"Spearman SIS",20,0.01,0.012
+"Spearman SIS",20,0.025,0.031
+"Spearman SIS",20,0.05,0.067
+"Spearman SIS",20,0.1,0.123
+"Spearman SIS",20,0.2,0.242
+"Spearman SIS",20,0.3,0.345
+"mfscreen",21,0.001,0.001
+"mfscreen",21,0.005,0.005
+"mfscreen",21,0.01,0.008
+"mfscreen",21,0.025,0.027
+"mfscreen",21,0.05,0.053
+"mfscreen",21,0.1,0.112
+"mfscreen",21,0.2,0.212
+"mfscreen",21,0.3,0.32
+"Pearson SIS",21,0.001,0.055
+"Pearson SIS",21,0.005,0.101
+"Pearson SIS",21,0.01,0.129
+"Pearson SIS",21,0.025,0.188
+"Pearson SIS",21,0.05,0.238
+"Pearson SIS",21,0.1,0.328
+"Pearson SIS",21,0.2,0.438
+"Pearson SIS",21,0.3,0.535
+"Spearman SIS",21,0.001,0.003
+"Spearman SIS",21,0.005,0.009
+"Spearman SIS",21,0.01,0.02
+"Spearman SIS",21,0.025,0.045
+"Spearman SIS",21,0.05,0.081
+"Spearman SIS",21,0.1,0.14
+"Spearman SIS",21,0.2,0.248
+"Spearman SIS",21,0.3,0.345
+"mfscreen",22,0.001,0
+"mfscreen",22,0.005,0.005
+"mfscreen",22,0.01,0.01
+"mfscreen",22,0.025,0.025
+"mfscreen",22,0.05,0.065
+"mfscreen",22,0.1,0.115
+"mfscreen",22,0.2,0.222
+"mfscreen",22,0.3,0.314
+"Pearson SIS",22,0.001,0.057
+"Pearson SIS",22,0.005,0.107
+"Pearson SIS",22,0.01,0.14
+"Pearson SIS",22,0.025,0.199
+"Pearson SIS",22,0.05,0.25
+"Pearson SIS",22,0.1,0.324
+"Pearson SIS",22,0.2,0.432
+"Pearson SIS",22,0.3,0.533
+"Spearman SIS",22,0.001,0.002
+"Spearman SIS",22,0.005,0.007
+"Spearman SIS",22,0.01,0.017
+"Spearman SIS",22,0.025,0.041
+"Spearman SIS",22,0.05,0.074
+"Spearman SIS",22,0.1,0.135
+"Spearman SIS",22,0.2,0.238
+"Spearman SIS",22,0.3,0.344
+"mfscreen",23,0.001,0.001
+"mfscreen",23,0.005,0.004
+"mfscreen",23,0.01,0.014
+"mfscreen",23,0.025,0.029
+"mfscreen",23,0.05,0.062
+"mfscreen",23,0.1,0.116
+"mfscreen",23,0.2,0.214
+"mfscreen",23,0.3,0.308
+"Pearson SIS",23,0.001,0.085
+"Pearson SIS",23,0.005,0.144
+"Pearson SIS",23,0.01,0.176
+"Pearson SIS",23,0.025,0.237
+"Pearson SIS",23,0.05,0.301
+"Pearson SIS",23,0.1,0.386
+"Pearson SIS",23,0.2,0.498
+"Pearson SIS",23,0.3,0.586
+"Spearman SIS",23,0.001,0.003
+"Spearman SIS",23,0.005,0.011
+"Spearman SIS",23,0.01,0.018
+"Spearman SIS",23,0.025,0.043
+"Spearman SIS",23,0.05,0.081
+"Spearman SIS",23,0.1,0.144
+"Spearman SIS",23,0.2,0.271
+"Spearman SIS",23,0.3,0.375
+"mfscreen",24,0.001,0.001
+"mfscreen",24,0.005,0.005
+"mfscreen",24,0.01,0.011
+"mfscreen",24,0.025,0.018
+"mfscreen",24,0.05,0.042
+"mfscreen",24,0.1,0.097
+"mfscreen",24,0.2,0.187
+"mfscreen",24,0.3,0.303
+"Pearson SIS",24,0.001,0.027
+"Pearson SIS",24,0.005,0.064
+"Pearson SIS",24,0.01,0.092
+"Pearson SIS",24,0.025,0.136
+"Pearson SIS",24,0.05,0.185
+"Pearson SIS",24,0.1,0.277
+"Pearson SIS",24,0.2,0.409
+"Pearson SIS",24,0.3,0.509
+"Spearman SIS",24,0.001,0.003
+"Spearman SIS",24,0.005,0.011
+"Spearman SIS",24,0.01,0.019
+"Spearman SIS",24,0.025,0.05
+"Spearman SIS",24,0.05,0.093
+"Spearman SIS",24,0.1,0.142
+"Spearman SIS",24,0.2,0.247
+"Spearman SIS",24,0.3,0.344
+"mfscreen",25,0.001,0.002
+"mfscreen",25,0.005,0.006
+"mfscreen",25,0.01,0.01
+"mfscreen",25,0.025,0.027
+"mfscreen",25,0.05,0.055
+"mfscreen",25,0.1,0.105
+"mfscreen",25,0.2,0.203
+"mfscreen",25,0.3,0.318
+"Pearson SIS",25,0.001,0.033
+"Pearson SIS",25,0.005,0.065
+"Pearson SIS",25,0.01,0.098
+"Pearson SIS",25,0.025,0.15
+"Pearson SIS",25,0.05,0.204
+"Pearson SIS",25,0.1,0.297
+"Pearson SIS",25,0.2,0.428
+"Pearson SIS",25,0.3,0.523
+"Spearman SIS",25,0.001,0.004
+"Spearman SIS",25,0.005,0.009
+"Spearman SIS",25,0.01,0.013
+"Spearman SIS",25,0.025,0.03
+"Spearman SIS",25,0.05,0.061
+"Spearman SIS",25,0.1,0.13
+"Spearman SIS",25,0.2,0.243
+"Spearman SIS",25,0.3,0.345
+"mfscreen",26,0.001,0.001
+"mfscreen",26,0.005,0.005
+"mfscreen",26,0.01,0.009
+"mfscreen",26,0.025,0.024
+"mfscreen",26,0.05,0.05
+"mfscreen",26,0.1,0.092
+"mfscreen",26,0.2,0.185
+"mfscreen",26,0.3,0.286
+"Pearson SIS",26,0.001,0.029
+"Pearson SIS",26,0.005,0.056
+"Pearson SIS",26,0.01,0.073
+"Pearson SIS",26,0.025,0.115
+"Pearson SIS",26,0.05,0.163
+"Pearson SIS",26,0.1,0.243
+"Pearson SIS",26,0.2,0.397
+"Pearson SIS",26,0.3,0.494
+"Spearman SIS",26,0.001,0.004
+"Spearman SIS",26,0.005,0.01
+"Spearman SIS",26,0.01,0.023
+"Spearman SIS",26,0.025,0.039
+"Spearman SIS",26,0.05,0.064
+"Spearman SIS",26,0.1,0.139
+"Spearman SIS",26,0.2,0.243
+"Spearman SIS",26,0.3,0.349
+"mfscreen",27,0.001,0
+"mfscreen",27,0.005,0.004
+"mfscreen",27,0.01,0.01
+"mfscreen",27,0.025,0.03
+"mfscreen",27,0.05,0.064
+"mfscreen",27,0.1,0.111
+"mfscreen",27,0.2,0.216
+"mfscreen",27,0.3,0.318
+"Pearson SIS",27,0.001,0.037
+"Pearson SIS",27,0.005,0.078
+"Pearson SIS",27,0.01,0.101
+"Pearson SIS",27,0.025,0.162
+"Pearson SIS",27,0.05,0.215
+"Pearson SIS",27,0.1,0.309
+"Pearson SIS",27,0.2,0.414
+"Pearson SIS",27,0.3,0.526
+"Spearman SIS",27,0.001,0.001
+"Spearman SIS",27,0.005,0.006
+"Spearman SIS",27,0.01,0.017
+"Spearman SIS",27,0.025,0.038
+"Spearman SIS",27,0.05,0.076
+"Spearman SIS",27,0.1,0.143
+"Spearman SIS",27,0.2,0.279
+"Spearman SIS",27,0.3,0.371
+"mfscreen",28,0.001,0.002
+"mfscreen",28,0.005,0.003
+"mfscreen",28,0.01,0.009
+"mfscreen",28,0.025,0.028
+"mfscreen",28,0.05,0.066
+"mfscreen",28,0.1,0.124
+"mfscreen",28,0.2,0.233
+"mfscreen",28,0.3,0.333
+"Pearson SIS",28,0.001,0.041
+"Pearson SIS",28,0.005,0.086
+"Pearson SIS",28,0.01,0.12
+"Pearson SIS",28,0.025,0.182
+"Pearson SIS",28,0.05,0.24
+"Pearson SIS",28,0.1,0.321
+"Pearson SIS",28,0.2,0.439
+"Pearson SIS",28,0.3,0.526
+"Spearman SIS",28,0.001,0.002
+"Spearman SIS",28,0.005,0.01
+"Spearman SIS",28,0.01,0.021
+"Spearman SIS",28,0.025,0.04
+"Spearman SIS",28,0.05,0.082
+"Spearman SIS",28,0.1,0.14
+"Spearman SIS",28,0.2,0.247
+"Spearman SIS",28,0.3,0.347
+"mfscreen",29,0.001,0.002
+"mfscreen",29,0.005,0.006
+"mfscreen",29,0.01,0.011
+"mfscreen",29,0.025,0.022
+"mfscreen",29,0.05,0.055
+"mfscreen",29,0.1,0.105
+"mfscreen",29,0.2,0.19
+"mfscreen",29,0.3,0.291
+"Pearson SIS",29,0.001,0.052
+"Pearson SIS",29,0.005,0.1
+"Pearson SIS",29,0.01,0.129
+"Pearson SIS",29,0.025,0.171
+"Pearson SIS",29,0.05,0.239
+"Pearson SIS",29,0.1,0.318
+"Pearson SIS",29,0.2,0.432
+"Pearson SIS",29,0.3,0.529
+"Spearman SIS",29,0.001,0.001
+"Spearman SIS",29,0.005,0.009
+"Spearman SIS",29,0.01,0.013
+"Spearman SIS",29,0.025,0.039
+"Spearman SIS",29,0.05,0.069
+"Spearman SIS",29,0.1,0.12
+"Spearman SIS",29,0.2,0.225
+"Spearman SIS",29,0.3,0.346
+"mfscreen",30,0.001,0.001
+"mfscreen",30,0.005,0.007
+"mfscreen",30,0.01,0.013
+"mfscreen",30,0.025,0.036
+"mfscreen",30,0.05,0.058
+"mfscreen",30,0.1,0.112
+"mfscreen",30,0.2,0.227
+"mfscreen",30,0.3,0.329
+"Pearson SIS",30,0.001,0.052
+"Pearson SIS",30,0.005,0.097
+"Pearson SIS",30,0.01,0.133
+"Pearson SIS",30,0.025,0.199
+"Pearson SIS",30,0.05,0.272
+"Pearson SIS",30,0.1,0.355
+"Pearson SIS",30,0.2,0.472
+"Pearson SIS",30,0.3,0.559
+"Spearman SIS",30,0.001,0.002
+"Spearman SIS",30,0.005,0.011
+"Spearman SIS",30,0.01,0.017
+"Spearman SIS",30,0.025,0.04
+"Spearman SIS",30,0.05,0.078
+"Spearman SIS",30,0.1,0.137
+"Spearman SIS",30,0.2,0.23
+"Spearman SIS",30,0.3,0.353
+"mfscreen",31,0.001,0
+"mfscreen",31,0.005,0.005
+"mfscreen",31,0.01,0.014
+"mfscreen",31,0.025,0.036
+"mfscreen",31,0.05,0.055
+"mfscreen",31,0.1,0.1
+"mfscreen",31,0.2,0.192
+"mfscreen",31,0.3,0.301
+"Pearson SIS",31,0.001,0.034
+"Pearson SIS",31,0.005,0.062
+"Pearson SIS",31,0.01,0.088
+"Pearson SIS",31,0.025,0.137
+"Pearson SIS",31,0.05,0.186
+"Pearson SIS",31,0.1,0.276
+"Pearson SIS",31,0.2,0.392
+"Pearson SIS",31,0.3,0.489
+"Spearman SIS",31,0.001,0.002
+"Spearman SIS",31,0.005,0.009
+"Spearman SIS",31,0.01,0.016
+"Spearman SIS",31,0.025,0.042
+"Spearman SIS",31,0.05,0.076
+"Spearman SIS",31,0.1,0.146
+"Spearman SIS",31,0.2,0.265
+"Spearman SIS",31,0.3,0.364
+"mfscreen",32,0.001,0.001
+"mfscreen",32,0.005,0.005
+"mfscreen",32,0.01,0.012
+"mfscreen",32,0.025,0.026
+"mfscreen",32,0.05,0.051
+"mfscreen",32,0.1,0.097
+"mfscreen",32,0.2,0.207
+"mfscreen",32,0.3,0.289
+"Pearson SIS",32,0.001,0.029
+"Pearson SIS",32,0.005,0.052
+"Pearson SIS",32,0.01,0.08
+"Pearson SIS",32,0.025,0.133
+"Pearson SIS",32,0.05,0.18
+"Pearson SIS",32,0.1,0.255
+"Pearson SIS",32,0.2,0.369
+"Pearson SIS",32,0.3,0.475
+"Spearman SIS",32,0.001,0.002
+"Spearman SIS",32,0.005,0.01
+"Spearman SIS",32,0.01,0.017
+"Spearman SIS",32,0.025,0.039
+"Spearman SIS",32,0.05,0.069
+"Spearman SIS",32,0.1,0.14
+"Spearman SIS",32,0.2,0.256
+"Spearman SIS",32,0.3,0.35
+"mfscreen",33,0.001,0.001
+"mfscreen",33,0.005,0.004
+"mfscreen",33,0.01,0.008
+"mfscreen",33,0.025,0.019
+"mfscreen",33,0.05,0.039
+"mfscreen",33,0.1,0.104
+"mfscreen",33,0.2,0.198
+"mfscreen",33,0.3,0.291
+"Pearson SIS",33,0.001,0.035
+"Pearson SIS",33,0.005,0.084
+"Pearson SIS",33,0.01,0.113
+"Pearson SIS",33,0.025,0.164
+"Pearson SIS",33,0.05,0.224
+"Pearson SIS",33,0.1,0.315
+"Pearson SIS",33,0.2,0.421
+"Pearson SIS",33,0.3,0.513
+"Spearman SIS",33,0.001,0.002
+"Spearman SIS",33,0.005,0.01
+"Spearman SIS",33,0.01,0.014
+"Spearman SIS",33,0.025,0.032
+"Spearman SIS",33,0.05,0.075
+"Spearman SIS",33,0.1,0.131
+"Spearman SIS",33,0.2,0.239
+"Spearman SIS",33,0.3,0.329
+"mfscreen",34,0.001,0
+"mfscreen",34,0.005,0.01
+"mfscreen",34,0.01,0.012
+"mfscreen",34,0.025,0.035
+"mfscreen",34,0.05,0.068
+"mfscreen",34,0.1,0.136
+"mfscreen",34,0.2,0.238
+"mfscreen",34,0.3,0.345
+"Pearson SIS",34,0.001,0.057
+"Pearson SIS",34,0.005,0.115
+"Pearson SIS",34,0.01,0.15
+"Pearson SIS",34,0.025,0.208
+"Pearson SIS",34,0.05,0.287
+"Pearson SIS",34,0.1,0.361
+"Pearson SIS",34,0.2,0.462
+"Pearson SIS",34,0.3,0.552
+"Spearman SIS",34,0.001,0.004
+"Spearman SIS",34,0.005,0.016
+"Spearman SIS",34,0.01,0.023
+"Spearman SIS",34,0.025,0.043
+"Spearman SIS",34,0.05,0.072
+"Spearman SIS",34,0.1,0.13
+"Spearman SIS",34,0.2,0.246
+"Spearman SIS",34,0.3,0.335
+"mfscreen",35,0.001,0.001
+"mfscreen",35,0.005,0.004
+"mfscreen",35,0.01,0.008
+"mfscreen",35,0.025,0.019
+"mfscreen",35,0.05,0.04
+"mfscreen",35,0.1,0.094
+"mfscreen",35,0.2,0.173
+"mfscreen",35,0.3,0.271
+"Pearson SIS",35,0.001,0.03
+"Pearson SIS",35,0.005,0.067
+"Pearson SIS",35,0.01,0.09
+"Pearson SIS",35,0.025,0.135
+"Pearson SIS",35,0.05,0.183
+"Pearson SIS",35,0.1,0.268
+"Pearson SIS",35,0.2,0.386
+"Pearson SIS",35,0.3,0.492
+"Spearman SIS",35,0.001,0.001
+"Spearman SIS",35,0.005,0.003
+"Spearman SIS",35,0.01,0.01
+"Spearman SIS",35,0.025,0.027
+"Spearman SIS",35,0.05,0.058
+"Spearman SIS",35,0.1,0.122
+"Spearman SIS",35,0.2,0.242
+"Spearman SIS",35,0.3,0.347
+"mfscreen",36,0.001,0.002
+"mfscreen",36,0.005,0.009
+"mfscreen",36,0.01,0.016
+"mfscreen",36,0.025,0.03
+"mfscreen",36,0.05,0.052
+"mfscreen",36,0.1,0.105
+"mfscreen",36,0.2,0.2
+"mfscreen",36,0.3,0.285
+"Pearson SIS",36,0.001,0.034
+"Pearson SIS",36,0.005,0.073
+"Pearson SIS",36,0.01,0.097
+"Pearson SIS",36,0.025,0.144
+"Pearson SIS",36,0.05,0.201
+"Pearson SIS",36,0.1,0.272
+"Pearson SIS",36,0.2,0.387
+"Pearson SIS",36,0.3,0.475
+"Spearman SIS",36,0.001,0.002
+"Spearman SIS",36,0.005,0.011
+"Spearman SIS",36,0.01,0.018
+"Spearman SIS",36,0.025,0.044
+"Spearman SIS",36,0.05,0.073
+"Spearman SIS",36,0.1,0.133
+"Spearman SIS",36,0.2,0.243
+"Spearman SIS",36,0.3,0.347
+"mfscreen",37,0.001,0
+"mfscreen",37,0.005,0.004
+"mfscreen",37,0.01,0.006
+"mfscreen",37,0.025,0.028
+"mfscreen",37,0.05,0.062
+"mfscreen",37,0.1,0.108
+"mfscreen",37,0.2,0.207
+"mfscreen",37,0.3,0.301
+"Pearson SIS",37,0.001,0.046
+"Pearson SIS",37,0.005,0.085
+"Pearson SIS",37,0.01,0.116
+"Pearson SIS",37,0.025,0.167
+"Pearson SIS",37,0.05,0.213
+"Pearson SIS",37,0.1,0.301
+"Pearson SIS",37,0.2,0.424
+"Pearson SIS",37,0.3,0.515
+"Spearman SIS",37,0.001,0.001
+"Spearman SIS",37,0.005,0.016
+"Spearman SIS",37,0.01,0.025
+"Spearman SIS",37,0.025,0.041
+"Spearman SIS",37,0.05,0.075
+"Spearman SIS",37,0.1,0.13
+"Spearman SIS",37,0.2,0.231
+"Spearman SIS",37,0.3,0.342
+"mfscreen",38,0.001,0.002
+"mfscreen",38,0.005,0.012
+"mfscreen",38,0.01,0.021
+"mfscreen",38,0.025,0.034
+"mfscreen",38,0.05,0.065
+"mfscreen",38,0.1,0.11
+"mfscreen",38,0.2,0.21
+"mfscreen",38,0.3,0.317
+"Pearson SIS",38,0.001,0.031
+"Pearson SIS",38,0.005,0.055
+"Pearson SIS",38,0.01,0.081
+"Pearson SIS",38,0.025,0.127
+"Pearson SIS",38,0.05,0.181
+"Pearson SIS",38,0.1,0.261
+"Pearson SIS",38,0.2,0.384
+"Pearson SIS",38,0.3,0.471
+"Spearman SIS",38,0.001,0.002
+"Spearman SIS",38,0.005,0.012
+"Spearman SIS",38,0.01,0.027
+"Spearman SIS",38,0.025,0.059
+"Spearman SIS",38,0.05,0.1
+"Spearman SIS",38,0.1,0.172
+"Spearman SIS",38,0.2,0.263
+"Spearman SIS",38,0.3,0.384
+"mfscreen",39,0.001,0
+"mfscreen",39,0.005,0.003
+"mfscreen",39,0.01,0.008
+"mfscreen",39,0.025,0.03
+"mfscreen",39,0.05,0.048
+"mfscreen",39,0.1,0.105
+"mfscreen",39,0.2,0.217
+"mfscreen",39,0.3,0.309
+"Pearson SIS",39,0.001,0.034
+"Pearson SIS",39,0.005,0.075
+"Pearson SIS",39,0.01,0.109
+"Pearson SIS",39,0.025,0.163
+"Pearson SIS",39,0.05,0.224
+"Pearson SIS",39,0.1,0.306
+"Pearson SIS",39,0.2,0.425
+"Pearson SIS",39,0.3,0.515
+"Spearman SIS",39,0.001,0.003
+"Spearman SIS",39,0.005,0.016
+"Spearman SIS",39,0.01,0.027
+"Spearman SIS",39,0.025,0.053
+"Spearman SIS",39,0.05,0.078
+"Spearman SIS",39,0.1,0.137
+"Spearman SIS",39,0.2,0.249
+"Spearman SIS",39,0.3,0.338
+"mfscreen",40,0.001,0.003
+"mfscreen",40,0.005,0.009
+"mfscreen",40,0.01,0.014
+"mfscreen",40,0.025,0.031
+"mfscreen",40,0.05,0.057
+"mfscreen",40,0.1,0.098
+"mfscreen",40,0.2,0.194
+"mfscreen",40,0.3,0.293
+"Pearson SIS",40,0.001,0.028
+"Pearson SIS",40,0.005,0.055
+"Pearson SIS",40,0.01,0.074
+"Pearson SIS",40,0.025,0.121
+"Pearson SIS",40,0.05,0.17
+"Pearson SIS",40,0.1,0.255
+"Pearson SIS",40,0.2,0.379
+"Pearson SIS",40,0.3,0.473
+"Spearman SIS",40,0.001,0.002
+"Spearman SIS",40,0.005,0.01
+"Spearman SIS",40,0.01,0.018
+"Spearman SIS",40,0.025,0.039
+"Spearman SIS",40,0.05,0.067
+"Spearman SIS",40,0.1,0.114
+"Spearman SIS",40,0.2,0.239
+"Spearman SIS",40,0.3,0.333
+"mfscreen",41,0.001,0.002
+"mfscreen",41,0.005,0.005
+"mfscreen",41,0.01,0.012
+"mfscreen",41,0.025,0.021
+"mfscreen",41,0.05,0.044
+"mfscreen",41,0.1,0.085
+"mfscreen",41,0.2,0.187
+"mfscreen",41,0.3,0.291
+"Pearson SIS",41,0.001,0.052
+"Pearson SIS",41,0.005,0.084
+"Pearson SIS",41,0.01,0.113
+"Pearson SIS",41,0.025,0.178
+"Pearson SIS",41,0.05,0.241
+"Pearson SIS",41,0.1,0.33
+"Pearson SIS",41,0.2,0.448
+"Pearson SIS",41,0.3,0.536
+"Spearman SIS",41,0.001,0.005
+"Spearman SIS",41,0.005,0.018
+"Spearman SIS",41,0.01,0.02
+"Spearman SIS",41,0.025,0.037
+"Spearman SIS",41,0.05,0.067
+"Spearman SIS",41,0.1,0.121
+"Spearman SIS",41,0.2,0.237
+"Spearman SIS",41,0.3,0.351
+"mfscreen",42,0.001,0.002
+"mfscreen",42,0.005,0.005
+"mfscreen",42,0.01,0.01
+"mfscreen",42,0.025,0.025
+"mfscreen",42,0.05,0.051
+"mfscreen",42,0.1,0.089
+"mfscreen",42,0.2,0.185
+"mfscreen",42,0.3,0.308
+"Pearson SIS",42,0.001,0.037
+"Pearson SIS",42,0.005,0.072
+"Pearson SIS",42,0.01,0.1
+"Pearson SIS",42,0.025,0.149
+"Pearson SIS",42,0.05,0.211
+"Pearson SIS",42,0.1,0.304
+"Pearson SIS",42,0.2,0.424
+"Pearson SIS",42,0.3,0.53
+"Spearman SIS",42,0.001,0.002
+"Spearman SIS",42,0.005,0.004
+"Spearman SIS",42,0.01,0.011
+"Spearman SIS",42,0.025,0.033
+"Spearman SIS",42,0.05,0.069
+"Spearman SIS",42,0.1,0.116
+"Spearman SIS",42,0.2,0.22
+"Spearman SIS",42,0.3,0.333
+"mfscreen",43,0.001,0
+"mfscreen",43,0.005,0.004
+"mfscreen",43,0.01,0.006
+"mfscreen",43,0.025,0.026
+"mfscreen",43,0.05,0.056
+"mfscreen",43,0.1,0.095
+"mfscreen",43,0.2,0.184
+"mfscreen",43,0.3,0.288
+"Pearson SIS",43,0.001,0.032
+"Pearson SIS",43,0.005,0.07
+"Pearson SIS",43,0.01,0.088
+"Pearson SIS",43,0.025,0.134
+"Pearson SIS",43,0.05,0.189
+"Pearson SIS",43,0.1,0.276
+"Pearson SIS",43,0.2,0.392
+"Pearson SIS",43,0.3,0.495
+"Spearman SIS",43,0.001,0.001
+"Spearman SIS",43,0.005,0.007
+"Spearman SIS",43,0.01,0.016
+"Spearman SIS",43,0.025,0.03
+"Spearman SIS",43,0.05,0.056
+"Spearman SIS",43,0.1,0.12
+"Spearman SIS",43,0.2,0.231
+"Spearman SIS",43,0.3,0.325
+"mfscreen",44,0.001,0.001
+"mfscreen",44,0.005,0.006
+"mfscreen",44,0.01,0.013
+"mfscreen",44,0.025,0.031
+"mfscreen",44,0.05,0.057
+"mfscreen",44,0.1,0.107
+"mfscreen",44,0.2,0.214
+"mfscreen",44,0.3,0.318
+"Pearson SIS",44,0.001,0.051
+"Pearson SIS",44,0.005,0.094
+"Pearson SIS",44,0.01,0.127
+"Pearson SIS",44,0.025,0.185
+"Pearson SIS",44,0.05,0.241
+"Pearson SIS",44,0.1,0.33
+"Pearson SIS",44,0.2,0.464
+"Pearson SIS",44,0.3,0.552
+"Spearman SIS",44,0.001,0.003
+"Spearman SIS",44,0.005,0.012
+"Spearman SIS",44,0.01,0.017
+"Spearman SIS",44,0.025,0.05
+"Spearman SIS",44,0.05,0.088
+"Spearman SIS",44,0.1,0.14
+"Spearman SIS",44,0.2,0.252
+"Spearman SIS",44,0.3,0.361
+"mfscreen",45,0.001,0
+"mfscreen",45,0.005,0.004
+"mfscreen",45,0.01,0.007
+"mfscreen",45,0.025,0.034
+"mfscreen",45,0.05,0.061
+"mfscreen",45,0.1,0.1
+"mfscreen",45,0.2,0.203
+"mfscreen",45,0.3,0.315
+"Pearson SIS",45,0.001,0.05
+"Pearson SIS",45,0.005,0.085
+"Pearson SIS",45,0.01,0.108
+"Pearson SIS",45,0.025,0.162
+"Pearson SIS",45,0.05,0.217
+"Pearson SIS",45,0.1,0.307
+"Pearson SIS",45,0.2,0.422
+"Pearson SIS",45,0.3,0.516
+"Spearman SIS",45,0.001,0.002
+"Spearman SIS",45,0.005,0.009
+"Spearman SIS",45,0.01,0.02
+"Spearman SIS",45,0.025,0.04
+"Spearman SIS",45,0.05,0.073
+"Spearman SIS",45,0.1,0.138
+"Spearman SIS",45,0.2,0.242
+"Spearman SIS",45,0.3,0.332
+"mfscreen",46,0.001,0.001
+"mfscreen",46,0.005,0.002
+"mfscreen",46,0.01,0.004
+"mfscreen",46,0.025,0.016
+"mfscreen",46,0.05,0.041
+"mfscreen",46,0.1,0.09
+"mfscreen",46,0.2,0.201
+"mfscreen",46,0.3,0.294
+"Pearson SIS",46,0.001,0.084
+"Pearson SIS",46,0.005,0.141
+"Pearson SIS",46,0.01,0.181
+"Pearson SIS",46,0.025,0.241
+"Pearson SIS",46,0.05,0.311
+"Pearson SIS",46,0.1,0.382
+"Pearson SIS",46,0.2,0.489
+"Pearson SIS",46,0.3,0.566
+"Spearman SIS",46,0.001,0.003
+"Spearman SIS",46,0.005,0.01
+"Spearman SIS",46,0.01,0.016
+"Spearman SIS",46,0.025,0.039
+"Spearman SIS",46,0.05,0.078
+"Spearman SIS",46,0.1,0.137
+"Spearman SIS",46,0.2,0.221
+"Spearman SIS",46,0.3,0.312
+"mfscreen",47,0.001,0.001
+"mfscreen",47,0.005,0.009
+"mfscreen",47,0.01,0.012
+"mfscreen",47,0.025,0.033
+"mfscreen",47,0.05,0.061
+"mfscreen",47,0.1,0.107
+"mfscreen",47,0.2,0.203
+"mfscreen",47,0.3,0.299
+"Pearson SIS",47,0.001,0.026
+"Pearson SIS",47,0.005,0.053
+"Pearson SIS",47,0.01,0.077
+"Pearson SIS",47,0.025,0.122
+"Pearson SIS",47,0.05,0.178
+"Pearson SIS",47,0.1,0.251
+"Pearson SIS",47,0.2,0.363
+"Pearson SIS",47,0.3,0.461
+"Spearman SIS",47,0.001,0.003
+"Spearman SIS",47,0.005,0.012
+"Spearman SIS",47,0.01,0.02
+"Spearman SIS",47,0.025,0.047
+"Spearman SIS",47,0.05,0.076
+"Spearman SIS",47,0.1,0.138
+"Spearman SIS",47,0.2,0.24
+"Spearman SIS",47,0.3,0.346
+"mfscreen",48,0.001,0.002
+"mfscreen",48,0.005,0.01
+"mfscreen",48,0.01,0.016
+"mfscreen",48,0.025,0.039
+"mfscreen",48,0.05,0.063
+"mfscreen",48,0.1,0.121
+"mfscreen",48,0.2,0.209
+"mfscreen",48,0.3,0.296
+"Pearson SIS",48,0.001,0.054
+"Pearson SIS",48,0.005,0.096
+"Pearson SIS",48,0.01,0.121
+"Pearson SIS",48,0.025,0.168
+"Pearson SIS",48,0.05,0.224
+"Pearson SIS",48,0.1,0.294
+"Pearson SIS",48,0.2,0.397
+"Pearson SIS",48,0.3,0.512
+"Spearman SIS",48,0.001,0.005
+"Spearman SIS",48,0.005,0.015
+"Spearman SIS",48,0.01,0.025
+"Spearman SIS",48,0.025,0.042
+"Spearman SIS",48,0.05,0.074
+"Spearman SIS",48,0.1,0.13
+"Spearman SIS",48,0.2,0.229
+"Spearman SIS",48,0.3,0.337
+"mfscreen",49,0.001,0
+"mfscreen",49,0.005,0.005
+"mfscreen",49,0.01,0.011
+"mfscreen",49,0.025,0.025
+"mfscreen",49,0.05,0.06
+"mfscreen",49,0.1,0.098
+"mfscreen",49,0.2,0.193
+"mfscreen",49,0.3,0.3
+"Pearson SIS",49,0.001,0.036
+"Pearson SIS",49,0.005,0.07
+"Pearson SIS",49,0.01,0.097
+"Pearson SIS",49,0.025,0.146
+"Pearson SIS",49,0.05,0.207
+"Pearson SIS",49,0.1,0.297
+"Pearson SIS",49,0.2,0.413
+"Pearson SIS",49,0.3,0.512
+"Spearman SIS",49,0.001,0.001
+"Spearman SIS",49,0.005,0.006
+"Spearman SIS",49,0.01,0.013
+"Spearman SIS",49,0.025,0.029
+"Spearman SIS",49,0.05,0.057
+"Spearman SIS",49,0.1,0.124
+"Spearman SIS",49,0.2,0.226
+"Spearman SIS",49,0.3,0.328
+"mfscreen",50,0.001,0.001
+"mfscreen",50,0.005,0.008
+"mfscreen",50,0.01,0.014
+"mfscreen",50,0.025,0.026
+"mfscreen",50,0.05,0.052
+"mfscreen",50,0.1,0.107
+"mfscreen",50,0.2,0.217
+"mfscreen",50,0.3,0.309
+"Pearson SIS",50,0.001,0.089
+"Pearson SIS",50,0.005,0.13
+"Pearson SIS",50,0.01,0.167
+"Pearson SIS",50,0.025,0.224
+"Pearson SIS",50,0.05,0.284
+"Pearson SIS",50,0.1,0.373
+"Pearson SIS",50,0.2,0.488
+"Pearson SIS",50,0.3,0.574
+"Spearman SIS",50,0.001,0.001
+"Spearman SIS",50,0.005,0.012
+"Spearman SIS",50,0.01,0.021
+"Spearman SIS",50,0.025,0.036
+"Spearman SIS",50,0.05,0.06
+"Spearman SIS",50,0.1,0.127
+"Spearman SIS",50,0.2,0.237
+"Spearman SIS",50,0.3,0.347
+"mfscreen",51,0.001,0.001
+"mfscreen",51,0.005,0.006
+"mfscreen",51,0.01,0.01
+"mfscreen",51,0.025,0.023
+"mfscreen",51,0.05,0.056
+"mfscreen",51,0.1,0.115
+"mfscreen",51,0.2,0.216
+"mfscreen",51,0.3,0.335
+"Pearson SIS",51,0.001,0.039
+"Pearson SIS",51,0.005,0.079
+"Pearson SIS",51,0.01,0.114
+"Pearson SIS",51,0.025,0.166
+"Pearson SIS",51,0.05,0.235
+"Pearson SIS",51,0.1,0.315
+"Pearson SIS",51,0.2,0.416
+"Pearson SIS",51,0.3,0.522
+"Spearman SIS",51,0.001,0.003
+"Spearman SIS",51,0.005,0.007
+"Spearman SIS",51,0.01,0.014
+"Spearman SIS",51,0.025,0.03
+"Spearman SIS",51,0.05,0.055
+"Spearman SIS",51,0.1,0.105
+"Spearman SIS",51,0.2,0.228
+"Spearman SIS",51,0.3,0.332
+"mfscreen",52,0.001,0
+"mfscreen",52,0.005,0.003
+"mfscreen",52,0.01,0.007
+"mfscreen",52,0.025,0.019
+"mfscreen",52,0.05,0.051
+"mfscreen",52,0.1,0.097
+"mfscreen",52,0.2,0.216
+"mfscreen",52,0.3,0.296
+"Pearson SIS",52,0.001,0.028
+"Pearson SIS",52,0.005,0.062
+"Pearson SIS",52,0.01,0.091
+"Pearson SIS",52,0.025,0.151
+"Pearson SIS",52,0.05,0.206
+"Pearson SIS",52,0.1,0.279
+"Pearson SIS",52,0.2,0.387
+"Pearson SIS",52,0.3,0.498
+"Spearman SIS",52,0.001,0.003
+"Spearman SIS",52,0.005,0.008
+"Spearman SIS",52,0.01,0.02
+"Spearman SIS",52,0.025,0.042
+"Spearman SIS",52,0.05,0.082
+"Spearman SIS",52,0.1,0.135
+"Spearman SIS",52,0.2,0.243
+"Spearman SIS",52,0.3,0.341
+"mfscreen",53,0.001,0
+"mfscreen",53,0.005,0.009
+"mfscreen",53,0.01,0.014
+"mfscreen",53,0.025,0.026
+"mfscreen",53,0.05,0.055
+"mfscreen",53,0.1,0.106
+"mfscreen",53,0.2,0.204
+"mfscreen",53,0.3,0.307
+"Pearson SIS",53,0.001,0.06
+"Pearson SIS",53,0.005,0.113
+"Pearson SIS",53,0.01,0.144
+"Pearson SIS",53,0.025,0.197
+"Pearson SIS",53,0.05,0.257
+"Pearson SIS",53,0.1,0.336
+"Pearson SIS",53,0.2,0.464
+"Pearson SIS",53,0.3,0.56
+"Spearman SIS",53,0.001,0.002
+"Spearman SIS",53,0.005,0.012
+"Spearman SIS",53,0.01,0.022
+"Spearman SIS",53,0.025,0.037
+"Spearman SIS",53,0.05,0.073
+"Spearman SIS",53,0.1,0.132
+"Spearman SIS",53,0.2,0.237
+"Spearman SIS",53,0.3,0.329
+"mfscreen",54,0.001,0
+"mfscreen",54,0.005,0.005
+"mfscreen",54,0.01,0.01
+"mfscreen",54,0.025,0.03
+"mfscreen",54,0.05,0.054
+"mfscreen",54,0.1,0.11
+"mfscreen",54,0.2,0.186
+"mfscreen",54,0.3,0.296
+"Pearson SIS",54,0.001,0.02
+"Pearson SIS",54,0.005,0.054
+"Pearson SIS",54,0.01,0.079
+"Pearson SIS",54,0.025,0.121
+"Pearson SIS",54,0.05,0.162
+"Pearson SIS",54,0.1,0.246
+"Pearson SIS",54,0.2,0.38
+"Pearson SIS",54,0.3,0.456
+"Spearman SIS",54,0.001,0.004
+"Spearman SIS",54,0.005,0.008
+"Spearman SIS",54,0.01,0.018
+"Spearman SIS",54,0.025,0.042
+"Spearman SIS",54,0.05,0.079
+"Spearman SIS",54,0.1,0.14
+"Spearman SIS",54,0.2,0.259
+"Spearman SIS",54,0.3,0.356
+"mfscreen",55,0.001,0.001
+"mfscreen",55,0.005,0.001
+"mfscreen",55,0.01,0.006
+"mfscreen",55,0.025,0.026
+"mfscreen",55,0.05,0.062
+"mfscreen",55,0.1,0.098
+"mfscreen",55,0.2,0.203
+"mfscreen",55,0.3,0.296
+"Pearson SIS",55,0.001,0.036
+"Pearson SIS",55,0.005,0.073
+"Pearson SIS",55,0.01,0.097
+"Pearson SIS",55,0.025,0.148
+"Pearson SIS",55,0.05,0.201
+"Pearson SIS",55,0.1,0.283
+"Pearson SIS",55,0.2,0.399
+"Pearson SIS",55,0.3,0.498
+"Spearman SIS",55,0.001,0.005
+"Spearman SIS",55,0.005,0.008
+"Spearman SIS",55,0.01,0.021
+"Spearman SIS",55,0.025,0.042
+"Spearman SIS",55,0.05,0.073
+"Spearman SIS",55,0.1,0.136
+"Spearman SIS",55,0.2,0.251
+"Spearman SIS",55,0.3,0.361
+"mfscreen",56,0.001,0.002
+"mfscreen",56,0.005,0.006
+"mfscreen",56,0.01,0.01
+"mfscreen",56,0.025,0.027
+"mfscreen",56,0.05,0.052
+"mfscreen",56,0.1,0.104
+"mfscreen",56,0.2,0.21
+"mfscreen",56,0.3,0.284
+"Pearson SIS",56,0.001,0.038
+"Pearson SIS",56,0.005,0.087
+"Pearson SIS",56,0.01,0.116
+"Pearson SIS",56,0.025,0.174
+"Pearson SIS",56,0.05,0.219
+"Pearson SIS",56,0.1,0.299
+"Pearson SIS",56,0.2,0.404
+"Pearson SIS",56,0.3,0.529
+"Spearman SIS",56,0.001,0.004
+"Spearman SIS",56,0.005,0.013
+"Spearman SIS",56,0.01,0.019
+"Spearman SIS",56,0.025,0.039
+"Spearman SIS",56,0.05,0.069
+"Spearman SIS",56,0.1,0.116
+"Spearman SIS",56,0.2,0.234
+"Spearman SIS",56,0.3,0.339
+"mfscreen",57,0.001,0.001
+"mfscreen",57,0.005,0.003
+"mfscreen",57,0.01,0.01
+"mfscreen",57,0.025,0.038
+"mfscreen",57,0.05,0.06
+"mfscreen",57,0.1,0.113
+"mfscreen",57,0.2,0.223
+"mfscreen",57,0.3,0.32
+"Pearson SIS",57,0.001,0.047
+"Pearson SIS",57,0.005,0.09
+"Pearson SIS",57,0.01,0.122
+"Pearson SIS",57,0.025,0.182
+"Pearson SIS",57,0.05,0.241
+"Pearson SIS",57,0.1,0.326
+"Pearson SIS",57,0.2,0.447
+"Pearson SIS",57,0.3,0.529
+"Spearman SIS",57,0.001,0.002
+"Spearman SIS",57,0.005,0.009
+"Spearman SIS",57,0.01,0.017
+"Spearman SIS",57,0.025,0.043
+"Spearman SIS",57,0.05,0.072
+"Spearman SIS",57,0.1,0.133
+"Spearman SIS",57,0.2,0.25
+"Spearman SIS",57,0.3,0.347
+"mfscreen",58,0.001,0.002
+"mfscreen",58,0.005,0.005
+"mfscreen",58,0.01,0.016
+"mfscreen",58,0.025,0.03
+"mfscreen",58,0.05,0.052
+"mfscreen",58,0.1,0.115
+"mfscreen",58,0.2,0.211
+"mfscreen",58,0.3,0.297
+"Pearson SIS",58,0.001,0.033
+"Pearson SIS",58,0.005,0.089
+"Pearson SIS",58,0.01,0.101
+"Pearson SIS",58,0.025,0.164
+"Pearson SIS",58,0.05,0.204
+"Pearson SIS",58,0.1,0.288
+"Pearson SIS",58,0.2,0.401
+"Pearson SIS",58,0.3,0.509
+"Spearman SIS",58,0.001,0
+"Spearman SIS",58,0.005,0.01
+"Spearman SIS",58,0.01,0.014
+"Spearman SIS",58,0.025,0.032
+"Spearman SIS",58,0.05,0.063
+"Spearman SIS",58,0.1,0.126
+"Spearman SIS",58,0.2,0.238
+"Spearman SIS",58,0.3,0.354
+"mfscreen",59,0.001,0.002
+"mfscreen",59,0.005,0.007
+"mfscreen",59,0.01,0.011
+"mfscreen",59,0.025,0.021
+"mfscreen",59,0.05,0.047
+"mfscreen",59,0.1,0.097
+"mfscreen",59,0.2,0.208
+"mfscreen",59,0.3,0.312
+"Pearson SIS",59,0.001,0.037
+"Pearson SIS",59,0.005,0.077
+"Pearson SIS",59,0.01,0.099
+"Pearson SIS",59,0.025,0.16
+"Pearson SIS",59,0.05,0.211
+"Pearson SIS",59,0.1,0.297
+"Pearson SIS",59,0.2,0.427
+"Pearson SIS",59,0.3,0.519
+"Spearman SIS",59,0.001,0.002
+"Spearman SIS",59,0.005,0.007
+"Spearman SIS",59,0.01,0.011
+"Spearman SIS",59,0.025,0.033
+"Spearman SIS",59,0.05,0.077
+"Spearman SIS",59,0.1,0.134
+"Spearman SIS",59,0.2,0.246
+"Spearman SIS",59,0.3,0.348
+"mfscreen",60,0.001,0.003
+"mfscreen",60,0.005,0.005
+"mfscreen",60,0.01,0.011
+"mfscreen",60,0.025,0.025
+"mfscreen",60,0.05,0.05
+"mfscreen",60,0.1,0.109
+"mfscreen",60,0.2,0.229
+"mfscreen",60,0.3,0.335
+"Pearson SIS",60,0.001,0.045
+"Pearson SIS",60,0.005,0.09
+"Pearson SIS",60,0.01,0.12
+"Pearson SIS",60,0.025,0.175
+"Pearson SIS",60,0.05,0.252
+"Pearson SIS",60,0.1,0.35
+"Pearson SIS",60,0.2,0.464
+"Pearson SIS",60,0.3,0.555
+"Spearman SIS",60,0.001,0.004
+"Spearman SIS",60,0.005,0.01
+"Spearman SIS",60,0.01,0.016
+"Spearman SIS",60,0.025,0.037
+"Spearman SIS",60,0.05,0.061
+"Spearman SIS",60,0.1,0.118
+"Spearman SIS",60,0.2,0.239
+"Spearman SIS",60,0.3,0.336
+"mfscreen",61,0.001,0
+"mfscreen",61,0.005,0
+"mfscreen",61,0.01,0.006
+"mfscreen",61,0.025,0.016
+"mfscreen",61,0.05,0.046
+"mfscreen",61,0.1,0.121
+"mfscreen",61,0.2,0.26
+"mfscreen",61,0.3,0.35
+"Pearson SIS",61,0.001,0.091
+"Pearson SIS",61,0.005,0.171
+"Pearson SIS",61,0.01,0.219
+"Pearson SIS",61,0.025,0.299
+"Pearson SIS",61,0.05,0.345
+"Pearson SIS",61,0.1,0.43
+"Pearson SIS",61,0.2,0.524
+"Pearson SIS",61,0.3,0.603
+"Spearman SIS",61,0.001,0.001
+"Spearman SIS",61,0.005,0.008
+"Spearman SIS",61,0.01,0.013
+"Spearman SIS",61,0.025,0.036
+"Spearman SIS",61,0.05,0.083
+"Spearman SIS",61,0.1,0.142
+"Spearman SIS",61,0.2,0.259
+"Spearman SIS",61,0.3,0.369
+"mfscreen",62,0.001,0
+"mfscreen",62,0.005,0.003
+"mfscreen",62,0.01,0.013
+"mfscreen",62,0.025,0.029
+"mfscreen",62,0.05,0.062
+"mfscreen",62,0.1,0.106
+"mfscreen",62,0.2,0.202
+"mfscreen",62,0.3,0.304
+"Pearson SIS",62,0.001,0.032
+"Pearson SIS",62,0.005,0.079
+"Pearson SIS",62,0.01,0.097
+"Pearson SIS",62,0.025,0.158
+"Pearson SIS",62,0.05,0.208
+"Pearson SIS",62,0.1,0.275
+"Pearson SIS",62,0.2,0.417
+"Pearson SIS",62,0.3,0.509
+"Spearman SIS",62,0.001,0.003
+"Spearman SIS",62,0.005,0.009
+"Spearman SIS",62,0.01,0.016
+"Spearman SIS",62,0.025,0.036
+"Spearman SIS",62,0.05,0.077
+"Spearman SIS",62,0.1,0.147
+"Spearman SIS",62,0.2,0.255
+"Spearman SIS",62,0.3,0.334
+"mfscreen",63,0.001,0.004
+"mfscreen",63,0.005,0.005
+"mfscreen",63,0.01,0.009
+"mfscreen",63,0.025,0.021
+"mfscreen",63,0.05,0.051
+"mfscreen",63,0.1,0.1
+"mfscreen",63,0.2,0.189
+"mfscreen",63,0.3,0.292
+"Pearson SIS",63,0.001,0.066
+"Pearson SIS",63,0.005,0.112
+"Pearson SIS",63,0.01,0.143
+"Pearson SIS",63,0.025,0.205
+"Pearson SIS",63,0.05,0.269
+"Pearson SIS",63,0.1,0.352
+"Pearson SIS",63,0.2,0.472
+"Pearson SIS",63,0.3,0.555
+"Spearman SIS",63,0.001,0.003
+"Spearman SIS",63,0.005,0.008
+"Spearman SIS",63,0.01,0.016
+"Spearman SIS",63,0.025,0.039
+"Spearman SIS",63,0.05,0.069
+"Spearman SIS",63,0.1,0.129
+"Spearman SIS",63,0.2,0.243
+"Spearman SIS",63,0.3,0.345
+"mfscreen",64,0.001,0.001
+"mfscreen",64,0.005,0.003
+"mfscreen",64,0.01,0.006
+"mfscreen",64,0.025,0.024
+"mfscreen",64,0.05,0.056
+"mfscreen",64,0.1,0.112
+"mfscreen",64,0.2,0.216
+"mfscreen",64,0.3,0.31
+"Pearson SIS",64,0.001,0.083
+"Pearson SIS",64,0.005,0.139
+"Pearson SIS",64,0.01,0.173
+"Pearson SIS",64,0.025,0.23
+"Pearson SIS",64,0.05,0.287
+"Pearson SIS",64,0.1,0.367
+"Pearson SIS",64,0.2,0.475
+"Pearson SIS",64,0.3,0.568
+"Spearman SIS",64,0.001,0.003
+"Spearman SIS",64,0.005,0.015
+"Spearman SIS",64,0.01,0.022
+"Spearman SIS",64,0.025,0.047
+"Spearman SIS",64,0.05,0.083
+"Spearman SIS",64,0.1,0.147
+"Spearman SIS",64,0.2,0.249
+"Spearman SIS",64,0.3,0.358
+"mfscreen",65,0.001,0.001
+"mfscreen",65,0.005,0.006
+"mfscreen",65,0.01,0.013
+"mfscreen",65,0.025,0.032
+"mfscreen",65,0.05,0.053
+"mfscreen",65,0.1,0.103
+"mfscreen",65,0.2,0.209
+"mfscreen",65,0.3,0.31
+"Pearson SIS",65,0.001,0.057
+"Pearson SIS",65,0.005,0.102
+"Pearson SIS",65,0.01,0.132
+"Pearson SIS",65,0.025,0.192
+"Pearson SIS",65,0.05,0.263
+"Pearson SIS",65,0.1,0.355
+"Pearson SIS",65,0.2,0.463
+"Pearson SIS",65,0.3,0.56
+"Spearman SIS",65,0.001,0.003
+"Spearman SIS",65,0.005,0.008
+"Spearman SIS",65,0.01,0.016
+"Spearman SIS",65,0.025,0.042
+"Spearman SIS",65,0.05,0.076
+"Spearman SIS",65,0.1,0.135
+"Spearman SIS",65,0.2,0.234
+"Spearman SIS",65,0.3,0.336
+"mfscreen",66,0.001,0.002
+"mfscreen",66,0.005,0.007
+"mfscreen",66,0.01,0.008
+"mfscreen",66,0.025,0.031
+"mfscreen",66,0.05,0.053
+"mfscreen",66,0.1,0.118
+"mfscreen",66,0.2,0.223
+"mfscreen",66,0.3,0.318
+"Pearson SIS",66,0.001,0.038
+"Pearson SIS",66,0.005,0.083
+"Pearson SIS",66,0.01,0.108
+"Pearson SIS",66,0.025,0.167
+"Pearson SIS",66,0.05,0.224
+"Pearson SIS",66,0.1,0.305
+"Pearson SIS",66,0.2,0.409
+"Pearson SIS",66,0.3,0.484
+"Spearman SIS",66,0.001,0.002
+"Spearman SIS",66,0.005,0.008
+"Spearman SIS",66,0.01,0.021
+"Spearman SIS",66,0.025,0.042
+"Spearman SIS",66,0.05,0.074
+"Spearman SIS",66,0.1,0.13
+"Spearman SIS",66,0.2,0.246
+"Spearman SIS",66,0.3,0.353
+"mfscreen",67,0.001,0.001
+"mfscreen",67,0.005,0.007
+"mfscreen",67,0.01,0.013
+"mfscreen",67,0.025,0.031
+"mfscreen",67,0.05,0.062
+"mfscreen",67,0.1,0.116
+"mfscreen",67,0.2,0.209
+"mfscreen",67,0.3,0.311
+"Pearson SIS",67,0.001,0.03
+"Pearson SIS",67,0.005,0.065
+"Pearson SIS",67,0.01,0.09
+"Pearson SIS",67,0.025,0.14
+"Pearson SIS",67,0.05,0.186
+"Pearson SIS",67,0.1,0.268
+"Pearson SIS",67,0.2,0.399
+"Pearson SIS",67,0.3,0.497
+"Spearman SIS",67,0.001,0.006
+"Spearman SIS",67,0.005,0.011
+"Spearman SIS",67,0.01,0.022
+"Spearman SIS",67,0.025,0.044
+"Spearman SIS",67,0.05,0.078
+"Spearman SIS",67,0.1,0.145
+"Spearman SIS",67,0.2,0.269
+"Spearman SIS",67,0.3,0.368
+"mfscreen",68,0.001,0.003
+"mfscreen",68,0.005,0.008
+"mfscreen",68,0.01,0.014
+"mfscreen",68,0.025,0.027
+"mfscreen",68,0.05,0.05
+"mfscreen",68,0.1,0.1
+"mfscreen",68,0.2,0.191
+"mfscreen",68,0.3,0.298
+"Pearson SIS",68,0.001,0.037
+"Pearson SIS",68,0.005,0.07
+"Pearson SIS",68,0.01,0.092
+"Pearson SIS",68,0.025,0.136
+"Pearson SIS",68,0.05,0.208
+"Pearson SIS",68,0.1,0.289
+"Pearson SIS",68,0.2,0.4
+"Pearson SIS",68,0.3,0.495
+"Spearman SIS",68,0.001,0.005
+"Spearman SIS",68,0.005,0.008
+"Spearman SIS",68,0.01,0.016
+"Spearman SIS",68,0.025,0.035
+"Spearman SIS",68,0.05,0.057
+"Spearman SIS",68,0.1,0.099
+"Spearman SIS",68,0.2,0.202
+"Spearman SIS",68,0.3,0.304
+"mfscreen",69,0.001,0.001
+"mfscreen",69,0.005,0.006
+"mfscreen",69,0.01,0.013
+"mfscreen",69,0.025,0.026
+"mfscreen",69,0.05,0.054
+"mfscreen",69,0.1,0.114
+"mfscreen",69,0.2,0.217
+"mfscreen",69,0.3,0.33
+"Pearson SIS",69,0.001,0.032
+"Pearson SIS",69,0.005,0.07
+"Pearson SIS",69,0.01,0.111
+"Pearson SIS",69,0.025,0.153
+"Pearson SIS",69,0.05,0.225
+"Pearson SIS",69,0.1,0.317
+"Pearson SIS",69,0.2,0.436
+"Pearson SIS",69,0.3,0.536
+"Spearman SIS",69,0.001,0.003
+"Spearman SIS",69,0.005,0.016
+"Spearman SIS",69,0.01,0.021
+"Spearman SIS",69,0.025,0.045
+"Spearman SIS",69,0.05,0.073
+"Spearman SIS",69,0.1,0.123
+"Spearman SIS",69,0.2,0.237
+"Spearman SIS",69,0.3,0.353
+"mfscreen",70,0.001,0.001
+"mfscreen",70,0.005,0.004
+"mfscreen",70,0.01,0.01
+"mfscreen",70,0.025,0.033
+"mfscreen",70,0.05,0.064
+"mfscreen",70,0.1,0.113
+"mfscreen",70,0.2,0.209
+"mfscreen",70,0.3,0.305
+"Pearson SIS",70,0.001,0.04
+"Pearson SIS",70,0.005,0.081
+"Pearson SIS",70,0.01,0.107
+"Pearson SIS",70,0.025,0.155
+"Pearson SIS",70,0.05,0.215
+"Pearson SIS",70,0.1,0.285
+"Pearson SIS",70,0.2,0.387
+"Pearson SIS",70,0.3,0.491
+"Spearman SIS",70,0.001,0.001
+"Spearman SIS",70,0.005,0.01
+"Spearman SIS",70,0.01,0.017
+"Spearman SIS",70,0.025,0.032
+"Spearman SIS",70,0.05,0.059
+"Spearman SIS",70,0.1,0.119
+"Spearman SIS",70,0.2,0.228
+"Spearman SIS",70,0.3,0.326
+"mfscreen",71,0.001,0.003
+"mfscreen",71,0.005,0.007
+"mfscreen",71,0.01,0.013
+"mfscreen",71,0.025,0.024
+"mfscreen",71,0.05,0.052
+"mfscreen",71,0.1,0.113
+"mfscreen",71,0.2,0.225
+"mfscreen",71,0.3,0.321
+"Pearson SIS",71,0.001,0.056
+"Pearson SIS",71,0.005,0.107
+"Pearson SIS",71,0.01,0.14
+"Pearson SIS",71,0.025,0.21
+"Pearson SIS",71,0.05,0.282
+"Pearson SIS",71,0.1,0.35
+"Pearson SIS",71,0.2,0.473
+"Pearson SIS",71,0.3,0.553
+"Spearman SIS",71,0.001,0.004
+"Spearman SIS",71,0.005,0.012
+"Spearman SIS",71,0.01,0.025
+"Spearman SIS",71,0.025,0.051
+"Spearman SIS",71,0.05,0.086
+"Spearman SIS",71,0.1,0.131
+"Spearman SIS",71,0.2,0.251
+"Spearman SIS",71,0.3,0.337
+"mfscreen",72,0.001,0
+"mfscreen",72,0.005,0.003
+"mfscreen",72,0.01,0.009
+"mfscreen",72,0.025,0.024
+"mfscreen",72,0.05,0.049
+"mfscreen",72,0.1,0.096
+"mfscreen",72,0.2,0.212
+"mfscreen",72,0.3,0.329
+"Pearson SIS",72,0.001,0.082
+"Pearson SIS",72,0.005,0.136
+"Pearson SIS",72,0.01,0.186
+"Pearson SIS",72,0.025,0.235
+"Pearson SIS",72,0.05,0.292
+"Pearson SIS",72,0.1,0.373
+"Pearson SIS",72,0.2,0.497
+"Pearson SIS",72,0.3,0.58
+"Spearman SIS",72,0.001,0.001
+"Spearman SIS",72,0.005,0.013
+"Spearman SIS",72,0.01,0.02
+"Spearman SIS",72,0.025,0.039
+"Spearman SIS",72,0.05,0.072
+"Spearman SIS",72,0.1,0.129
+"Spearman SIS",72,0.2,0.23
+"Spearman SIS",72,0.3,0.351
+"mfscreen",73,0.001,0
+"mfscreen",73,0.005,0.004
+"mfscreen",73,0.01,0.01
+"mfscreen",73,0.025,0.035
+"mfscreen",73,0.05,0.062
+"mfscreen",73,0.1,0.116
+"mfscreen",73,0.2,0.206
+"mfscreen",73,0.3,0.321
+"Pearson SIS",73,0.001,0.045
+"Pearson SIS",73,0.005,0.088
+"Pearson SIS",73,0.01,0.119
+"Pearson SIS",73,0.025,0.172
+"Pearson SIS",73,0.05,0.235
+"Pearson SIS",73,0.1,0.322
+"Pearson SIS",73,0.2,0.448
+"Pearson SIS",73,0.3,0.536
+"Spearman SIS",73,0.001,0.004
+"Spearman SIS",73,0.005,0.012
+"Spearman SIS",73,0.01,0.018
+"Spearman SIS",73,0.025,0.037
+"Spearman SIS",73,0.05,0.069
+"Spearman SIS",73,0.1,0.138
+"Spearman SIS",73,0.2,0.239
+"Spearman SIS",73,0.3,0.348
+"mfscreen",74,0.001,0.001
+"mfscreen",74,0.005,0.006
+"mfscreen",74,0.01,0.012
+"mfscreen",74,0.025,0.027
+"mfscreen",74,0.05,0.045
+"mfscreen",74,0.1,0.086
+"mfscreen",74,0.2,0.193
+"mfscreen",74,0.3,0.288
+"Pearson SIS",74,0.001,0.03
+"Pearson SIS",74,0.005,0.06
+"Pearson SIS",74,0.01,0.079
+"Pearson SIS",74,0.025,0.133
+"Pearson SIS",74,0.05,0.189
+"Pearson SIS",74,0.1,0.276
+"Pearson SIS",74,0.2,0.399
+"Pearson SIS",74,0.3,0.502
+"Spearman SIS",74,0.001,0.001
+"Spearman SIS",74,0.005,0.006
+"Spearman SIS",74,0.01,0.012
+"Spearman SIS",74,0.025,0.041
+"Spearman SIS",74,0.05,0.058
+"Spearman SIS",74,0.1,0.119
+"Spearman SIS",74,0.2,0.24
+"Spearman SIS",74,0.3,0.342
+"mfscreen",75,0.001,0.001
+"mfscreen",75,0.005,0.003
+"mfscreen",75,0.01,0.005
+"mfscreen",75,0.025,0.018
+"mfscreen",75,0.05,0.042
+"mfscreen",75,0.1,0.095
+"mfscreen",75,0.2,0.201
+"mfscreen",75,0.3,0.295
+"Pearson SIS",75,0.001,0.021
+"Pearson SIS",75,0.005,0.058
+"Pearson SIS",75,0.01,0.092
+"Pearson SIS",75,0.025,0.132
+"Pearson SIS",75,0.05,0.195
+"Pearson SIS",75,0.1,0.278
+"Pearson SIS",75,0.2,0.393
+"Pearson SIS",75,0.3,0.49
+"Spearman SIS",75,0.001,0.001
+"Spearman SIS",75,0.005,0.006
+"Spearman SIS",75,0.01,0.015
+"Spearman SIS",75,0.025,0.038
+"Spearman SIS",75,0.05,0.059
+"Spearman SIS",75,0.1,0.121
+"Spearman SIS",75,0.2,0.223
+"Spearman SIS",75,0.3,0.338
+"mfscreen",76,0.001,0
+"mfscreen",76,0.005,0.004
+"mfscreen",76,0.01,0.013
+"mfscreen",76,0.025,0.031
+"mfscreen",76,0.05,0.048
+"mfscreen",76,0.1,0.11
+"mfscreen",76,0.2,0.212
+"mfscreen",76,0.3,0.299
+"Pearson SIS",76,0.001,0.033
+"Pearson SIS",76,0.005,0.075
+"Pearson SIS",76,0.01,0.099
+"Pearson SIS",76,0.025,0.154
+"Pearson SIS",76,0.05,0.213
+"Pearson SIS",76,0.1,0.284
+"Pearson SIS",76,0.2,0.407
+"Pearson SIS",76,0.3,0.511
+"Spearman SIS",76,0.001,0.005
+"Spearman SIS",76,0.005,0.016
+"Spearman SIS",76,0.01,0.021
+"Spearman SIS",76,0.025,0.037
+"Spearman SIS",76,0.05,0.076
+"Spearman SIS",76,0.1,0.142
+"Spearman SIS",76,0.2,0.253
+"Spearman SIS",76,0.3,0.349
+"mfscreen",77,0.001,0.003
+"mfscreen",77,0.005,0.01
+"mfscreen",77,0.01,0.014
+"mfscreen",77,0.025,0.033
+"mfscreen",77,0.05,0.058
+"mfscreen",77,0.1,0.11
+"mfscreen",77,0.2,0.213
+"mfscreen",77,0.3,0.304
+"Pearson SIS",77,0.001,0.038
+"Pearson SIS",77,0.005,0.074
+"Pearson SIS",77,0.01,0.101
+"Pearson SIS",77,0.025,0.152
+"Pearson SIS",77,0.05,0.229
+"Pearson SIS",77,0.1,0.295
+"Pearson SIS",77,0.2,0.401
+"Pearson SIS",77,0.3,0.514
+"Spearman SIS",77,0.001,0.004
+"Spearman SIS",77,0.005,0.009
+"Spearman SIS",77,0.01,0.022
+"Spearman SIS",77,0.025,0.051
+"Spearman SIS",77,0.05,0.078
+"Spearman SIS",77,0.1,0.146
+"Spearman SIS",77,0.2,0.244
+"Spearman SIS",77,0.3,0.346
+"mfscreen",78,0.001,0.001
+"mfscreen",78,0.005,0.002
+"mfscreen",78,0.01,0.007
+"mfscreen",78,0.025,0.022
+"mfscreen",78,0.05,0.054
+"mfscreen",78,0.1,0.094
+"mfscreen",78,0.2,0.201
+"mfscreen",78,0.3,0.295
+"Pearson SIS",78,0.001,0.03
+"Pearson SIS",78,0.005,0.069
+"Pearson SIS",78,0.01,0.095
+"Pearson SIS",78,0.025,0.144
+"Pearson SIS",78,0.05,0.199
+"Pearson SIS",78,0.1,0.288
+"Pearson SIS",78,0.2,0.405
+"Pearson SIS",78,0.3,0.495
+"Spearman SIS",78,0.001,0.001
+"Spearman SIS",78,0.005,0.006
+"Spearman SIS",78,0.01,0.017
+"Spearman SIS",78,0.025,0.032
+"Spearman SIS",78,0.05,0.065
+"Spearman SIS",78,0.1,0.126
+"Spearman SIS",78,0.2,0.257
+"Spearman SIS",78,0.3,0.353
+"mfscreen",79,0.001,0.001
+"mfscreen",79,0.005,0.006
+"mfscreen",79,0.01,0.009
+"mfscreen",79,0.025,0.017
+"mfscreen",79,0.05,0.047
+"mfscreen",79,0.1,0.097
+"mfscreen",79,0.2,0.213
+"mfscreen",79,0.3,0.319
+"Pearson SIS",79,0.001,0.016
+"Pearson SIS",79,0.005,0.04
+"Pearson SIS",79,0.01,0.07
+"Pearson SIS",79,0.025,0.124
+"Pearson SIS",79,0.05,0.189
+"Pearson SIS",79,0.1,0.261
+"Pearson SIS",79,0.2,0.392
+"Pearson SIS",79,0.3,0.462
+"Spearman SIS",79,0.001,0.002
+"Spearman SIS",79,0.005,0.008
+"Spearman SIS",79,0.01,0.018
+"Spearman SIS",79,0.025,0.041
+"Spearman SIS",79,0.05,0.067
+"Spearman SIS",79,0.1,0.122
+"Spearman SIS",79,0.2,0.229
+"Spearman SIS",79,0.3,0.332
+"mfscreen",80,0.001,0
+"mfscreen",80,0.005,0.005
+"mfscreen",80,0.01,0.01
+"mfscreen",80,0.025,0.029
+"mfscreen",80,0.05,0.053
+"mfscreen",80,0.1,0.105
+"mfscreen",80,0.2,0.204
+"mfscreen",80,0.3,0.302
+"Pearson SIS",80,0.001,0.044
+"Pearson SIS",80,0.005,0.081
+"Pearson SIS",80,0.01,0.099
+"Pearson SIS",80,0.025,0.168
+"Pearson SIS",80,0.05,0.236
+"Pearson SIS",80,0.1,0.317
+"Pearson SIS",80,0.2,0.404
+"Pearson SIS",80,0.3,0.498
+"Spearman SIS",80,0.001,0.001
+"Spearman SIS",80,0.005,0.007
+"Spearman SIS",80,0.01,0.018
+"Spearman SIS",80,0.025,0.031
+"Spearman SIS",80,0.05,0.072
+"Spearman SIS",80,0.1,0.136
+"Spearman SIS",80,0.2,0.248
+"Spearman SIS",80,0.3,0.373
+"mfscreen",81,0.001,0.002
+"mfscreen",81,0.005,0.007
+"mfscreen",81,0.01,0.015
+"mfscreen",81,0.025,0.033
+"mfscreen",81,0.05,0.056
+"mfscreen",81,0.1,0.099
+"mfscreen",81,0.2,0.193
+"mfscreen",81,0.3,0.297
+"Pearson SIS",81,0.001,0.049
+"Pearson SIS",81,0.005,0.087
+"Pearson SIS",81,0.01,0.118
+"Pearson SIS",81,0.025,0.177
+"Pearson SIS",81,0.05,0.227
+"Pearson SIS",81,0.1,0.323
+"Pearson SIS",81,0.2,0.433
+"Pearson SIS",81,0.3,0.534
+"Spearman SIS",81,0.001,0.005
+"Spearman SIS",81,0.005,0.011
+"Spearman SIS",81,0.01,0.022
+"Spearman SIS",81,0.025,0.043
+"Spearman SIS",81,0.05,0.082
+"Spearman SIS",81,0.1,0.148
+"Spearman SIS",81,0.2,0.25
+"Spearman SIS",81,0.3,0.359
+"mfscreen",82,0.001,0.002
+"mfscreen",82,0.005,0.003
+"mfscreen",82,0.01,0.007
+"mfscreen",82,0.025,0.023
+"mfscreen",82,0.05,0.048
+"mfscreen",82,0.1,0.105
+"mfscreen",82,0.2,0.209
+"mfscreen",82,0.3,0.311
+"Pearson SIS",82,0.001,0.039
+"Pearson SIS",82,0.005,0.09
+"Pearson SIS",82,0.01,0.111
+"Pearson SIS",82,0.025,0.161
+"Pearson SIS",82,0.05,0.234
+"Pearson SIS",82,0.1,0.308
+"Pearson SIS",82,0.2,0.43
+"Pearson SIS",82,0.3,0.519
+"Spearman SIS",82,0.001,0.005
+"Spearman SIS",82,0.005,0.011
+"Spearman SIS",82,0.01,0.022
+"Spearman SIS",82,0.025,0.031
+"Spearman SIS",82,0.05,0.07
+"Spearman SIS",82,0.1,0.128
+"Spearman SIS",82,0.2,0.238
+"Spearman SIS",82,0.3,0.323
+"mfscreen",83,0.001,0.004
+"mfscreen",83,0.005,0.012
+"mfscreen",83,0.01,0.018
+"mfscreen",83,0.025,0.024
+"mfscreen",83,0.05,0.044
+"mfscreen",83,0.1,0.093
+"mfscreen",83,0.2,0.196
+"mfscreen",83,0.3,0.299
+"Pearson SIS",83,0.001,0.032
+"Pearson SIS",83,0.005,0.075
+"Pearson SIS",83,0.01,0.107
+"Pearson SIS",83,0.025,0.157
+"Pearson SIS",83,0.05,0.228
+"Pearson SIS",83,0.1,0.301
+"Pearson SIS",83,0.2,0.422
+"Pearson SIS",83,0.3,0.522
+"Spearman SIS",83,0.001,0.002
+"Spearman SIS",83,0.005,0.01
+"Spearman SIS",83,0.01,0.021
+"Spearman SIS",83,0.025,0.044
+"Spearman SIS",83,0.05,0.074
+"Spearman SIS",83,0.1,0.117
+"Spearman SIS",83,0.2,0.232
+"Spearman SIS",83,0.3,0.345
+"mfscreen",84,0.001,0.001
+"mfscreen",84,0.005,0.008
+"mfscreen",84,0.01,0.011
+"mfscreen",84,0.025,0.032
+"mfscreen",84,0.05,0.056
+"mfscreen",84,0.1,0.1
+"mfscreen",84,0.2,0.21
+"mfscreen",84,0.3,0.311
+"Pearson SIS",84,0.001,0.034
+"Pearson SIS",84,0.005,0.062
+"Pearson SIS",84,0.01,0.088
+"Pearson SIS",84,0.025,0.137
+"Pearson SIS",84,0.05,0.194
+"Pearson SIS",84,0.1,0.282
+"Pearson SIS",84,0.2,0.413
+"Pearson SIS",84,0.3,0.499
+"Spearman SIS",84,0.001,0.001
+"Spearman SIS",84,0.005,0.005
+"Spearman SIS",84,0.01,0.014
+"Spearman SIS",84,0.025,0.042
+"Spearman SIS",84,0.05,0.073
+"Spearman SIS",84,0.1,0.128
+"Spearman SIS",84,0.2,0.235
+"Spearman SIS",84,0.3,0.33
+"mfscreen",85,0.001,0.002
+"mfscreen",85,0.005,0.004
+"mfscreen",85,0.01,0.012
+"mfscreen",85,0.025,0.033
+"mfscreen",85,0.05,0.055
+"mfscreen",85,0.1,0.097
+"mfscreen",85,0.2,0.199
+"mfscreen",85,0.3,0.305
+"Pearson SIS",85,0.001,0.045
+"Pearson SIS",85,0.005,0.081
+"Pearson SIS",85,0.01,0.103
+"Pearson SIS",85,0.025,0.167
+"Pearson SIS",85,0.05,0.233
+"Pearson SIS",85,0.1,0.319
+"Pearson SIS",85,0.2,0.427
+"Pearson SIS",85,0.3,0.523
+"Spearman SIS",85,0.001,0.002
+"Spearman SIS",85,0.005,0.006
+"Spearman SIS",85,0.01,0.015
+"Spearman SIS",85,0.025,0.041
+"Spearman SIS",85,0.05,0.074
+"Spearman SIS",85,0.1,0.133
+"Spearman SIS",85,0.2,0.24
+"Spearman SIS",85,0.3,0.342
+"mfscreen",86,0.001,0.002
+"mfscreen",86,0.005,0.006
+"mfscreen",86,0.01,0.012
+"mfscreen",86,0.025,0.03
+"mfscreen",86,0.05,0.054
+"mfscreen",86,0.1,0.112
+"mfscreen",86,0.2,0.207
+"mfscreen",86,0.3,0.316
+"Pearson SIS",86,0.001,0.025
+"Pearson SIS",86,0.005,0.048
+"Pearson SIS",86,0.01,0.069
+"Pearson SIS",86,0.025,0.124
+"Pearson SIS",86,0.05,0.18
+"Pearson SIS",86,0.1,0.25
+"Pearson SIS",86,0.2,0.381
+"Pearson SIS",86,0.3,0.488
+"Spearman SIS",86,0.001,0.002
+"Spearman SIS",86,0.005,0.013
+"Spearman SIS",86,0.01,0.019
+"Spearman SIS",86,0.025,0.05
+"Spearman SIS",86,0.05,0.076
+"Spearman SIS",86,0.1,0.138
+"Spearman SIS",86,0.2,0.24
+"Spearman SIS",86,0.3,0.346
+"mfscreen",87,0.001,0.001
+"mfscreen",87,0.005,0.006
+"mfscreen",87,0.01,0.008
+"mfscreen",87,0.025,0.024
+"mfscreen",87,0.05,0.048
+"mfscreen",87,0.1,0.092
+"mfscreen",87,0.2,0.197
+"mfscreen",87,0.3,0.304
+"Pearson SIS",87,0.001,0.042
+"Pearson SIS",87,0.005,0.073
+"Pearson SIS",87,0.01,0.11
+"Pearson SIS",87,0.025,0.165
+"Pearson SIS",87,0.05,0.211
+"Pearson SIS",87,0.1,0.3
+"Pearson SIS",87,0.2,0.416
+"Pearson SIS",87,0.3,0.518
+"Spearman SIS",87,0.001,0.003
+"Spearman SIS",87,0.005,0.015
+"Spearman SIS",87,0.01,0.024
+"Spearman SIS",87,0.025,0.041
+"Spearman SIS",87,0.05,0.069
+"Spearman SIS",87,0.1,0.125
+"Spearman SIS",87,0.2,0.23
+"Spearman SIS",87,0.3,0.322
+"mfscreen",88,0.001,0.003
+"mfscreen",88,0.005,0.006
+"mfscreen",88,0.01,0.015
+"mfscreen",88,0.025,0.033
+"mfscreen",88,0.05,0.068
+"mfscreen",88,0.1,0.121
+"mfscreen",88,0.2,0.217
+"mfscreen",88,0.3,0.314
+"Pearson SIS",88,0.001,0.041
+"Pearson SIS",88,0.005,0.08
+"Pearson SIS",88,0.01,0.109
+"Pearson SIS",88,0.025,0.164
+"Pearson SIS",88,0.05,0.224
+"Pearson SIS",88,0.1,0.304
+"Pearson SIS",88,0.2,0.414
+"Pearson SIS",88,0.3,0.504
+"Spearman SIS",88,0.001,0.001
+"Spearman SIS",88,0.005,0.016
+"Spearman SIS",88,0.01,0.025
+"Spearman SIS",88,0.025,0.05
+"Spearman SIS",88,0.05,0.079
+"Spearman SIS",88,0.1,0.146
+"Spearman SIS",88,0.2,0.25
+"Spearman SIS",88,0.3,0.35
+"mfscreen",89,0.001,0.001
+"mfscreen",89,0.005,0.003
+"mfscreen",89,0.01,0.014
+"mfscreen",89,0.025,0.029
+"mfscreen",89,0.05,0.048
+"mfscreen",89,0.1,0.097
+"mfscreen",89,0.2,0.224
+"mfscreen",89,0.3,0.332
+"Pearson SIS",89,0.001,0.061
+"Pearson SIS",89,0.005,0.111
+"Pearson SIS",89,0.01,0.148
+"Pearson SIS",89,0.025,0.223
+"Pearson SIS",89,0.05,0.289
+"Pearson SIS",89,0.1,0.36
+"Pearson SIS",89,0.2,0.493
+"Pearson SIS",89,0.3,0.569
+"Spearman SIS",89,0.001,0.002
+"Spearman SIS",89,0.005,0.01
+"Spearman SIS",89,0.01,0.019
+"Spearman SIS",89,0.025,0.045
+"Spearman SIS",89,0.05,0.073
+"Spearman SIS",89,0.1,0.132
+"Spearman SIS",89,0.2,0.252
+"Spearman SIS",89,0.3,0.372
+"mfscreen",90,0.001,0.002
+"mfscreen",90,0.005,0.006
+"mfscreen",90,0.01,0.013
+"mfscreen",90,0.025,0.028
+"mfscreen",90,0.05,0.048
+"mfscreen",90,0.1,0.093
+"mfscreen",90,0.2,0.2
+"mfscreen",90,0.3,0.309
+"Pearson SIS",90,0.001,0.04
+"Pearson SIS",90,0.005,0.07
+"Pearson SIS",90,0.01,0.099
+"Pearson SIS",90,0.025,0.152
+"Pearson SIS",90,0.05,0.213
+"Pearson SIS",90,0.1,0.303
+"Pearson SIS",90,0.2,0.433
+"Pearson SIS",90,0.3,0.518
+"Spearman SIS",90,0.001,0.001
+"Spearman SIS",90,0.005,0.009
+"Spearman SIS",90,0.01,0.012
+"Spearman SIS",90,0.025,0.031
+"Spearman SIS",90,0.05,0.063
+"Spearman SIS",90,0.1,0.115
+"Spearman SIS",90,0.2,0.222
+"Spearman SIS",90,0.3,0.332
+"mfscreen",91,0.001,0.001
+"mfscreen",91,0.005,0.006
+"mfscreen",91,0.01,0.012
+"mfscreen",91,0.025,0.025
+"mfscreen",91,0.05,0.05
+"mfscreen",91,0.1,0.096
+"mfscreen",91,0.2,0.203
+"mfscreen",91,0.3,0.31
+"Pearson SIS",91,0.001,0.025
+"Pearson SIS",91,0.005,0.061
+"Pearson SIS",91,0.01,0.081
+"Pearson SIS",91,0.025,0.128
+"Pearson SIS",91,0.05,0.188
+"Pearson SIS",91,0.1,0.278
+"Pearson SIS",91,0.2,0.39
+"Pearson SIS",91,0.3,0.471
+"Spearman SIS",91,0.001,0.002
+"Spearman SIS",91,0.005,0.009
+"Spearman SIS",91,0.01,0.017
+"Spearman SIS",91,0.025,0.039
+"Spearman SIS",91,0.05,0.073
+"Spearman SIS",91,0.1,0.14
+"Spearman SIS",91,0.2,0.244
+"Spearman SIS",91,0.3,0.359
+"mfscreen",92,0.001,0.001
+"mfscreen",92,0.005,0.006
+"mfscreen",92,0.01,0.014
+"mfscreen",92,0.025,0.029
+"mfscreen",92,0.05,0.065
+"mfscreen",92,0.1,0.115
+"mfscreen",92,0.2,0.204
+"mfscreen",92,0.3,0.286
+"Pearson SIS",92,0.001,0.032
+"Pearson SIS",92,0.005,0.076
+"Pearson SIS",92,0.01,0.101
+"Pearson SIS",92,0.025,0.14
+"Pearson SIS",92,0.05,0.187
+"Pearson SIS",92,0.1,0.268
+"Pearson SIS",92,0.2,0.394
+"Pearson SIS",92,0.3,0.489
+"Spearman SIS",92,0.001,0.003
+"Spearman SIS",92,0.005,0.012
+"Spearman SIS",92,0.01,0.02
+"Spearman SIS",92,0.025,0.046
+"Spearman SIS",92,0.05,0.081
+"Spearman SIS",92,0.1,0.141
+"Spearman SIS",92,0.2,0.236
+"Spearman SIS",92,0.3,0.351
+"mfscreen",93,0.001,0.001
+"mfscreen",93,0.005,0.009
+"mfscreen",93,0.01,0.011
+"mfscreen",93,0.025,0.025
+"mfscreen",93,0.05,0.052
+"mfscreen",93,0.1,0.122
+"mfscreen",93,0.2,0.223
+"mfscreen",93,0.3,0.31
+"Pearson SIS",93,0.001,0.036
+"Pearson SIS",93,0.005,0.093
+"Pearson SIS",93,0.01,0.129
+"Pearson SIS",93,0.025,0.175
+"Pearson SIS",93,0.05,0.241
+"Pearson SIS",93,0.1,0.315
+"Pearson SIS",93,0.2,0.434
+"Pearson SIS",93,0.3,0.517
+"Spearman SIS",93,0.001,0.002
+"Spearman SIS",93,0.005,0.013
+"Spearman SIS",93,0.01,0.019
+"Spearman SIS",93,0.025,0.039
+"Spearman SIS",93,0.05,0.07
+"Spearman SIS",93,0.1,0.138
+"Spearman SIS",93,0.2,0.24
+"Spearman SIS",93,0.3,0.339
+"mfscreen",94,0.001,0.001
+"mfscreen",94,0.005,0.009
+"mfscreen",94,0.01,0.017
+"mfscreen",94,0.025,0.027
+"mfscreen",94,0.05,0.055
+"mfscreen",94,0.1,0.111
+"mfscreen",94,0.2,0.223
+"mfscreen",94,0.3,0.309
+"Pearson SIS",94,0.001,0.053
+"Pearson SIS",94,0.005,0.104
+"Pearson SIS",94,0.01,0.127
+"Pearson SIS",94,0.025,0.187
+"Pearson SIS",94,0.05,0.258
+"Pearson SIS",94,0.1,0.326
+"Pearson SIS",94,0.2,0.44
+"Pearson SIS",94,0.3,0.53
+"Spearman SIS",94,0.001,0.003
+"Spearman SIS",94,0.005,0.007
+"Spearman SIS",94,0.01,0.014
+"Spearman SIS",94,0.025,0.038
+"Spearman SIS",94,0.05,0.072
+"Spearman SIS",94,0.1,0.136
+"Spearman SIS",94,0.2,0.245
+"Spearman SIS",94,0.3,0.356
+"mfscreen",95,0.001,0
+"mfscreen",95,0.005,0.002
+"mfscreen",95,0.01,0.007
+"mfscreen",95,0.025,0.023
+"mfscreen",95,0.05,0.046
+"mfscreen",95,0.1,0.108
+"mfscreen",95,0.2,0.22
+"mfscreen",95,0.3,0.317
+"Pearson SIS",95,0.001,0.078
+"Pearson SIS",95,0.005,0.117
+"Pearson SIS",95,0.01,0.16
+"Pearson SIS",95,0.025,0.23
+"Pearson SIS",95,0.05,0.286
+"Pearson SIS",95,0.1,0.377
+"Pearson SIS",95,0.2,0.487
+"Pearson SIS",95,0.3,0.559
+"Spearman SIS",95,0.001,0.001
+"Spearman SIS",95,0.005,0.01
+"Spearman SIS",95,0.01,0.019
+"Spearman SIS",95,0.025,0.04
+"Spearman SIS",95,0.05,0.07
+"Spearman SIS",95,0.1,0.128
+"Spearman SIS",95,0.2,0.231
+"Spearman SIS",95,0.3,0.345
+"mfscreen",96,0.001,0.002
+"mfscreen",96,0.005,0.008
+"mfscreen",96,0.01,0.013
+"mfscreen",96,0.025,0.032
+"mfscreen",96,0.05,0.062
+"mfscreen",96,0.1,0.111
+"mfscreen",96,0.2,0.201
+"mfscreen",96,0.3,0.295
+"Pearson SIS",96,0.001,0.05
+"Pearson SIS",96,0.005,0.095
+"Pearson SIS",96,0.01,0.122
+"Pearson SIS",96,0.025,0.172
+"Pearson SIS",96,0.05,0.235
+"Pearson SIS",96,0.1,0.316
+"Pearson SIS",96,0.2,0.436
+"Pearson SIS",96,0.3,0.549
+"Spearman SIS",96,0.001,0.002
+"Spearman SIS",96,0.005,0.013
+"Spearman SIS",96,0.01,0.019
+"Spearman SIS",96,0.025,0.034
+"Spearman SIS",96,0.05,0.072
+"Spearman SIS",96,0.1,0.147
+"Spearman SIS",96,0.2,0.25
+"Spearman SIS",96,0.3,0.358
+"mfscreen",97,0.001,0.001
+"mfscreen",97,0.005,0.009
+"mfscreen",97,0.01,0.018
+"mfscreen",97,0.025,0.032
+"mfscreen",97,0.05,0.05
+"mfscreen",97,0.1,0.102
+"mfscreen",97,0.2,0.204
+"mfscreen",97,0.3,0.322
+"Pearson SIS",97,0.001,0.033
+"Pearson SIS",97,0.005,0.07
+"Pearson SIS",97,0.01,0.094
+"Pearson SIS",97,0.025,0.141
+"Pearson SIS",97,0.05,0.198
+"Pearson SIS",97,0.1,0.302
+"Pearson SIS",97,0.2,0.434
+"Pearson SIS",97,0.3,0.528
+"Spearman SIS",97,0.001,0.001
+"Spearman SIS",97,0.005,0.01
+"Spearman SIS",97,0.01,0.02
+"Spearman SIS",97,0.025,0.044
+"Spearman SIS",97,0.05,0.077
+"Spearman SIS",97,0.1,0.132
+"Spearman SIS",97,0.2,0.252
+"Spearman SIS",97,0.3,0.347
+"mfscreen",98,0.001,0.001
+"mfscreen",98,0.005,0.005
+"mfscreen",98,0.01,0.01
+"mfscreen",98,0.025,0.035
+"mfscreen",98,0.05,0.056
+"mfscreen",98,0.1,0.118
+"mfscreen",98,0.2,0.227
+"mfscreen",98,0.3,0.343
+"Pearson SIS",98,0.001,0.105
+"Pearson SIS",98,0.005,0.175
+"Pearson SIS",98,0.01,0.219
+"Pearson SIS",98,0.025,0.288
+"Pearson SIS",98,0.05,0.345
+"Pearson SIS",98,0.1,0.414
+"Pearson SIS",98,0.2,0.512
+"Pearson SIS",98,0.3,0.604
+"Spearman SIS",98,0.001,0.001
+"Spearman SIS",98,0.005,0.01
+"Spearman SIS",98,0.01,0.018
+"Spearman SIS",98,0.025,0.045
+"Spearman SIS",98,0.05,0.083
+"Spearman SIS",98,0.1,0.164
+"Spearman SIS",98,0.2,0.272
+"Spearman SIS",98,0.3,0.37
+"mfscreen",99,0.001,0
+"mfscreen",99,0.005,0.003
+"mfscreen",99,0.01,0.013
+"mfscreen",99,0.025,0.033
+"mfscreen",99,0.05,0.058
+"mfscreen",99,0.1,0.102
+"mfscreen",99,0.2,0.2
+"mfscreen",99,0.3,0.315
+"Pearson SIS",99,0.001,0.052
+"Pearson SIS",99,0.005,0.085
+"Pearson SIS",99,0.01,0.113
+"Pearson SIS",99,0.025,0.166
+"Pearson SIS",99,0.05,0.215
+"Pearson SIS",99,0.1,0.313
+"Pearson SIS",99,0.2,0.439
+"Pearson SIS",99,0.3,0.525
+"Spearman SIS",99,0.001,0.003
+"Spearman SIS",99,0.005,0.012
+"Spearman SIS",99,0.01,0.021
+"Spearman SIS",99,0.025,0.052
+"Spearman SIS",99,0.05,0.083
+"Spearman SIS",99,0.1,0.138
+"Spearman SIS",99,0.2,0.246
+"Spearman SIS",99,0.3,0.339
+"mfscreen",100,0.001,0.002
+"mfscreen",100,0.005,0.005
+"mfscreen",100,0.01,0.01
+"mfscreen",100,0.025,0.031
+"mfscreen",100,0.05,0.061
+"mfscreen",100,0.1,0.123
+"mfscreen",100,0.2,0.216
+"mfscreen",100,0.3,0.325
+"Pearson SIS",100,0.001,0.04
+"Pearson SIS",100,0.005,0.086
+"Pearson SIS",100,0.01,0.113
+"Pearson SIS",100,0.025,0.167
+"Pearson SIS",100,0.05,0.216
+"Pearson SIS",100,0.1,0.318
+"Pearson SIS",100,0.2,0.425
+"Pearson SIS",100,0.3,0.517
+"Spearman SIS",100,0.001,0.001
+"Spearman SIS",100,0.005,0.009
+"Spearman SIS",100,0.01,0.016
+"Spearman SIS",100,0.025,0.032
+"Spearman SIS",100,0.05,0.07
+"Spearman SIS",100,0.1,0.133
+"Spearman SIS",100,0.2,0.253
+"Spearman SIS",100,0.3,0.356
