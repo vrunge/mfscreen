@@ -1,0 +1,740 @@
+---
+title: "ZIP-response screening with the ZIP simulation design"
+author: "mfscreen simulation"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    fig_caption: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 7.2,
+  fig.height = 4.8
+)
+
+set.seed(20260716)
+
+script_dir <- if (requireNamespace("rstudioapi", quietly = TRUE) &&
+                  rstudioapi::isAvailable()) {
+  dirname(rstudioapi::getActiveDocumentContext()$path)
+} else {
+  getwd()
+}
+script_dir <- normalizePath(script_dir)
+package_dir <- normalizePath(file.path(script_dir, "..", ".."))
+out_dir <- script_dir
+
+lib_dir <- file.path(tempdir(), "mfscreen_zip_response_report_lib")
+dir.create(lib_dir, recursive = TRUE, showWarnings = FALSE)
+install_status <- system2(
+  file.path(R.home("bin"), "R"),
+  c("CMD", "INSTALL", "-l", shQuote(lib_dir), shQuote(package_dir)),
+  stdout = TRUE,
+  stderr = TRUE
+)
+if (!is.null(attr(install_status, "status")) &&
+    attr(install_status, "status") != 0L) {
+  stop(paste(install_status, collapse = "\n"))
+}
+.libPaths(c(lib_dir, .libPaths()))
+
+library(mfscreen)
+library(ggplot2)
+
+theme_set(theme_bw(base_size = 11))
+method_colours <- c(
+  "mfscreen" = "#1B9E77",
+  "Pearson SIS" = "#D95F02",
+  "Spearman SIS" = "#7570B3",
+  "Poisson-score SIS" = "#E7298A",
+  "Poisson-Wald SIS" = "#66A61E"
+)
+```
+
+# Objective
+
+This report reproduces the simulation framework of
+`3_ZIP_abs_Simulations_screening_Version pour Vincent.Rmd`. The response is
+the original zero-inflated Poisson response
+\[
+Y = Y_1Y_2,
+\]
+where \(Y_1\) is Bernoulli and \(Y_2\) is Poisson with a conditional intensity
+defined below.
+
+The output follows the same structure as the ZIP report: selection
+frequencies for \(X_1,\ldots,X_{18}\), the true-positive rate, the
+false-positive rate, and the mean cardinality of the selected set. We also add
+FDR-SSP curves comparing `mfscreen` with three marginal screening competitors.
+
+# Mathematical simulation framework
+
+Let \(n=1500\), \(p=2000\), \(D=10\), and \(N=80\) Monte Carlo replications.
+For observation \(i\), write
+\[
+X_i=(X_i^{(1)},\ldots,X_i^{(p)}).
+\]
+
+The active response-generating variables are \(X^{(1)},\ldots,X^{(10)}\).
+As in the ZIP screening table, the variables counted as positives are
+\[
+\mathcal A = \{1,\ldots,14\},
+\]
+because \(X^{(11)},\ldots,X^{(14)}\) are noisy copies of active Gaussian
+variables. The null set used for false-positive and FDR calculations is
+\[
+\mathcal A^c = \{15,\ldots,2000\}.
+\]
+
+## First five Gaussian variables
+
+Let
+\[
+(X^{(1)},\ldots,X^{(5)}) \sim \mathcal N_5(0,\Sigma_\rho),
+\qquad
+(\Sigma_\rho)_{jk}=\rho^{|j-k|}.
+\]
+The executable parameter setting in the source ZIP file is
+\[
+\rho = 0.
+\]
+
+## Additional variables entering the response
+
+Independently of the first five Gaussian variables, generate
+\[
+X^{(6)} \sim \mathrm{Bernoulli}(0.35),
+\qquad
+X^{(7)} \sim \chi^2_2,
+\]
+\[
+X^{(8)}=X^{(1)}P,\quad P\sim\mathrm{Poisson}(2),
+\]
+\[
+X^{(9)}=X^{(2)}G,\quad G\sim \mathcal N(1,1),
+\]
+and
+\[
+X^{(10)}\sim t_{14}.
+\]
+
+## Correlated non-generating variables
+
+Let
+\[
+Z_3\sim\mathcal N(0,0.4^2),\quad
+Z_4\sim\mathcal N(0,0.02^2),\quad
+Z_5\sim\mathcal N(0,0.35^2),\quad
+Z_6\sim\mathcal N(0,0.55^2),
+\]
+independent of the variables above. Define
+\[
+X^{(11)}=X^{(1)}+Z_3,\quad
+X^{(12)}=X^{(3)}+Z_4,\quad
+X^{(13)}=X^{(4)}+Z_5,\quad
+X^{(14)}=X^{(5)}+Z_6,
+\]
+and
+\[
+X^{(15)}=Z_3,\quad X^{(16)}=Z_4,\quad
+X^{(17)}=Z_5,\quad X^{(18)}=Z_6.
+\]
+The variables \(X^{(11)},\ldots,X^{(14)}\) are correlated with active
+variables but do not enter the response equation. Variables
+\(X^{(15)},\ldots,X^{(18)}\) are null variables and are counted as false
+positives when selected.
+
+## Remaining null block
+
+The remaining variables
+\[
+X^{(19)},\ldots,X^{(2000)}
+\]
+are independent of \((Y,X^{(1)},\ldots,X^{(18)})\). They form
+a stationary Gaussian sequence with covariance
+\[
+\operatorname{Cov}(X^{(18+j)},X^{(18+k)})=\rho_{\tilde{}}^{|j-k|},
+\qquad \rho_{\tilde{}}=0.7.
+\]
+
+## Zero-inflated Poisson response
+
+The coefficient vector is the one used in the executable part of the ZIP
+file:
+\[
+\theta^*=(1,2,\ldots,11)^T.
+\]
+For the first ten covariates, define the linear predictor
+\[
+\eta_i=\theta_0^*+\sum_{j=1}^{10}\theta_j^*X_i^{(j)}.
+\]
+The zero-inflation component is
+\[
+Y_{1i}\mid X_i \sim
+\mathrm{Bernoulli}\left(\pi_i\right),
+\qquad
+\pi_i=\frac{\exp(\eta_i)}{1+\exp(\eta_i)}.
+\]
+
+The Poisson component is
+\[
+Y_{2i}\mid X_i \sim \mathrm{Poisson}(\lambda_i),
+\qquad
+\lambda_i=|\eta_i|.
+\]
+Conditionally on \(X_i\), \(Y_{1i}\) and \(Y_{2i}\) are generated
+independently. The observed response is
+\[
+Y_i=Y_{1i}Y_{2i}.
+\]
+Thus
+\[
+\mathbb P(Y_i=0\mid X_i)
+=(1-\pi_i)+\pi_i\exp(-|\eta_i|),
+\]
+and for every integer \(y\geq 1\),
+\[
+\mathbb P(Y_i=y\mid X_i)
+=\pi_i\exp(-|\eta_i|)
+\frac{|\eta_i|^y}{y!}.
+\]
+
+# Screening rules and criteria
+
+For `mfscreen`, the package returns reciprocal scores \(D_j^2\), with smaller
+values indicating stronger marginal association. At nominal level \(q\),
+variable \(j\) is selected when
+\[
+D_j^2 \leq \frac{1}{\gamma_q^2},
+\qquad
+\gamma_q=\Phi^{-1}(1-q/2).
+\]
+
+The ZIP-type screening table uses the source-file threshold
+\[
+q_n=0.15.
+\]
+For a selected set \(\widehat{\mathcal M}\), define
+\[
+\mathrm{TPR} =
+\frac{1}{|\mathcal A|}\sum_{j\in\mathcal A}
+\mathbf 1\{j\in\widehat{\mathcal M}\},
+\]
+\[
+\mathrm{FPR} =
+\frac{1}{|\mathcal A^c|}\sum_{j\in\mathcal A^c}
+\mathbf 1\{j\in\widehat{\mathcal M}\},
+\]
+\[
+\mathrm{FDR} =
+\frac{\sum_{j\in\mathcal A^c}\mathbf 1\{j\in\widehat{\mathcal M}\}}
+{\max(1,|\widehat{\mathcal M}|)},
+\]
+and
+\[
+\mathrm{SSP}=
+\mathbf 1\{\mathcal A\subseteq\widehat{\mathcal M}\}.
+\]
+
+The three competitors are:
+
+- Pearson SIS, based on marginal Pearson correlations with the observed ZIP
+  response;
+- Spearman SIS, based on marginal rank correlations with the observed ZIP
+  response;
+- Poisson-score SIS, based on the univariate Poisson score statistic for a
+  count-response marginal model.
+
+We also add Poisson-Wald SIS. It uses the same univariate Poisson marginal
+model as Poisson-score SIS, but fits the slope and uses a Wald statistic.
+
+For the FDR-SSP curves, all methods, including `mfscreen`, select the top
+\(k\) variables according to their marginal ranking score. This makes the
+curves directly comparable at the same selected model sizes. The calibrated
+`mfscreen` threshold \(q_n=0.15\) is reported separately in the ZIP-type
+screening table.
+
+## Mathematical formulation of the competitors
+
+For each covariate \(j\), write
+\[
+X_j=(X_1^{(j)},\ldots,X_n^{(j)})^T,
+\qquad
+Y=(Y_1,\ldots,Y_n)^T.
+\]
+
+**Pearson SIS.** The marginal Pearson statistic is
+\[
+R_j =
+\frac{\sum_{i=1}^n (X_i^{(j)}-\bar X_j)(Y_i-\bar Y)}
+{\left[\sum_{i=1}^n (X_i^{(j)}-\bar X_j)^2\right]^{1/2}
+ \left[\sum_{i=1}^n (Y_i-\bar Y)^2\right]^{1/2}}.
+\]
+Variables are ranked by \(|R_j|\).
+
+**Spearman SIS.** Let \(r_i^{(j)}\) be the rank of \(X_i^{(j)}\) among
+\(X_1^{(j)},\ldots,X_n^{(j)}\), and let \(s_i\) be the rank of \(Y_i\) among
+\(Y_1,\ldots,Y_n\). The Spearman statistic is
+\[
+R_j^S =
+\frac{\sum_{i=1}^n (r_i^{(j)}-\bar r_j)(s_i-\bar s)}
+{\left[\sum_{i=1}^n (r_i^{(j)}-\bar r_j)^2\right]^{1/2}
+ \left[\sum_{i=1}^n (s_i-\bar s)^2\right]^{1/2}}.
+\]
+Variables are ranked by \(|R_j^S|\).
+
+**Poisson-score SIS.** For each \(j\), consider the marginal Poisson GLM
+\[
+Y_i\mid X_i^{(j)}\sim\mathrm{Poisson}(\mu_{ij}),
+\qquad
+\log \mu_{ij}=\alpha_j+\beta_jX_i^{(j)}.
+\]
+The null hypothesis is \(H_{0j}:\beta_j=0\). Under the null model,
+\[
+\widehat\alpha_{0j}=\log \bar Y,
+\qquad
+\widehat\mu_{0i}=\bar Y.
+\]
+Using centered covariates, the score for \(\beta_j\) at \(H_{0j}\) is
+\[
+U_j=\sum_{i=1}^n (X_i^{(j)}-\bar X_j)(Y_i-\bar Y),
+\]
+and the Fisher information for \(\beta_j\) at the null is
+\[
+I_j=\bar Y\sum_{i=1}^n (X_i^{(j)}-\bar X_j)^2.
+\]
+The standardized score statistic is
+\[
+Z_j^{\mathrm{score}}=\frac{U_j}{\sqrt{I_j}},
+\]
+with two-sided p-value
+\[
+p_j^{\mathrm{score}}=2\Phi(-|Z_j^{\mathrm{score}}|).
+\]
+
+**Poisson-Wald SIS.** In the same marginal Poisson GLM, fit the unrestricted
+model and obtain the maximum likelihood estimate
+\((\widehat\alpha_j,\widehat\beta_j)\). Let
+\(\widehat{\operatorname{se}}(\widehat\beta_j)\) be the standard error of
+\(\widehat\beta_j\), computed from the inverse observed Fisher information.
+The Wald statistic is
+\[
+Z_j^{\mathrm{Wald}}=
+\frac{\widehat\beta_j}{\widehat{\operatorname{se}}(\widehat\beta_j)},
+\]
+with two-sided p-value
+\[
+p_j^{\mathrm{Wald}}=2\Phi(-|Z_j^{\mathrm{Wald}}|).
+\]
+
+The Poisson-score and Poisson-Wald tests use the same marginal Poisson model
+and test the same null hypothesis \(H_{0j}:\beta_j=0\). They have the same
+standard normal limiting null distribution. They are not exactly the same in
+finite samples: the score statistic is evaluated at the restricted null model,
+whereas the Wald statistic is evaluated at the fitted unrestricted model.
+
+```{r functions}
+n <- 1500L
+N <- 80L
+Dtotal <- 2000L
+D <- 10L
+Dtilde <- Dtotal - D - 8L
+positive <- seq_len(14L)
+null <- 15L:Dtotal
+
+d <- 5L
+rho <- 0
+rho_tilde <- 0.7
+thetastar <- 1:11
+q_n <- 0.15
+
+k_grid <- c(14L, 20L, 30L, 40L, 60L, 80L, 120L, 160L, 220L)
+
+simulate_ar1_gaussian <- function(n, d, rho) {
+  X <- matrix(rnorm(n * d), nrow = n, ncol = d)
+  if (d >= 2L && abs(rho) > 0) {
+    scale_innovation <- sqrt(1 - rho^2)
+    for (j in 2:d) {
+      X[, j] <- rho * X[, j - 1L] + scale_innovation * X[, j]
+    }
+  }
+  X
+}
+
+simulate_zip_design_response <- function(n = n) {
+  design_mat <- simulate_ar1_gaussian(n, d, rho)
+
+  Z3 <- rnorm(n, mean = 0, sd = 0.4)
+  Z4 <- rnorm(n, mean = 0, sd = 0.02)
+  Z5 <- rnorm(n, mean = 0, sd = 0.35)
+  Z6 <- rnorm(n, mean = 0, sd = 0.55)
+
+  X_signal <- cbind(
+    design_mat,
+    rbinom(n, size = 1L, prob = 0.35),
+    rchisq(n, df = 2),
+    design_mat[, 1] * rpois(n, lambda = 2),
+    design_mat[, 2] * rnorm(n, mean = 1, sd = 1),
+    rt(n, df = 14)
+  )
+
+  eta <- as.vector(thetastar[1] + X_signal %*% thetastar[-1])
+  prob <- plogis(eta)
+  y1 <- rbinom(n, size = 1L, prob = prob)
+  y2 <- rpois(n, lambda = abs(eta))
+  y <- y1 * y2
+
+  X_extra <- cbind(
+    design_mat[, 1] + Z3,
+    design_mat[, 3] + Z4,
+    design_mat[, 4] + Z5,
+    design_mat[, 5] + Z6,
+    Z3, Z4, Z5, Z6,
+    simulate_ar1_gaussian(n, Dtilde, rho_tilde)
+  )
+
+  X <- cbind(X_signal, X_extra)
+  colnames(X) <- paste0("X", seq_len(ncol(X)))
+  list(X = X, y = y, y1 = y1, y2 = y2, probability = prob, eta = eta)
+}
+
+pearson_pvalues <- function(X, y) {
+  n <- nrow(X)
+  yc <- y - mean(y)
+  Xc <- sweep(X, 2L, colMeans(X), check.margin = FALSE)
+  denom <- sqrt(colSums(Xc^2) * sum(yc^2))
+  r <- colSums(Xc * yc) / denom
+  r[!is.finite(r)] <- 0
+  r <- pmin(pmax(r, -1 + 1e-15), 1 - 1e-15)
+  stat <- abs(r) * sqrt((n - 2) / pmax(1 - r^2, .Machine$double.eps))
+  p <- 2 * pt(-stat, df = n - 2)
+  p[!is.finite(p)] <- 1
+  p
+}
+
+spearman_pvalues <- function(X, y) {
+  X_rank <- apply(X, 2L, rank, ties.method = "average")
+  y_rank <- rank(y, ties.method = "average")
+  pearson_pvalues(X_rank, y_rank)
+}
+
+poisson_score_pvalues <- function(X, y) {
+  mu_hat <- mean(y)
+  if (mu_hat <= 0) {
+    return(rep(1, ncol(X)))
+  }
+  Xc <- sweep(X, 2L, colMeans(X), check.margin = FALSE)
+  score <- colSums(Xc * (y - mu_hat))
+  info <- mu_hat * colSums(Xc^2)
+  z <- score / sqrt(pmax(info, .Machine$double.eps))
+  p <- 2 * pnorm(-abs(z))
+  p[!is.finite(p)] <- 1
+  p
+}
+
+poisson_wald_pvalues <- function(X, y, max_iter = 8L, tol = 1e-7) {
+  p <- ncol(X)
+  alpha <- rep(log(mean(y) + 1e-8), p)
+  beta <- rep(0, p)
+
+  for (iter in seq_len(max_iter)) {
+    eta <- sweep(X, 2L, beta, `*`)
+    eta <- sweep(eta, 2L, alpha, `+`)
+    eta <- pmin(pmax(eta, -30), 30)
+    mu <- exp(eta)
+
+    resid <- y - mu
+    s0 <- colSums(resid)
+    s1 <- colSums(X * resid)
+    i00 <- colSums(mu)
+    i01 <- colSums(X * mu)
+    i11 <- colSums(X^2 * mu)
+    det <- pmax(i00 * i11 - i01^2, .Machine$double.eps)
+
+    delta_alpha <- (i11 * s0 - i01 * s1) / det
+    delta_beta <- (-i01 * s0 + i00 * s1) / det
+    delta_alpha <- pmin(pmax(delta_alpha, -2), 2)
+    delta_beta <- pmin(pmax(delta_beta, -2), 2)
+
+    alpha <- alpha + delta_alpha
+    beta <- beta + delta_beta
+
+    if (max(abs(delta_alpha), abs(delta_beta), na.rm = TRUE) < tol) {
+      break
+    }
+  }
+
+  eta <- sweep(X, 2L, beta, `*`)
+  eta <- sweep(eta, 2L, alpha, `+`)
+  eta <- pmin(pmax(eta, -30), 30)
+  mu <- exp(eta)
+  i00 <- colSums(mu)
+  i01 <- colSums(X * mu)
+  i11 <- colSums(X^2 * mu)
+  det <- pmax(i00 * i11 - i01^2, .Machine$double.eps)
+  se_beta <- sqrt(i00 / det)
+  z <- beta / pmax(se_beta, .Machine$double.eps)
+  pval <- 2 * pnorm(-abs(z))
+  pval[!is.finite(pval)] <- 1
+  pval
+}
+
+selection_metrics <- function(selected) {
+  selected_count <- sum(selected)
+  false_discoveries <- sum(selected[null])
+  true_positives <- sum(selected[positive])
+  c(
+    fdr = false_discoveries / max(1L, selected_count),
+    fpr = false_discoveries / length(null),
+    tpr = true_positives / length(positive),
+    ssp = as.numeric(all(selected[positive])),
+    selected_count = selected_count
+  )
+}
+
+top_k_selected <- function(pvalues, k) {
+  selected <- rep(FALSE, length(pvalues))
+  selected[order(pvalues, decreasing = FALSE)[seq_len(k)]] <- TRUE
+  selected
+}
+
+mfscreen_selected_from_scores <- function(scores, q) {
+  gamma <- qnorm(1 - q / 2)
+  is.finite(scores) & scores <= 1 / gamma^2
+}
+```
+
+# Monte Carlo computation
+
+For each replication, one full design matrix and one ZIP response are
+generated. The same data set is used for `mfscreen` and all competitors.
+
+```{r monte-carlo}
+run_one_replication <- function(replication) {
+  dat <- simulate_zip_design_response(n)
+  X <- dat$X
+  y <- dat$y
+
+  mf_scores <- screening_test_matrix(X, y, q = q_n)$scores
+  mf_qn_selected <- mfscreen_selected_from_scores(mf_scores, q_n)
+
+  method_pvalues <- list(
+    mfscreen = mf_scores,
+    `Pearson SIS` = pearson_pvalues(X, y),
+    `Spearman SIS` = spearman_pvalues(X, y),
+    `Poisson-score SIS` = poisson_score_pvalues(X, y),
+    `Poisson-Wald SIS` = poisson_wald_pvalues(X, y)
+  )
+
+  curve_results <- do.call(rbind, lapply(names(method_pvalues),
+    function(method) {
+      do.call(rbind, lapply(k_grid, function(k) {
+        selected <- top_k_selected(method_pvalues[[method]], k)
+        data.frame(
+          replication = replication,
+          method = method,
+          parameter = k,
+          parameter_label = paste0("top ", k),
+          t(selection_metrics(selected)),
+          row.names = NULL
+        )
+      }))
+    }))
+
+  list(
+    curves = curve_results,
+    first18 = mf_qn_selected[1:18],
+    qn_metrics = selection_metrics(mf_qn_selected)
+  )
+}
+
+replications <- lapply(seq_len(N), run_one_replication)
+
+raw_results <- do.call(rbind, lapply(replications, `[[`, "curves"))
+first18_selected <- do.call(rbind, lapply(replications, `[[`, "first18"))
+qn_metrics <- do.call(rbind, lapply(replications, `[[`, "qn_metrics"))
+
+summary_results <- aggregate(
+  cbind(fdr, fpr, tpr, ssp, selected_count) ~ method + parameter + parameter_label,
+  data = raw_results,
+  FUN = mean
+)
+summary_sd <- aggregate(
+  cbind(fdr, fpr, tpr, ssp, selected_count) ~ method + parameter + parameter_label,
+  data = raw_results,
+  FUN = sd
+)
+names(summary_sd)[4:8] <- paste0(names(summary_sd)[4:8], "_sd")
+summary_results <- merge(
+  summary_results,
+  summary_sd,
+  by = c("method", "parameter", "parameter_label")
+)
+summary_results <- summary_results[order(summary_results$method,
+                                         summary_results$parameter), ]
+
+write.csv(raw_results, file.path(out_dir, "zip_response_fdr_ssp_raw.csv"),
+          row.names = FALSE)
+write.csv(summary_results, file.path(out_dir, "zip_response_fdr_ssp_summary.csv"),
+          row.names = FALSE)
+```
+
+# ZIP-type screening output
+
+The following table has the same structure as the output table in the ZIP
+simulation file. It reports the selection frequency for \(X_1,\ldots,X_{18}\)
+at \(q_n=0.15\), followed by the average true-positive rate, the average
+false-positive rate, and the average size of the selected set.
+
+```{r zip-output-table}
+first18_names <- c(
+  "X1", "X2", "X3", "X4", "X5", "X6_bern", "X7_chisq2",
+  "X8=X1*P(2)", "X9=N(1,1)*X2", "X10=Student(14)",
+  "X11=X1+Z3", "X12=X3+Z4", "X13=X4+Z5", "X14=X5+Z6",
+  "X15=Z3", "X16=Z4", "X17=Z5", "X18=Z6"
+)
+
+screen_18 <- colMeans(first18_selected)
+resultats_screening <- c(
+  screen_18,
+  taux_vrais_positifs = mean(qn_metrics[, "tpr"]),
+  taux_faux_positifs = mean(qn_metrics[, "fpr"]),
+  cardinal_moyen_ensemble_indices_selectionnes =
+    mean(qn_metrics[, "selected_count"])
+)
+
+resultats_screening_table <- data.frame(
+  quantity = c(first18_names,
+               "taux_vrais_positifs",
+               "taux_faux_positifs",
+               "cardinal_moyen_ensemble_indices_selectionnes"),
+  value = as.numeric(resultats_screening)
+)
+
+write.csv(resultats_screening_table,
+          file.path(out_dir, "zip_response_resultats_screening_q015.csv"),
+          row.names = FALSE)
+
+knitr::kable(
+  resultats_screening_table,
+  digits = 3,
+  caption = paste0("ZIP-design screening results: N = ", N,
+                   ", n = ", n, ", q_n = 0.15.")
+)
+```
+
+The expected cardinality under perfect recovery of the 14 positive variables
+and nominal false-positive rate \(q_n=0.15\) is
+\[
+14 + 0.15\times 1986 = 311.9.
+\]
+
+```{r qn-summary}
+qn_summary <- data.frame(
+  metric = c("FDR", "FPR", "TPR", "SSP", "Mean selected cardinality"),
+  value = c(
+    mean(qn_metrics[, "fdr"]),
+    mean(qn_metrics[, "fpr"]),
+    mean(qn_metrics[, "tpr"]),
+    mean(qn_metrics[, "ssp"]),
+    mean(qn_metrics[, "selected_count"])
+  )
+)
+
+write.csv(qn_summary, file.path(out_dir, "zip_response_mfscreen_q015_summary.csv"),
+          row.names = FALSE)
+
+knitr::kable(
+  qn_summary,
+  digits = 3,
+  caption = "Global mfscreen metrics at the source threshold q_n = 0.15."
+)
+```
+
+# Competitor comparison
+
+```{r comparison-table}
+knitr::kable(
+  summary_results[order(summary_results$method, summary_results$parameter),
+                  c("method", "parameter_label", "fdr", "ssp", "tpr",
+                    "selected_count")],
+  digits = 3,
+  caption = paste0("FDR-SSP curve summary over N = ", N, " replications.")
+)
+```
+
+# FDR-SSP curves
+
+```{r fdr-ssp-plot}
+curve_plot <- ggplot(
+  summary_results,
+  aes(x = fdr, y = ssp, colour = method, shape = method)
+) +
+  geom_path(linewidth = 0.85, alpha = 0.9) +
+  geom_point(size = 2.2, alpha = 0.95) +
+  scale_colour_manual(values = method_colours) +
+  scale_x_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.2)) +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, by = 0.2)) +
+  labs(
+    x = "Mean FDR",
+    y = "SSP: probability of selecting X1,...,X14",
+    colour = NULL,
+    shape = NULL,
+  caption = "Each method varies the same top-k selected model size grid."
+  ) +
+  theme(
+    legend.position = "bottom",
+    panel.grid.minor = element_blank(),
+    plot.caption = element_text(hjust = 0)
+  )
+
+curve_plot
+
+ggsave(file.path(out_dir, "zip_response_fdr_ssp_curve.pdf"), curve_plot,
+       width = 7.2, height = 4.8)
+ggsave(file.path(out_dir, "zip_response_fdr_ssp_curve.png"), curve_plot,
+       width = 7.2, height = 4.8, dpi = 180)
+```
+
+```{r fdr-selected-plot}
+selected_plot <- ggplot(
+  summary_results,
+  aes(x = selected_count, y = fdr, colour = method, shape = method)
+) +
+  geom_path(linewidth = 0.85, alpha = 0.9) +
+  geom_point(size = 2.2, alpha = 0.95) +
+  scale_colour_manual(values = method_colours) +
+  labs(
+    x = "Mean number of selected variables",
+    y = "Mean FDR",
+    colour = NULL,
+    shape = NULL
+  ) +
+  theme(
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+selected_plot
+
+ggsave(file.path(out_dir, "zip_response_fdr_selected_count.pdf"), selected_plot,
+       width = 7.2, height = 4.8)
+ggsave(file.path(out_dir, "zip_response_fdr_selected_count.png"), selected_plot,
+       width = 7.2, height = 4.8, dpi = 180)
+```
+
+# Conclusion
+
+The ZIP-response experiment uses the ZIP-design covariates without changing
+the active/null structure of the screening table. At the source threshold
+\(q_n=0.15\), the mfscreen false-positive rate is directly comparable with the
+nominal target, while the reported selection frequencies show which of
+\(X_1,\ldots,X_{18}\) are retained. The FDR-SSP curves compare all methods at
+the same top-\(k\) selected model sizes, so the curves are directly comparable.
