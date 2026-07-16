@@ -1,0 +1,132 @@
+* using log directory ‘/Users/vrunge/Dropbox/_SCREENING/0_screening2026/mfscreen2/..Rcheck’
+* using R version 4.6.0 (2026-04-24)
+* using platform: aarch64-apple-darwin23
+* R was compiled by
+    Apple clang version 17.0.0 (clang-1700.3.19.1)
+    GNU Fortran (GCC) 14.2.0
+* running under: macOS Tahoe 26.5.1
+* using session charset: UTF-8
+* current time: 2026-07-07 11:28:28 UTC
+* using options ‘--no-manual --no-build-vignettes’
+* checking for file ‘./DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘mfscreen’ version ‘0.1.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... WARNING
+Subdirectory ‘mfscreen/src’ contains apparent object files/libraries
+  /Users/vrunge/Dropbox/_SCREENING/0_screening2026/mfscreen2/src/mfscreen.so
+  /Users/vrunge/Dropbox/_SCREENING/0_screening2026/mfscreen2/src/RcppExports.o
+  /Users/vrunge/Dropbox/_SCREENING/0_screening2026/mfscreen2/src/screening_score.o
+  /Users/vrunge/Dropbox/_SCREENING/0_screening2026/mfscreen2/src/screening_test.o
+Object files/libraries should not be included in a source package.
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .gitignore
+  .Rhistory
+  simulations/.DS_Store
+  ..Rcheck
+  .git
+  .Rproj.user
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... WARNING
+Found the following files with non-portable file names:
+  simulations/1_ML_simus/1_Old_table1_screening_pour Vincent.Rmd
+  simulations/1_ML_simus/2_Sortie Poisson_abs_Simulations_screening_Version pour Version pour Vincent.Rmd
+  simulations/1_ML_simus/3_ZIP_abs_Simulations_screening_Version pour Vincent.Rmd
+These are not fully portable file names.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+Found the following non-portable file paths:
+  mfscreen/.Rproj.user/shared/notebooks/C6DB2973-Simple_Gaussian_null_FPR_loglog_study/1/5A7BBCDEad914cd2/chunks.json
+  mfscreen/simulations/1_ML_simus/2_Sortie Poisson_abs_Simulations_screening_Version pour Version pour Vincent.Rmd
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/first18-summary_5b4fc85da5c203cc433810d37efe9a89.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/first18-summary_5b4fc85da5c203cc433810d37efe9a89.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/first18-summary_5b4fc85da5c203cc433810d37efe9a89.rdx
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/table1-run_6c7904bf40dd8a8fec76cddf614c8f14.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/table1-run_6c7904bf40dd8a8fec76cddf614c8f14.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/table1-run_6c7904bf40dd8a8fec76cddf614c8f14.rdx
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/table1-summary_6d92ef9c6e19d1ec5c457e16177b95c8.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/table1-summary_6d92ef9c6e19d1ec5c457e16177b95c8.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_old_test/table1-summary_6d92ef9c6e19d1ec5c457e16177b95c8.rdx
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/first18-summary_55f9e16b3f9fe79f0270981a49886ecb.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/first18-summary_55f9e16b3f9fe79f0270981a49886ecb.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/first18-summary_55f9e16b3f9fe79f0270981a49886ecb.rdx
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/table1-run_bef4359637bfc8a6d14aca19586dde7d.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/table1-run_bef4359637bfc8a6d14aca19586dde7d.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/table1-run_bef4359637bfc8a6d14aca19586dde7d.rdx
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/table1-summary_454fff7179d71e7e207c3f232125d1ba.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/table1-summary_454fff7179d71e7e207c3f232125d1ba.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/table1-summary_454fff7179d71e7e207c3f232125d1ba.rdx
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/threshold-curve-monte-carlo_dc2d8e81432859a35fee5767116181af.RData
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/threshold-curve-monte-carlo_dc2d8e81432859a35fee5767116181af.rdb
+  mfscreen/simulations/1_ML_simus/table1_cache_threshold_curves/threshold-curve-monte-carlo_dc2d8e81432859a35fee5767116181af.rdx
+  mfscreen/.Rproj.user/shared/notebooks/C6DB2973-Simple_Gaussian_null_FPR_loglog_study/1/5A7BBCDEad914cd2
+
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘mfscreen’ can be installed ... OK
+* used C++ compiler: ‘Apple clang version 21.0.0 (clang-2100.1.1.101)’
+* used SDK: ‘MacOSX26.5.sdk’
+* checking C++ specification ... INFO
+  specified C++20
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Checking should be performed on sources prepared by ‘R CMD build’.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./..Rcheck
+Most likely, these were included erroneously.
+* checking code files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking LazyData ... INFO
+  'LazyData' is specified without a 'data' directory
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... WARNING
+Non-portable flags in variable 'PKG_CXXFLAGS':
+  -O3 -march=native
+* checking for GNU extensions in Makefiles ... WARNING
+Found the following file(s) containing GNU extensions:
+  src/Makevars
+Portable Makefiles do not use GNU extensions such as +=, :=, $(shell),
+$(wildcard), ifeq ... endif, .NOTPARALLEL See section ‘Writing portable
+packages’ in the ‘Writing R Extensions’ manual.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ... OK
+  Running ‘testthat.R’
+* DONE
+Status: 5 WARNINGs, 2 NOTEs

@@ -1,0 +1,20 @@
+* installing *source* package ‘mfscreen’ ...
+** this is package ‘mfscreen’ version ‘0.1.1’
+** using staged installation
+** libs
+specified C++20
+using C++ compiler: ‘Apple clang version 21.0.0 (clang-2100.1.1.101)’
+using C++20
+using SDK: ‘MacOSX26.5.sdk’
+make: Nothing to be done for `all'.
+installing to /Users/vrunge/Dropbox/_SCREENING/0_screening2026/mfscreen2/..Rcheck/00LOCK-mfscreen2/00new/mfscreen/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mfscreen)

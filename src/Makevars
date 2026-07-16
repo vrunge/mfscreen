@@ -1,7 +1,1 @@
 CXX_STD = CXX20
-PKG_CXXFLAGS += -O3 -march=native
-
-ARCH := $(shell uname -m)
-ifeq ($(ARCH),x86_64)
-PKG_CXXFLAGS += -mavx2 -mfma
-endif

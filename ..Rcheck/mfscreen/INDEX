@@ -1,0 +1,14 @@
+screening_score         Reciprocal model-free screening statistic for
+                        one predictor
+screening_score_old_R   Model-free screening statistic for one
+                        predictor
+screening_score_R       Reciprocal model-free screening statistic for
+                        one predictor
+screening_test_matrix   Reciprocal model-free screening for a predictor
+                        matrix
+screening_test_matrix_old_R
+                        Model-free marginal screening for a predictor
+                        matrix
+screening_test_matrix_R
+                        Reciprocal model-free screening for a predictor
+                        matrix

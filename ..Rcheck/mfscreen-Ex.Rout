@@ -1,0 +1,247 @@
+
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "mfscreen"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('mfscreen')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("screening_score")
+> ### * screening_score
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: screening_score
+> ### Title: Reciprocal model-free screening statistic for one predictor
+> ### Aliases: screening_score
+> 
+> ### ** Examples
+> 
+> set.seed(123)
+> 
+> x_signal <- rnorm(200)
+> x_null <- rnorm(200)
+> y <- 2 * x_signal + rnorm(200)
+> 
+> screening_score(x_signal, y)
+[1] 0.001868691
+> screening_score(x_null, y)
+[1] 1.917217
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("screening_score_R")
+> ### * screening_score_R
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: screening_score_R
+> ### Title: Reciprocal model-free screening statistic for one predictor
+> ### Aliases: screening_score_R
+> 
+> ### ** Examples
+> 
+> 
+> n <- 2500
+> q <- 0.05
+> 
+> # One predictor with a marginal association with y
+> x_signal <- rnorm(n)
+> 
+> # One predictor independent of y
+> x_null <- rnorm(n)
+> 
+> # Response generated from x_signal only
+> y <- x_signal^2 + 0.5 * x_signal + rnorm(n, sd = 1)
+> 
+> # Reciprocal distance statistic
+> D2_signal <- screening_score_R(x_signal, y)
+> D2_null <- screening_score_R(x_null, y)
+> 
+> # screening decisions
+> gamma <- qnorm(1 - q / 2)
+> 
+> selected <- c(
++   signal = D2_signal <= 1 / gamma^2,
++   null = D2_null <= 1 / gamma^2
++ )
+> 
+> data.frame(
++   variable = c("signal", "null"),
++   D2 = c(D2_signal, D2_null),
++   selected = selected
++ )
+       variable          D2 selected
+signal   signal  0.02128883     TRUE
+null       null 30.83319066    FALSE
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("screening_score_old_R")
+> ### * screening_score_old_R
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: screening_score_old_R
+> ### Title: Model-free screening statistic for one predictor
+> ### Aliases: screening_score_old_R
+> 
+> ### ** Examples
+> 
+> set.seed(123)
+> 
+> x_signal <- rnorm(200)
+> x_null <- rnorm(200)
+> y <- 2 * x_signal + rnorm(200)
+> 
+> screening_score_old_R(x_signal, y)
+[1] 23.13296
+> screening_score_old_R(x_null, y)
+[1] -0.7222115
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("screening_test_matrix")
+> ### * screening_test_matrix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: screening_test_matrix
+> ### Title: Reciprocal model-free screening for a predictor matrix
+> ### Aliases: screening_test_matrix
+> 
+> ### ** Examples
+> 
+> set.seed(123)
+> 
+> n <- 300
+> p <- 500
+> 
+> X <- matrix(rnorm(n * p), nrow = n, ncol = p)
+> y <- 2 * X[, 1] - 1.5 * X[, 2] + rnorm(n)
+> 
+> result <- screening_test_matrix(X, y, q = 0.10)
+> 
+> result$selected_indices
+ [1]   1   2  27  41  46  61  62  72  74  76  77  90 100 105 114 142 149 153 174
+[20] 179 205 206 219 225 253 263 268 294 302 328 329 347 357 364 380 389 393 423
+[39] 457 462 478 490 499
+> head(result$scores)
+[1] 0.002529479 0.005548640 5.575375580 0.492283588 0.626666803 1.070551445
+> result$threshold
+[1] 0.3696115
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("screening_test_matrix_R")
+> ### * screening_test_matrix_R
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: screening_test_matrix_R
+> ### Title: Reciprocal model-free screening for a predictor matrix
+> ### Aliases: screening_test_matrix_R
+> 
+> ### ** Examples
+> 
+> set.seed(123)
+> 
+> n <- 250
+> p <- 100
+> 
+> X <- matrix(rnorm(n * p), nrow = n, ncol = p)
+> colnames(X) <- paste0("X", seq_len(p))
+> 
+> y <- 2 * X[, 1] - 1.5 * X[, 2] + rnorm(n)
+> 
+> result <- screening_test_matrix_R(X, y, q = 0.10)
+> 
+> result$selected_variables
+ [1] "X1"  "X2"  "X11" "X15" "X16" "X27" "X38" "X40" "X57" "X69" "X79" "X92"
+[13] "X97"
+> head(result$scores)
+          X1           X2           X3           X4           X5           X6 
+ 0.003855412  0.007244613  7.951943449  0.990776192 98.835659818 33.946961292 
+> result$threshold
+[1] 0.3696115
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("screening_test_matrix_old_R")
+> ### * screening_test_matrix_old_R
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: screening_test_matrix_old_R
+> ### Title: Model-free marginal screening for a predictor matrix
+> ### Aliases: screening_test_matrix_old_R
+> 
+> ### ** Examples
+> 
+> set.seed(123)
+> 
+> n <- 2000
+> p <- 100
+> 
+> X <- matrix(rnorm(n * p), nrow = n, ncol = p)
+> colnames(X) <- paste0("X", seq_len(p))
+> 
+> y <- 2 * X[, 1] - 1.5 * X[, 2] + rnorm(n)
+> 
+> result <- screening_test_matrix_old_R(X, y, q = 0.10)
+> 
+> result$selected_variables
+ [1] "X1"  "X2"  "X9"  "X11" "X20" "X25" "X43" "X56" "X75" "X86"
+> head(result$scores)
+         X1          X2          X3          X4          X5          X6 
+ 49.9351634 -29.3565404  -0.7227369   0.2601676  -0.9099205  -0.9653165 
+> result$threshold
+[1] 1.644854
+> 
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.066 0.006 0.078 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

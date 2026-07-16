@@ -147,12 +147,16 @@ df[df$method == "R",5]/df[df$method == "Rcpp",5]
 
 
 
-p <- 10^4
-n <- 10^5
+p <- 10^2
+n <- 10^3
 X <- matrix(rnorm(n * p), nrow = n, ncol = p)
 dim(X)
 y <- rnorm(n)
-system.time({result_cpp <- screening_test_matrix(X, y, q = q)})
+result_cpp <- screening_test_matrix(X, y, q = q)
+
+result <- screening_test_matrix_R(X, y)
+
+unname(result_cpp$scores - result$scores)
 
 
 
